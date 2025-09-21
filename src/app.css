@@ -11,7 +11,6 @@
 
 header {
     /* this is the code for the header/banner it has the background image which is the banner image and it tells how the header/banner will be displayed */
-    background-image: url("-_-");
     background-repeat: no-repeat;
     background-size: 100% 100%;
     display: flex;
@@ -111,7 +110,8 @@ header {
     color: rgb(0, 255, 247);
 }
 
-nav2 {
+nav2
+{
     position: absolute;
     top: 20px; /* adjust vertical offset from top */
     left: 50%;
@@ -125,7 +125,8 @@ nav2 {
     white-space: nowrap; /* 👈 THIS prevents the buttons from wrapping */
 }
 
-nav2 a {
+nav2 a
+{
     display: block;
     text-decoration: none;
     color: #fff;
@@ -138,20 +139,22 @@ nav2 a {
     transition: all 0.2s ease-in-out;
 }
 
-nav2 a:hover {
+nav2 a:hover
+{
     color: rgb(0, 255, 251);
     transform: scale(1.2);
-    background-color: rgba(0, 0, 0, 0.042);
 }
 
-nav {
+nav
+{
     /* this is how the navigation buttons will be displayed */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-nav a {
+nav a
+{
     display: block;
     text-decoration: none;
     color: #fff;
@@ -164,7 +167,8 @@ nav a {
     transition: all 0.2s ease-in-out;
 }
 
-nav a:hover {
+nav a:hover
+{
     color: rgb(0, 255, 251);
     transform: scale(1.2);
     background-color: rgba(0, 0, 0, 0);
