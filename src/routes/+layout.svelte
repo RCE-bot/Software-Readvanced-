@@ -1,5 +1,5 @@
 <script>
-	import Header from './Header.svelte';
+	import Header from './Header.svelte'; //get svelte component Header for navigation
 	import '../app.css';
 	
 	/** @type {{children: import('svelte').Snippet}} */
@@ -7,7 +7,7 @@
 </script>
 
 <div class="app">
-	<Header />
+	<Header /> <!-- render header navigation -->
 
 	<main>
 		{@render children()}

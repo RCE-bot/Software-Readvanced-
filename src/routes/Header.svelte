@@ -1,5 +1,5 @@
 <script>
-	import { page } from '$app/state';
+	import { page } from "$app/state";
 	import logo from '$lib/images/svelte-logo.svg';
 	import github from '$lib/images/github.svg';
 </script>
@@ -17,13 +17,13 @@
 		</svg>
 		<ul>
 			<li aria-current={page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">Home</a>
+				<a href="/">About SR</a>
 			</li>
 			<li aria-current={page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href="/about">About</a>
+				<a href="/about">Learn Programming</a>
 			</li>
 			<li aria-current={page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}>
-				<a href="/sverdle">Sverdle</a>
+				<a href="/sverdle">Browser Resources</a>
 			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">
@@ -66,7 +66,7 @@
 	nav {
 		display: flex;
 		justify-content: center;
-		--background: rgba(255, 255, 255, 0.7);
+		--background: rgba(255, 255, 255, 0);
 	}
 
 	svg {
@@ -88,6 +88,7 @@
 		justify-content: center;
 		align-items: center;
 		list-style: none;
+		--color-text: white;
 		background: var(--background);
 		background-size: contain;
 	}
