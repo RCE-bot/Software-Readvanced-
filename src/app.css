@@ -11,7 +11,7 @@
 	--color-bg-2: hsla(0, 0%, 2%, 0.71);
 	--color-theme-1: #9e4eff;
 	--color-theme-2: #4075a6;
-	--color-text: rgba(0, 0, 0, 0);
+	--color-text: rgb(255, 255, 255);
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
 	font-family: var(--font-body);

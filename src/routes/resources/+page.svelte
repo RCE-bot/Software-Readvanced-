@@ -111,7 +111,7 @@
 		};
 	}}
 >
-	<a class="how-to-play" href="/sverdle/how-to-play">How to play</a>
+	<a class="how-to-play" href="/Software-Readvanced/src/routes/resources/how-to-play">How to play</a>
 
 	<div class="grid" class:playing={!won} class:bad-guess={form?.badGuess}>
 		{#each Array.from(Array(6).keys()) as row (row)}

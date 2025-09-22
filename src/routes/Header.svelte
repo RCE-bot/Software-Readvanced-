@@ -19,11 +19,11 @@
 			<li aria-current={page.url.pathname === '/' ? 'page' : undefined}>
 				<a href="/">About SR</a>
 			</li>
-			<li aria-current={page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href="/about">Learn Programming</a>
+			<li aria-current={page.url.pathname === '/learn' ? 'page' : undefined}>
+				<a href="/learn">Learn Programming</a>
 			</li>
-			<li aria-current={page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}>
-				<a href="/sverdle">Browser Resources</a>
+			<li aria-current={page.url.pathname.startsWith('/resources') ? 'page' : undefined}>
+				<a href="/resources">Browser Resources</a>
 			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">
@@ -99,7 +99,7 @@
 	}
 
 	li[aria-current='page']::before {
-		--size: 6px;
+		--size: 10px;
 		content: '';
 		width: 0;
 		height: 0;
