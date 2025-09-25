@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { Spring } from 'svelte/motion';
 
 	const count = new Spring(0);
@@ -8,7 +8,8 @@
 	 * @param {number} n
 	 * @param {number} m
 	 */
-	function modulo(n, m) {
+	function modulo(n, m)
+	{
 		// handle negative numbers
 		return ((n % m) + m) % m;
 	}
@@ -24,7 +25,8 @@
 	<div class="counter-viewport">
 		<div class="counter-digits" style="transform: translate(0, {100 * offset}%)">
 			<strong class="hidden" aria-hidden="true">{Math.floor(count.current + 1)}</strong>
-			<strong>{Math.floor(count.current)}</strong>
+			<strong>{Math.floor(count.current)}
+			</strong>
 		</div>
 	</div>
 
@@ -34,7 +36,6 @@
 		</svg>
 	</button>
 </div>
-
 <style>
 	.counter {
 		display: flex;

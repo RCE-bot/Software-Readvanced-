@@ -1,5 +1,5 @@
 <script>
-	import Header from './Header.svelte'; //get svelte component Header for navigation
+	import Landing from '$lib/Landing.svelte' //get svelte component Header for navigation
 	import '../app.css';
 	
 	/** @type {{children: import('svelte').Snippet}} */
@@ -7,8 +7,7 @@
 </script>
 
 <div class="app">
-	<Header /> <!-- render header navigation -->
-
+	<Landing />
 	<main>
 		{@render children()}
 	</main>
@@ -20,14 +19,17 @@
 	</footer>
 </div>
 
+
 <style>
-	.app {
+	.app
+	{
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
 	}
 
-	main {
+	main
+	{
 		flex: 1;
 		display: flex;
 		flex-direction: column;

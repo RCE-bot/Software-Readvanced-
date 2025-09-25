@@ -85,6 +85,8 @@
 		padding: 0;
 		margin: 0;
 		height: 3em;
+		padding-left: 10px;
+		padding-right: 10px;
 		display: flex;
 		justify-content: center;
 		align-items: center;

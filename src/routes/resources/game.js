@@ -1,12 +1,15 @@
 import { words, allowed } from './words.server';
 
-export class Game {
+export class Game
+{
 	/**
 	 * Create a game object from the player's cookie, or initialise a new game
 	 * @param {string | undefined} serialized
 	 */
-	constructor(serialized = undefined) {
-		if (serialized) {
+	constructor(serialized = undefined)
+	{
+		if (serialized)
+		{
 			const [index, guesses, answers] = serialized.split('-');
 
 			this.index = +index;
@@ -26,7 +29,8 @@ export class Game {
 	 * true if the guess was valid, false otherwise
 	 * @param {string[]} letters
 	 */
-	enter(letters) {
+	enter(letters)
+	{
 		const word = letters.join('');
 		const valid = allowed.has(word);
 
@@ -38,7 +42,8 @@ export class Game {
 		const answer = Array(5).fill('_');
 
 		// first, find exact matches
-		for (let i = 0; i < 5; i += 1) {
+		for (let i = 0; i < 5; i += 1)
+		{
 			if (letters[i] === available[i]) {
 				answer[i] = 'x';
 				available[i] = ' ';
@@ -48,25 +53,27 @@ export class Game {
 		// then find close matches (this has to happen
 		// in a second step, otherwise an early close
 		// match can prevent a later exact match)
-		for (let i = 0; i < 5; i += 1) {
-			if (answer[i] === '_') {
+		for (let i = 0; i < 5; i += 1)
+		{
+			if (answer[i] === '_')
+			{
 				const index = available.indexOf(letters[i]);
-				if (index !== -1) {
+				if (index !== -1)
+				{
 					answer[i] = 'c';
 					available[index] = ' ';
 				}
 			}
 		}
-
 		this.answers.push(answer.join(''));
-
 		return true;
 	}
 
 	/**
 	 * Serialize game state so it can be set as a cookie
 	 */
-	toString() {
+	toString()
+	{
 		return `${this.index}-${this.guesses.join(' ')}-${this.answers.join(' ')}`;
 	}
 }
