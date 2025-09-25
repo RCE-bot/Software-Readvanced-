@@ -1,13 +1,10 @@
 <script>
-	import Landing from '$lib/Landing.svelte' //get svelte component Header for navigation
 	import '../app.css';
-	
 	/** @type {{children: import('svelte').Snippet}} */
 	let { children } = $props();
 </script>
 
 <div class="app">
-	<Landing />
 	<main>
 		{@render children()}
 	</main>
@@ -21,6 +18,7 @@
 
 
 <style>
+
 	.app
 	{
 		display: flex;
