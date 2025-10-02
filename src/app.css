@@ -7,9 +7,9 @@
 		'Open Sans', 'Helvetica Neue', sans-serif;
 	--font-mono: 'Fira Mono', monospace;
 	--color-bg-0: rgba(37, 39, 40, 0.56);
-	--color-bg-1: hsl(267, 100%, 50%);
+	--color-bg-1: hsl(107, 100%, 50%);
 	--color-bg-2: hsla(0, 0%, 2%, 0.71);
-	--color-theme-1: #9e4eff;
+	--color-theme-1: #36ff00;
 	--color-theme-2: #4075a6;
 	--color-text: rgb(255, 255, 255);
 	--column-width: 42rem;
@@ -31,7 +31,7 @@ body {
 	background-size: 100vw 100vh;
 	background-image:
 		radial-gradient(50% 50% at 50% 50%,
-		rgba(55, 36, 96, 0.84) 0%,
+        rgb(47, 255, 0) 0%,
 		rgba(0, 0, 0, 0.76) 100%),
 
 		linear-gradient(180deg, var(--color-bg-0) 0%,

@@ -1,7 +1,9 @@
 <script>
 	// load content (dynamic images, etc)
-	import Landing from './Landing.svelte'
-
+    import Header from './Header.svelte'
+    import Hero from '$lib/Landing/Hero.svelte';
+    import About from '$lib/Landing/About.svelte';
+    import Contribute from '$lib/Landing/Contribute.svelte';
 </script>
 
 <svelte:head>
@@ -10,8 +12,10 @@
 </svelte:head>
 
 <main>
-	<Landing />
+    <Header />
+    <Hero />
+    <About />
+    <Contribute />
 </main>
-<style>
 
-</style>
+
