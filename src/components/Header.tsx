@@ -1,6 +1,4 @@
 import { useEffect, useRef } from 'react';
-import { Github } from 'lucide-react';
-import { Button } from './ui/button';
 import { gsap } from '../hooks/useGSAP';
 
 export default function Header() {
@@ -75,13 +73,6 @@ export default function Header() {
             <button className="text-white hover:text-green-400 transition-colors">
               Settings
             </button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-white hover:text-green-400 hover:bg-green-400/20"
-            >
-              <Github className="h-5 w-5" />
-            </Button>
           </div>
         </nav>
       </div>

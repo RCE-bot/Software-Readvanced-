@@ -201,9 +201,26 @@ html {
     linear-gradient(135deg, #000000 0%, #064e3b 25%, #000000 50%, #065f46 75%, #000000 100%);
 }
 
-/* Smooth scrolling */
+/* Enhanced smooth scrolling */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+/* Smoother scrolling for webkit browsers */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: smooth;
+  }
 }
 
 /* Custom scrollbar */
@@ -242,4 +259,40 @@ html {
 
 .animate-element {
   will-change: transform, opacity;
+}
+
+/* Smooth scroll performance improvements */
+.smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: smooth;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Corner glow utilities */
+.corner-glow-tl {
+  background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.15) 0%, transparent 60%);
+}
+
+.corner-glow-tr {
+  background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.12) 0%, transparent 60%);
+}
+
+.corner-glow-bl {
+  background: radial-gradient(circle at bottom left, rgba(34, 197, 94, 0.18) 0%, transparent 60%);
+}
+
+.corner-glow-br {
+  background: radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.10) 0%, transparent 60%);
 }
