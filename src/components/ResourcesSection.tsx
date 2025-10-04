@@ -8,7 +8,7 @@ import { Search, BookOpen, Code, Database, Cpu, Globe, FileText } from 'lucide-r
 import { gsap, ScrollTrigger } from '../hooks/useGSAP';
 
 // Mock data for resources - in a real app, this would come from an API
-const mockResources= [
+const mockResources = [
   {
     id: 1,
     title: "Introduction to Object-Oriented Programming",
@@ -369,7 +369,7 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
                   <TabsTrigger
                     key={category}
                     value={category}
-                    className="text-xs px-3 py-1 data-[state=active]:bg-green-500 data-[state=active]:text-black whitespace-nowrap"
+                    className="text-xs px-3 py-1 data-[state=active]:bg-green-500 data-[state=active]:text-black whitespace-nowrap hover:bg-green-500/20 hover:text-green-400 transition-all duration-300 hover:scale-105"
                   >
                     {category}
                   </TabsTrigger>
@@ -391,7 +391,7 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
         {/* Resource Cards */}
         <div ref={cardsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredResources.map((resource) => (
-            <Card key={resource.id} className="bg-gray-800/50 border-gray-700 hover:border-green-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-green-500/10">
+            <Card key={resource.id} className="bg-gray-800/50 border-gray-700 hover:border-green-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-green-500/10 hover:scale-[1.02] hover:bg-gray-700/50">
               <CardHeader>
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center gap-2">
@@ -418,7 +418,7 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
                   ))}
                 </div>
                 <Button 
-                  className="w-full bg-green-500 hover:bg-green-600 text-black"
+                  className="w-full bg-green-500 hover:bg-green-600 text-black transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-500/30"
                   onClick={() => {
                     window.open(resource.url, '_blank', 'noopener,noreferrer');
                   }}
@@ -446,7 +446,7 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
                 setSearchTerm('');
                 setSelectedCategory('All');
               }}
-              className="border-green-500 text-green-500 hover:bg-green-500 hover:text-black"
+              className="border-green-500 text-green-500 hover:bg-green-500 hover:text-black transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-500/30"
             >
               Clear Filters
             </Button>
