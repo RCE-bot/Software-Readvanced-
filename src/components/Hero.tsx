@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { Button } from './ui/button';
-import Header from './Header';
 import GitHubLink from './GitHubLink';
 import { gsap } from 'gsap';
 
@@ -91,9 +90,7 @@ export default function Hero({ onNavigateToResources }: HeroProps) {
       <div ref={glowRef1} className="absolute top-1/4 left-1/4 w-72 h-72 bg-green-500/20 rounded-full blur-3xl"></div>
       <div ref={glowRef2} className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-400/15 rounded-full blur-3xl"></div>
       <div ref={glowRef3} className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-green-500/10 rounded-full blur-3xl"></div>
-      
-      {/* Header integrated into Hero section */}
-      <Header />
+        
       
       {/* GitHub Link - Only visible in Hero section */}
       <GitHubLink />

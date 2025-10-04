@@ -3,7 +3,7 @@ import { Button } from './ui/button';
 import { Home, BookOpen, Settings as SettingsIcon, ChevronLeft, ChevronRight } from 'lucide-react';
 
 // Navigation Component - Handles switching between different sections
-interface NavigationProps {
+export interface NavigationProps {
   currentSection: 'home' | 'resources' | 'settings';
   onSectionChange: (section: 'home' | 'resources' | 'settings') => void;
 }
