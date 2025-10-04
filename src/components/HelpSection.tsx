@@ -118,6 +118,22 @@ export default function HelpSection() {
         ease: "none"
       });
 
+      // Animate corner glows with subtle pulsing effect
+      const cornerGlows = sectionRef.current?.querySelectorAll('.absolute.bg-green-500\\/15, .absolute.bg-green-400\\/12, .absolute.bg-emerald-500\\/18, .absolute.bg-green-600\\/10');
+      if (cornerGlows) {
+        cornerGlows.forEach((glow, index) => {
+          gsap.to(glow, {
+            opacity: 0.8 + (Math.sin(index) * 0.2),
+            scale: 1.05 + (index * 0.05),
+            duration: 3 + (index * 0.3),
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            delay: index * 0.6
+          });
+        });
+      }
+
     }, sectionRef);
 
     return () => ctx.revert();
@@ -125,7 +141,13 @@ export default function HelpSection() {
 
   return (
     <section ref={sectionRef} className="py-20 px-6 relative bg-gradient-to-br from-green-900/20 to-black" style={{ backgroundSize: "200% 200%" }}>
-      <div className="container mx-auto max-w-6xl">
+      {/* Additional Corner Green Glows */}
+      <div className="absolute top-4 left-4 w-24 h-24 bg-green-500/15 rounded-full blur-2xl"></div>
+      <div className="absolute top-8 right-8 w-32 h-32 bg-green-400/12 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-4 left-8 w-28 h-28 bg-emerald-500/18 rounded-full blur-2xl"></div>
+      <div className="absolute bottom-8 right-4 w-36 h-36 bg-green-600/10 rounded-full blur-3xl"></div>
+      
+      <div className="container mx-auto max-w-6xl relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Help content */}
           <div className="text-white">
@@ -139,20 +161,20 @@ export default function HelpSection() {
               <div>
                 <h3 className="text-green-400 mb-2">GITHUB</h3>
                 <a 
-                  href="#" 
+                  href="https://github.com/Airstriker123"
                   className="text-gray-300 hover:text-green-400 transition-colors text-sm"
                 >
-                  https://github.com/firstname123
+                  https://github.com/Airstriker123
                 </a>
               </div>
               
               <div>
                 <h3 className="text-green-400 mb-2">EMAIL</h3>
                 <a 
-                  href="#" 
+                  href="https://mail.google.com/mail/u/1/#inbox?compose=CllgCJfscjvXqShNgJlTZthqPqLvBmbJBPFSxjrSxhLflQkfQHzfqPFMBKJSHhFBGXBbfwNmDpL"
                   className="text-gray-300 hover:text-green-400 transition-colors text-sm"
                 >
-                  unit.singh@education.nsw.gov.au
+                  amit.singh12@education.nsw.gov.au
                 </a>
               </div>
             </div>

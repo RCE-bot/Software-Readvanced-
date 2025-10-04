@@ -1,9 +1,14 @@
 import { useEffect, useRef } from 'react';
 import { Button } from './ui/button';
 import Header from './Header';
+import GitHubLink from './GitHubLink';
 import { gsap } from 'gsap';
 
-export default function Hero() {
+interface HeroProps {
+  onNavigateToResources?: () => void;
+}
+
+export default function Hero({ onNavigateToResources }: HeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
@@ -90,6 +95,9 @@ export default function Hero() {
       {/* Header integrated into Hero section */}
       <Header />
       
+      {/* GitHub Link - Only visible in Hero section */}
+      <GitHubLink />
+      
       <div className="relative z-10 text-center px-6">
         <h1 ref={titleRef} className="text-6xl md:text-8xl font-bold text-white mb-8">
           Software
@@ -100,6 +108,7 @@ export default function Hero() {
         <div ref={buttonRef}>
           <Button 
             className="bg-green-500 hover:bg-green-600 text-black px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
+            onClick={onNavigateToResources}
           >
             Search resource
           </Button>
