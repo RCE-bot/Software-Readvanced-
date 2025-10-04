@@ -32,9 +32,9 @@ export default function App() {
         return (
           <>
             <Hero onNavigateToResources={handleNavigateToResources} />
-            <AboutSection />
+            <AboutSection onNavigateToResources={handleNavigateToResources} />
             <HelpSection />
-            <Footer />
+            <Footer onNavigateToResources={handleNavigateToResources} />
           </>
         );
       case 'resources':

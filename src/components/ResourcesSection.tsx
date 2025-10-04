@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { Search, BookOpen, Code, Database, Cpu, Globe, FileText } from 'lucide-react';
 import { gsap, ScrollTrigger } from '../hooks/useGSAP';
 
-// Mock data for resources - in a real app, this would come from an API
+// data for resources allowing user to browse different content
 const mockResources = [
   {
     id: 1,

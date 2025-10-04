@@ -2,7 +2,15 @@ import { useEffect, useRef } from 'react';
 import { Button } from './ui/button';
 import { gsap, ScrollTrigger } from '../hooks/useGSAP';
 
-export default function Footer() {
+interface FooterProps
+{
+    onNavigateToResources?: () => void;
+    OnNavigatetoSettings?: () => void;
+}
+
+export default function Footer({onNavigateToResources,
+                                OnNavigatetoSettings}: FooterProps)
+{
   const footerRef = useRef<HTMLElement>(null);
   const buttonsRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
@@ -74,13 +82,15 @@ export default function Footer() {
     <footer ref={footerRef} className="py-12 px-6 bg-black/50 border-t border-transparent">
       <div className="container mx-auto max-w-4xl">
         <div ref={buttonsRef} className="flex flex-wrap gap-4 justify-center items-center">
-          <Button 
+          <Button
+            onClick={onNavigateToResources}
             className="bg-green-500 hover:bg-green-600 text-black px-6 py-2 rounded-full transition-all duration-300"
           >
             search for resource
           </Button>
           
-          <Button 
+          <Button
+            onClick={onNavigateToSettings}
             variant="outline" 
             className="border-green-500 text-green-500 hover:bg-green-500 hover:text-black px-6 py-2 rounded-full transition-all duration-300"
           >
