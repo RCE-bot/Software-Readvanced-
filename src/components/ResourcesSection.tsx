@@ -362,20 +362,21 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
               />
             </div>
 
-            {/* Category Tabs */}
-            <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="w-full">
-              <TabsList className="flex flex-wrap justify-center gap-1 bg-gray-800/50 border-gray-700 p-2 h-auto">
-                {categories.map((category) => (
-                  <TabsTrigger
-                    key={category}
-                    value={category}
-                    className="text-xs px-3 py-1 data-[state=active]:bg-green-500 data-[state=active]:text-black whitespace-nowrap hover:bg-green-500/20 hover:text-green-400 transition-all duration-300 hover:scale-105"
-                  >
-                    {category}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-            </Tabs>
+              {/* Category Tabs */}
+              <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="w-full">
+                  <TabsList className="flex flex-wrap justify-center gap-1 bg-gray-800/50 border-gray-700 p-2 h-auto">
+                      {categories.map((category) => (
+                          <TabsTrigger
+                              key={category}
+                              value={category}
+                              className="text-xs px-3 py-1 text-white data-[state=active]:bg-green-500 data-[state=active]:text-black whitespace-nowrap hover:bg-green-500/20 hover:text-green-400 transition-all duration-300 hover:scale-105"
+                          >
+                              {category}
+                          </TabsTrigger>
+                      ))}
+                  </TabsList>
+              </Tabs>
+
           </div>
         </div>
 
