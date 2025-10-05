@@ -56,7 +56,7 @@ export default function GitHubLink() {
   return (
     <a
       ref={linkRef}
-      href="https://github.com/your-username/software-readvanced" // Replace with your actual GitHub repo
+      href="https://github.com/Airstriker123/Software-Readvanced" // Replace with your actual GitHub repo
       target="_blank"
       rel="noopener noreferrer"
       className="absolute top-6 right-6 z-50 group"
