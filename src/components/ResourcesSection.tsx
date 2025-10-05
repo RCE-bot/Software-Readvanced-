@@ -3,7 +3,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
+import { Tabs, TabsList, TabsTrigger } from './ui/tabs';
 import { Search, BookOpen, Code, Database, Cpu, Globe, FileText } from 'lucide-react';
 import { gsap, ScrollTrigger } from '../hooks/useGSAP';
 
