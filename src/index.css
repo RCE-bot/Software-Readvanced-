@@ -1,8 +1,13 @@
-/*! tailwindcss v4.1.3 | MIT License | https://tailwindcss.com */
-/* Using tailwind classes */
-@import url("public/tailwind.css");
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Using tailwind classes to style my website inside of html
+- just don't open the tailwind.css file at all and ignore it (pretend it does not exist)
+*/
+
+/*
+this pwa does not use vanilla css but uses tailwindcss
+(meta for styling websites) which compiles to
+vanilla css which is the tailwind.css file
+*/
+
+@import url("public/tailwind.css"); /* import compiled css for reference classes */
 
 
