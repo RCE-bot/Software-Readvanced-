@@ -6,7 +6,7 @@ interface AboutProps {
     onNavigateToResources?: () => void;
 }
 
-export default function AboutSection({onNavigateToResources}: AboutProps) {
+export default function AboutSection({ onNavigateToResources }: AboutProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const codeRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -159,16 +159,16 @@ export default function AboutSection({onNavigateToResources}: AboutProps) {
               
               <div className="font-mono text-sm leading-relaxed">
                 <div className="text-gray-400">01 | </div>
-                <div className="text-blue-400">02 |def get_gpu(gpu):</div>
+                <div className="text-blue-400">02 | def get_gpu(gpu):</div>
                 <div className="text-yellow-400">03 |   gpuInfo.get_gpu(gpu)</div>
                 <div className="text-orange-400">04 |   f.load = int(gpu.query_load() * 100)</div>
-                <div className="text-green-400">05 |    f.gpu_clock = int(round(gpu.query_clock_memory()))</div>
+                <div className="text-green-400">05 |   f.gpu_clock = int(round(gpu.query_clock_memory()))</div>
                 <div className="text-purple-400">06 |   f.gpu_memory_usage = round(gpu.query_memory_info())</div>
-                <div className="text-blue-300">07 |     f.gpu_gtt_usage = round(gpu.query_gtt_usage())</div>
-                <div className="text-pink-400">08 |     f.power = gpu.query_power()</div>
-                <div className="text-cyan-400">09 |     f.voltage = round(gpu.query_voltage())</div>
-                <div className="text-red-400">10 |      temp.value_in_fans_id(f)</div>
-                <div className="text-gray-400">11 |     return self.fans()</div>
+                <div className="text-blue-300">07 |   f.gpu_gtt_usage = round(gpu.query_gtt_usage())</div>
+                <div className="text-pink-400">08 |   f.power = gpu.query_power()</div>
+                <div className="text-cyan-400">09 |   f.voltage = round(gpu.query_voltage())</div>
+                <div className="text-red-400">10 |   temp.value_in_fans_id(f)</div>
+                <div className="text-gray-400">11 |   return self.fans()</div>
               </div>
             </div>
           </div>

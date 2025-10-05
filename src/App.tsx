@@ -25,7 +25,14 @@ export default function App() {
     setCurrentSection('resources');
   };
 
-  // Render different sections based on current selection
+    const handleNavigateToSettings = () => {
+        setShouldFocusSearch(true);
+        setCurrentSection('settings');
+    };
+
+
+
+    // Render different sections based on current selection
   const renderCurrentSection = () => {
     switch (currentSection) {
       case 'home':
@@ -34,7 +41,7 @@ export default function App() {
             <Hero onNavigateToResources={handleNavigateToResources} />
             <AboutSection onNavigateToResources={handleNavigateToResources} />
             <HelpSection />
-            <Footer onNavigateToResources={handleNavigateToResources} />
+            <Footer onNavigateToResources={handleNavigateToResources}/>
           </>
         );
       case 'resources':
@@ -67,7 +74,9 @@ export default function App() {
       {/* Global Components */}
       <PWAInstaller />
       
-      {/* Toast Notifications */}
+      {/* Toast Notifications when clicking on buttons push to browser
+       - defines style through attributes theme, position, css
+       */}
       <Toaster 
         theme="dark" 
         position="bottom-right"

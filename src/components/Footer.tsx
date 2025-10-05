@@ -5,15 +5,15 @@ import { gsap, ScrollTrigger } from '../hooks/useGSAP';
 interface FooterProps
 {
     onNavigateToResources?: () => void;
-    OnNavigatetoSettings?: () => void;
+    OnNavigateSettings?: () => void;
 }
 
 export default function Footer({onNavigateToResources,
-                                OnNavigatetoSettings}: FooterProps)
+                                OnNavigateSettings}: FooterProps)
 {
-  const footerRef = useRef<HTMLElement>(null);
-  const buttonsRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
+  const footerRef: any = useRef<HTMLElement>(null);
+  const buttonsRef: any = useRef<HTMLDivElement>(null);
+  const textRef: any = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -88,16 +88,15 @@ export default function Footer({onNavigateToResources,
           >
             search for resource
           </Button>
-          
+
           <Button
-            onClick={onNavigateToSettings}
-            variant="outline" 
+            variant="outline"
             className="border-green-500 text-green-500 hover:bg-green-500 hover:text-black px-6 py-2 rounded-full transition-all duration-300"
           >
             settings
           </Button>
         </div>
-        
+
         <div ref={textRef} className="text-center mt-8 text-gray-400 text-sm">
           <p>&copy; 2024 Software Readvanced. Empowering the next generation of software engineers.</p>
         </div>
