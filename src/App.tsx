@@ -41,7 +41,9 @@ export default function App() {
             <Hero onNavigateToResources={handleNavigateToResources} />
             <AboutSection onNavigateToResources={handleNavigateToResources} />
             <HelpSection />
-            <Footer onNavigateToResources={handleNavigateToResources}/>
+            <Footer
+              onNavigateToResources={handleNavigateToResources}
+              onNavigateToSettings={handleNavigateToSettings}/>
           </>
         );
       case 'resources':

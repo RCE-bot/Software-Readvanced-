@@ -5,11 +5,11 @@ import { gsap, ScrollTrigger } from '../hooks/useGSAP';
 interface FooterProps
 {
     onNavigateToResources?: () => void;
-    OnNavigateSettings?: () => void;
+    onNavigateToSettings?: () => void;
 }
 
 export default function Footer({onNavigateToResources,
-                                OnNavigateSettings}: FooterProps)
+                                   onNavigateToSettings}: FooterProps)
 {
   const footerRef: any = useRef<HTMLElement>(null);
   const buttonsRef: any = useRef<HTMLDivElement>(null);
@@ -90,6 +90,7 @@ export default function Footer({onNavigateToResources,
           </Button>
 
           <Button
+            onClick={onNavigateToSettings}
             variant="outline"
             className="border-green-500 text-green-500 hover:bg-green-500 hover:text-black px-6 py-2 rounded-full transition-all duration-300"
           >
