@@ -31,12 +31,8 @@ The `/components/ui` folder contains **shadcn/ui components**
 - The `cn()` utility function combines classes intelligently
 - Components are highly composable and follow React best practices
 
-### Benefits for this project:
+### Benefits for project:
 - **Consistent Design**: All components follow the same design system
 - **Time Saving**: No need to build complex components from scratch
 - **Accessibility**: Components work with screen readers and keyboard navigation
 - **Maintainable**: Easy to update themes and styles globally
-
-### Important:
-- You can customize them by modifying the CSS variables in `globals.css`
-- Each component is production-ready and battle-tested by thousands of developers

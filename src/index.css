@@ -8,6 +8,6 @@ this pwa does not use vanilla css but uses tailwindcss
 vanilla css which is the tailwind.css file
 */
 
-@import url("public/tailwind.css"); /* import compiled css for reference classes */
+@import url("lib/tailwind.css"); /* import compiled css for reference classes */
 
 
