@@ -163,127 +163,21 @@ export default function SettingsSection() {
             </h2>
           </div>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            Customize your Software Readvanced experience. Personalize themes, notifications, 
-            and privacy settings to match your preferences.
+           Various Settings related to your account
           </p>
         </div>
 
         {/* Settings Cards */}
         <div ref={cardsRef} className="grid lg:grid-cols-2 gap-6 mb-8">
-          
-          {/* Appearance Settings */}
-          <Card className="bg-gray-800/50 border-gray-700">
-            <CardHeader>
-              <div className="flex items-center gap-2">
-                <Palette className="w-5 h-5 text-green-400" />
-                <CardTitle className="text-white">Appearance</CardTitle>
-              </div>
-              <CardDescription>Customize the look and feel of your interface</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {/* Theme Selection */}
-              <div className="space-y-2">
-                <Label htmlFor="theme" className="text-white">Theme</Label>
-                <Select value={theme} onValueChange={setTheme}>
-                  <SelectTrigger className="bg-gray-700 border-gray-600 text-white">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent className="bg-gray-800 border-gray-700">
-                    <SelectItem value="light" className="flex items-center gap-2">
-                      <Sun className="w-4 h-4" /> Light
-                    </SelectItem>
-                    <SelectItem value="dark" className="flex items-center gap-2">
-                      <Moon className="w-4 h-4" /> Dark
-                    </SelectItem>
-                    <SelectItem value="system" className="flex items-center gap-2">
-                      <Monitor className="w-4 h-4" /> System
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
 
-              {/* Accent Color */}
-              <div className="space-y-2">
-                <Label className="text-white">Accent Color</Label>
-                <div className="flex gap-2">
-                  {['green', 'blue', 'purple', 'orange'].map((color) => (
-                    <button
-                      key={color}
-                      onClick={() => setAccentColor(color)}
-                      className={`w-8 h-8 rounded-full border-2 transition-all ${
-                        accentColor === color ? 'border-white scale-110' : 'border-gray-600'
-                      }`}
-                      style={{
-                        backgroundColor: color === 'green' ? '#22c55e' : 
-                                       color === 'blue' ? '#3b82f6' : 
-                                       color === 'purple' ? '#a855f7' : '#f97316'
-                      }}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Font Size */}
-              <div className="space-y-2">
-                <Label className="text-white">Font Size</Label>
-                <Select value={fontSize} onValueChange={setFontSize}>
-                  <SelectTrigger className="bg-gray-700 border-gray-600 text-white">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent className="bg-gray-800 border-gray-700">
-                    <SelectItem value="small">Small</SelectItem>
-                    <SelectItem value="medium">Medium</SelectItem>
-                    <SelectItem value="large">Large</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Notifications Settings */}
-          <Card className="bg-gray-800/50 border-gray-700">
-            <CardHeader>
-              <div className="flex items-center gap-2">
-                <Bell className="w-5 h-5 text-green-400" />
-                <CardTitle className="text-white">Notifications</CardTitle>
-              </div>
-              <CardDescription>Manage how you receive updates and alerts</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <Label className="text-white">Email Notifications</Label>
-                  <p className="text-sm text-gray-400">Receive updates via email</p>
-                </div>
-                <Switch checked={emailNotifications} onCheckedChange={setEmailNotifications} />
-              </div>
-
-              <div className="flex items-center justify-between">
-                <div>
-                  <Label className="text-white">Push Notifications</Label>
-                  <p className="text-sm text-gray-400">Browser push notifications</p>
-                </div>
-                <Switch checked={pushNotifications} onCheckedChange={setPushNotifications} />
-              </div>
-
-              <div className="flex items-center justify-between">
-                <div>
-                  <Label className="text-white">Weekly Digest</Label>
-                  <p className="text-sm text-gray-400">Summary of new resources</p>
-                </div>
-                <Switch checked={weeklyDigest} onCheckedChange={setWeeklyDigest} />
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Privacy Settings */}
+          {/* Account Settings */}
           <Card className="bg-gray-800/50 border-gray-700">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <Shield className="w-5 h-5 text-green-400" />
-                <CardTitle className="text-white">Privacy & Security</CardTitle>
+                <CardTitle className="text-white">Account Settings</CardTitle>
               </div>
-              <CardDescription>Control your data and privacy preferences</CardDescription>
+              <CardDescription>Manage your SR account</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between">
@@ -325,67 +219,6 @@ export default function SettingsSection() {
               </div>
             </CardContent>
           </Card>
-
-          {/* User Preferences */}
-          <Card className="bg-gray-800/50 border-gray-700">
-            <CardHeader>
-              <div className="flex items-center gap-2">
-                <User className="w-5 h-5 text-green-400" />
-                <CardTitle className="text-white">Preferences</CardTitle>
-              </div>
-              <CardDescription>Customize your learning experience</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <Label className="text-white">Auto-save Progress</Label>
-                  <p className="text-sm text-gray-400">Automatically save your progress</p>
-                </div>
-                <Switch checked={autoSave} onCheckedChange={setAutoSave} />
-              </div>
-
-              <div className="space-y-2">
-                <Label className="text-white">Default View</Label>
-                <Select value={defaultView} onValueChange={setDefaultView}>
-                  <SelectTrigger className="bg-gray-700 border-gray-600 text-white">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent className="bg-gray-800 border-gray-700">
-                    <SelectItem value="grid">Grid View</SelectItem>
-                    <SelectItem value="list">List View</SelectItem>
-                    <SelectItem value="card">Card View</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div className="pt-2">
-                <Badge className="bg-green-500/20 text-green-400 border-green-500/50">
-                  <User className="w-3 h-3 mr-1" />
-                  Premium User
-                </Badge>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button 
-            onClick={saveSettings}
-            className="bg-green-500 hover:bg-green-600 text-black px-8"
-          >
-            <Save className="w-4 h-4 mr-2" />
-            Save Settings
-          </Button>
-          
-          <Button 
-            variant="outline" 
-            onClick={resetSettings}
-            className="border-gray-600 text-gray-300 hover:bg-gray-700 px-8"
-          >
-            <RotateCcw className="w-4 h-4 mr-2" />
-            Reset to Defaults
-          </Button>
         </div>
       </div>
     </section>
