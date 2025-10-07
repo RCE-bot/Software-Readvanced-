@@ -397,7 +397,7 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center gap-2">
                     {getTypeIcon(resource.type)}
-                    <Badge variant="outline" className="text-xs bg-gray-700/50 border-gray-600">
+                    <Badge variant="outline" className="text-white bg-white border-gray-600">
                       {resource.type}
                     </Badge>
                   </div>
