@@ -1,6 +1,12 @@
 import { useEffect, useRef } from 'react';
 import { Button } from './ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle
+} from './ui/card';
 import { 
   Settings as SettingsIcon,
   LogOut,
@@ -8,8 +14,10 @@ import {
   Trash2,
 } from 'lucide-react';
 import { gsap } from '../hooks/useGSAP';
+// @ts-ignore-error
 import { toast } from 'sonner@2.0.3';
-// Settings Section Component - Allows users to customize their experience
+
+// Settings Section Component - Allows users to manage account (delete, logout)
 export function SettingsSection() {
     const sectionRef = useRef<HTMLElement>(null);
     const headerRef = useRef<HTMLDivElement>(null);
