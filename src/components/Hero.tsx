@@ -81,7 +81,7 @@ export default function Hero({ onNavigateToResources }: HeroProps) {
   return (
     <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-hero-gradient">
       {/* Complex Gradient Background matching your webapp */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-emerald-950/40 via-green-900/30 to-black">
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-emerald-950/40 to-black">
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-green-500/10 to-transparent"></div>
       </div>

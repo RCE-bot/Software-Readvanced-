@@ -1,13 +1,11 @@
 /* Using tailwind classes to style my website inside of html
-- just don't open the tailwind.css file at all and ignore it (pretend it does not exist)
+- just don't open the figmacompiled.css file at all and ignore it (pretend it does not exist)
 */
 
 /*
 this pwa does not use vanilla css but uses tailwindcss
 (meta for styling websites) which compiles to
-vanilla css which is the tailwind.css file
+vanilla css which is the figmacompiled.css file
 */
 
-@import url("lib/tailwind.css"); /* import compiled css for reference classes */
-
-
+@import url("lib/figmacompiled.css"); /* figma css layout (used when styling html elements)*/
