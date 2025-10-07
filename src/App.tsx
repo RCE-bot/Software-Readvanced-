@@ -8,7 +8,7 @@ import ScrollProgress from './components/ScrollProgress';
 import MatrixEffect from './components/MatrixEffect';
 import CursorEffect from './components/CursorEffect';
 import ResourcesSection from './components/ResourcesSection';
-import SettingsSection from './components/SettingsSection';
+import {SettingsSection} from './components/SettingsSection';
 import Navigation from './components/Navigation';
 
 import { Toaster } from './components/ui/sonner';
