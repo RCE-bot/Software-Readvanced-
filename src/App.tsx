@@ -18,7 +18,7 @@ import MatrixEffect from './components/style/MatrixEffect';
 import CursorEffect from './components/style/CursorEffect';
 import ResourcesSection from './components/routes/Resources/ResourcesSection';
 import {SettingsSection} from './components/routes/Settings/SettingsSection';
-import Navigation from './components/style/Navigation';
+import Navigation from './components/Navigation';
 import { Toaster } from './components/ui/sonner';
 
 export default function App() {
