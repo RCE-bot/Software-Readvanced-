@@ -6,7 +6,7 @@ more information about react app structure:
 https://medium.com/@mazeenacader/demystifying-the-file-structure-of-a-react-app-a-beginners-guide-to-what-goes-where-523d67518a3d
  */
 import { createRoot } from "react-dom/client"; //import react
-import App from "./App.tsx"; //import the react app
+import App from "./App"; //import the react app
 // render to index.html
 createRoot(document.getElementById("root")!).render(<App />);
   

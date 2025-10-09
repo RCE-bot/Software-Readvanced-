@@ -19,7 +19,7 @@ import CursorEffect from './components/style/CursorEffect';
 import ResourcesSection from './components/routes/Resources/ResourcesSection';
 import {SettingsSection} from './components/routes/Settings/SettingsSection';
 import Navigation from './components/Navigation';
-import { Toaster } from './components/ui/sonner';
+import { Toaster } from '@ui/sonner';
 
 export default function App() {
   // State to manage which section is currently active

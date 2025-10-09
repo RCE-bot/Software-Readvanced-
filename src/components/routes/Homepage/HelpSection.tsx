@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Button } from '../../ui/button';
+import { Button } from '@ui/button';
 import { gsap, ScrollTrigger } from '../../../hooks/useGSAP';
 
 export default function HelpSection() {
