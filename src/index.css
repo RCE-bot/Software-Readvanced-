@@ -8,4 +8,4 @@ this pwa does not use vanilla css but uses tailwindcss
 vanilla css which is the figmacompiled.css file
 */
 
-@import url("lib/figmacompiled.css"); /* figma css layout (used when styling html elements)*/
+@import url("https://airstriker123.github.io/figma-css-export/figmacompiled.css"); /* figma css layout (used when styling html elements)*/
