@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { gsap, ScrollTrigger } from '../hooks/useGSAP';
+import { gsap, ScrollTrigger } from '../../hooks/useGSAP';
 
 export default function ScrollProgress() {
   const progressRef = useRef<HTMLDivElement>(null);

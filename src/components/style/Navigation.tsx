@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button } from './ui/button';
+import { Button } from '../ui/button';
 import { Home, BookOpen, Settings as SettingsIcon, ChevronLeft, ChevronRight } from 'lucide-react';
 
 // Navigation Component - Handles switching between different sections

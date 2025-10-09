@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
-import { Button } from './ui/button';
-import { ImageWithFallback } from './figma/ImageWithFallback';
-import { gsap, ScrollTrigger } from '../hooks/useGSAP';
+import { Button } from '../../ui/button';
+import { gsap, ScrollTrigger } from '../../../hooks/useGSAP';
 
 export default function HelpSection() {
     const sectionRef = useRef<HTMLElement>(null);
@@ -198,9 +197,9 @@ export default function HelpSection() {
                     {/* Right side - Illustration */}
                     <div ref={imageRef} className="relative perspective-1000">
                         <div className="bg-gradient-to-br from-blue-400/20 to-green-400/20 rounded-2xl p-8 backdrop-blur-sm transform-gpu">
-                            <ImageWithFallback
+                            <img
                                 src="https://images.unsplash.com/photo-1637073849667-91120a924221?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2Z0d2FyZSUyMGRldmVsb3BtZW50JTIwdGVhbSUyMGNvbGxhYm9yYXRpb24lMjBjb2Rpbmd8ZW58MXx8fHwxNzU5NDA5MDYyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                                alt="Software development team collaboration"
+                                alt="Failed to fetch image source"
                                 className="w-full rounded-xl"
                             />
                         </div>

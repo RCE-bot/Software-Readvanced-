@@ -1,16 +1,24 @@
-import { useState } from 'react';
-import Hero from './components/Hero';
-import AboutSection from './components/AboutSection';
-import HelpSection from './components/HelpSection';
-import Footer from './components/Footer';
-import PWAInstaller from './components/PWAInstaller';
-import ScrollProgress from './components/ScrollProgress';
-import MatrixEffect from './components/MatrixEffect';
-import CursorEffect from './components/CursorEffect';
-import ResourcesSection from './components/ResourcesSection';
-import {SettingsSection} from './components/SettingsSection';
-import Navigation from './components/Navigation';
+/*
+app.tsx:
+- main app component
+- assembles (imports) different react components.
+- contains global variables and code which applies for all the app
 
+more information about react default structure:
+https://medium.com/@mazeenacader/demystifying-the-file-structure-of-a-react-app-a-beginners-guide-to-what-goes-where-523d67518a3d
+*/
+import { useState } from 'react';
+import Hero from './components/routes/Homepage/Hero';
+import AboutSection from './components/routes/Homepage/AboutSection';
+import HelpSection from './components/routes/Homepage/HelpSection';
+import Footer from './components/routes/Homepage/Footer';
+import PWAInstaller from './components/PWAInstaller';
+import ScrollProgress from './components/style/ScrollProgress';
+import MatrixEffect from './components/style/MatrixEffect';
+import CursorEffect from './components/style/CursorEffect';
+import ResourcesSection from './components/routes/Resources/ResourcesSection';
+import {SettingsSection} from './components/routes/Settings/SettingsSection';
+import Navigation from './components/style/Navigation';
 import { Toaster } from './components/ui/sonner';
 
 export default function App() {
@@ -72,10 +80,10 @@ export default function App() {
       <main className="relative z-20 transform-gpu">
         {renderCurrentSection()}
       </main>
-      
+
       {/* Global Components */}
       <PWAInstaller />
-      
+
       {/* Toast Notifications when clicking on buttons push to browser
        - defines style through attributes theme, position, css
        */}

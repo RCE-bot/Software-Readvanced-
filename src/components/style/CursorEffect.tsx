@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { gsap } from '../hooks/useGSAP';
+import { gsap } from '../../hooks/useGSAP';
 
 // Cursor Effect Component - Makes background reactive to mouse movement
 export default function CursorEffect() {

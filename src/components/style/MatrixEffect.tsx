@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { gsap, ScrollTrigger } from '../hooks/useGSAP';
+import { gsap, ScrollTrigger } from '../../hooks/useGSAP';
 
 // Matrix Effect Component - Creates falling green code lines that follow scroll
 export default function MatrixEffect() {

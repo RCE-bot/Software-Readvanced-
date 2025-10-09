@@ -1,19 +1,19 @@
 import { useEffect, useRef } from 'react';
-import { Button } from './ui/button';
+import { Button } from '../../ui/button';
 import {
     Card,
     CardContent,
     CardDescription,
     CardHeader,
     CardTitle
-} from './ui/card';
+} from '../../ui/card';
 import { 
   Settings as SettingsIcon,
   LogOut,
   Shield,
   Trash2,
 } from 'lucide-react';
-import { gsap } from '../hooks/useGSAP';
+import { gsap } from '../../../hooks/useGSAP';
 // @ts-ignore-error
 import { toast } from 'sonner@2.0.3';
 

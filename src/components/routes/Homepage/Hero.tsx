@@ -1,13 +1,16 @@
 import { useEffect, useRef } from 'react';
-import { Button } from './ui/button';
+import { Button } from '../../ui/button';
 import GitHubLink from './GitHubLink';
 import { gsap } from 'gsap';
 
-interface HeroProps {
+
+interface HeroProps
+{
   onNavigateToResources?: () => void;
 }
 
-export default function Hero({ onNavigateToResources }: HeroProps) {
+export default function Hero({ onNavigateToResources }: HeroProps)
+{
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const buttonRef = useRef<HTMLDivElement>(null);

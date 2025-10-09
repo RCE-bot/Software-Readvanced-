@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Github } from 'lucide-react';
-import { gsap } from '../hooks/useGSAP';
+import { gsap } from '../../../hooks/useGSAP';
 
 // GitHub Link Component - Fixed position link in top right corner
 export default function GitHubLink() {
