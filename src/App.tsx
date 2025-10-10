@@ -38,8 +38,6 @@ export default function App() {
         setCurrentSection('settings');
     };
 
-
-
     // Render different sections based on current selection
   const renderCurrentSection = () => {
     switch (currentSection) {

@@ -44,6 +44,7 @@ export default function Navigation({ currentSection, onSectionChange }: Navigati
                             )}
                         </Button>
                     </div>
+
                     <div className="flex flex-col space-y-2">
                         {navigationItems.map(({ id, label, icon: Icon }) => (
                             <Button
