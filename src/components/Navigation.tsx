@@ -9,7 +9,6 @@ export interface NavigationProps {
 }
 
 export default function Navigation({ currentSection, onSectionChange }: NavigationProps) {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isMinimized, setIsMinimized] = useState(false);
 
     const navigationItems = [
