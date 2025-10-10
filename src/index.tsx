@@ -7,6 +7,7 @@ https://medium.com/@mazeenacader/demystifying-the-file-structure-of-a-react-app-
  */
 import { createRoot } from "react-dom/client"; //import react
 import App from "./App"; //import the react app
+import "tailwindcss";
 // render to index.html
 createRoot(document.getElementById("root")!).render(<App />);
   
