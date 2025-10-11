@@ -9,7 +9,8 @@ interface Props
 }
 
 export default function HelpSection({onNavigateToResources,
-                                    onNavigateToSettings}: Props) {
+                                    onNavigateToSettings}: Props)
+{
     const sectionRef = useRef<HTMLElement>(null);
     const titleRef = useRef<HTMLHeadingElement>(null);
     const contactsRef = useRef<HTMLDivElement>(null);

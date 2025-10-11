@@ -21,7 +21,8 @@ import Navigation from './components/Navigation';
 import { Toaster } from '@ui/sonner';
 
 
-export default function App() {
+export default function App()
+{
   // State to manage which section is currently active
   const [currentSection, setCurrentSection] = useState<'home' | 'resources' | 'settings'>('home');
   // State to track if user navigated to resources via search button
@@ -62,6 +63,7 @@ export default function App() {
 
           </>
         );
+        // selection based on choice return different tsx to index.html
       case 'resources':
         return <ResourcesSection shouldFocusSearch={shouldFocusSearch} onSearchFocused={() => setShouldFocusSearch(false)} />;
       case 'settings':
@@ -70,7 +72,11 @@ export default function App() {
         return null;
     }
   };
+ /* default render when user first opens app
+    - login page
+    - content
 
+ */
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden relative smooth-scroll">
       {/* Background Effects - Applied to all sections */}
