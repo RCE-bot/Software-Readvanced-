@@ -180,14 +180,13 @@ export default function HelpSection() {
 
                         <div ref={buttonsRef} className="flex flex-wrap gap-4">
                             <Button
-                                className="bg-green-400 hover:bg-green-600 text-black px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-1050">
-                            <a
-                                href="https://github.com/Airstriker123/Software-Readvanced"
+                                onClick={() => window.open("https://github.com/Airstriker123/Software-Readvanced") }
+                                className="bg-green-400 hover:bg-green-600 text-black px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-1050"
                             >
                                 Contribute to this PWA!
-                            </a>
                             </Button>
                             <Button
+                                onClick={() => window.open("https://forms.gle/nHN8b8VDbEohxKtT7")}
                                 className="bg-green-400 hover:bg-green-600 text-black px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
                             >
                                 give feedback
