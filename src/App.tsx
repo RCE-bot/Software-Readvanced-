@@ -3,11 +3,9 @@ app.tsx:
 - main app component
 - assembles (imports) different react components.
 - contains global variables and code which applies for all the app
-
-more information about react default structure:
-https://medium.com/@mazeenacader/demystifying-the-file-structure-of-a-react-app-a-beginners-guide-to-what-goes-where-523d67518a3d
 */
-import { useState, useEffect } from 'react';
+
+import { useState, useEffect, useRef } from 'react';
 import Hero from './components/routes/Homepage/Hero';
 import AboutSection from './components/routes/Homepage/AboutSection';
 import HelpSection from './components/routes/Homepage/HelpSection';
@@ -16,32 +14,35 @@ import ScrollProgress from './components/style/ScrollProgress';
 import MatrixEffect from './components/style/MatrixEffect';
 import CursorEffect from './components/style/CursorEffect';
 import ResourcesSection from './components/routes/Resources/ResourcesSection';
-import {SettingsSection} from './components/routes/Settings/SettingsSection';
+import { SettingsSection } from './components/routes/Settings/SettingsSection';
 import Navigation from './components/Navigation';
 import { Toaster } from '@ui/sonner';
 
 
-export default function App()
-{
-  // State to manage which section is currently active
-  const [currentSection, setCurrentSection] = useState<'home' | 'resources' | 'settings'>('home');
-  // State to track if user navigated to resources via search button
-  const [shouldFocusSearch, setShouldFocusSearch] = useState(false);
+export default function App() {
 
+    // State to manage which section is currently active
+    const [currentSection, setCurrentSection] = useState<'home' | 'resources' | 'settings'>('home');
+    const [shouldFocusSearch, setShouldFocusSearch] = useState(false);
 
-  useEffect(() => {
-      // useEffect => always scroll to top of page when switching sections
+    // Refs for homepage sections
+    const heroRef = useRef<HTMLElement>(null);
+    const aboutRef = useRef<HTMLElement>(null);
+    const helpRef = useRef<HTMLElement>(null);
+
+    // Scroll to top when switching main sections
+    useEffect(() => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
         });
     }, [currentSection]);
 
-  // Handle navigation to resources from search button
-  const handleNavigateToResources = () => {
-    setShouldFocusSearch(true);
-    setCurrentSection('resources');
-  };
+    // Navigation handlers
+    const handleNavigateToResources = () => {
+        setShouldFocusSearch(true);
+        setCurrentSection('resources');
+    };
 
     const handleNavigateToSettings = () => {
         setShouldFocusSearch(true);
@@ -49,69 +50,66 @@ export default function App()
     };
 
     // Render different sections based on current selection
-  const renderCurrentSection = () => {
-    switch (currentSection) {
-      case 'home':
-        return (
-          <>
-            <Hero onNavigateToResources={handleNavigateToResources} />
-            <AboutSection onNavigateToResources={handleNavigateToResources} />
-            <HelpSection
-                onNavigateToResources={handleNavigateToResources}
-                onNavigateToSettings={handleNavigateToSettings}
+    const renderCurrentSection = () => {
+        switch (currentSection) {
+            case 'home':
+                return (
+                    <>
+                        <Hero onNavigateToResources={handleNavigateToResources} />
+                        <AboutSection onNavigateToResources={handleNavigateToResources} />
+                       <HelpSection
+                            onNavigateToResources={handleNavigateToResources}
+                            onNavigateToSettings={handleNavigateToSettings}
+                        />
+                    </>
+                );
+            case 'resources':
+                return (
+                    <ResourcesSection
+                        shouldFocusSearch={shouldFocusSearch}
+                        onSearchFocused={() => setShouldFocusSearch(false)}
+                    />
+                );
+            case 'settings':
+                return <SettingsSection />;
+            default:
+                return null;
+        }
+    };
+
+    return (
+        <div className="min-h-screen bg-black text-white overflow-x-hidden relative smooth-scroll">
+            {/* Background Effects - Applied to all sections */}
+            <CursorEffect />
+            <MatrixEffect />
+            <ScrollProgress />
+
+            {/* Navigation */}
+            <Navigation
+                currentSection={currentSection}
+                onSectionChange={setCurrentSection}
             />
 
-          </>
-        );
-        // selection based on choice return different tsx to index.html
-      case 'resources':
-        return <ResourcesSection shouldFocusSearch={shouldFocusSearch} onSearchFocused={() => setShouldFocusSearch(false)} />;
-      case 'settings':
-        return <SettingsSection />;
-      default:
-        return null;
-    }
-  };
- /* default render when user first opens app
-    - login page
-    - content
+            {/* Main Content */}
+            <main className="relative z-20 transform-gpu">
+                {renderCurrentSection()}
+            </main>
 
- */
-  return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden relative smooth-scroll">
-      {/* Background Effects - Applied to all sections */}
-      <CursorEffect />
-      <MatrixEffect />
-      <ScrollProgress />
-      
-      {/* Navigation */}
-      <Navigation 
-        currentSection={currentSection} 
-        onSectionChange={setCurrentSection}
-      />
-      
-      {/* Main Content with optimized scrolling */}
-      <main className="relative z-20 transform-gpu">
-        {renderCurrentSection()}
-      </main>
+            {/* Global Components */}
+            <PWAInstaller />
 
-      {/* Global Components */}
-      <PWAInstaller />
-
-      {/* Toast Notifications when clicking on buttons push to browser
-       - defines style through attributes theme, position, css
-       */}
-      <Toaster 
-        theme="dark" 
-        position="bottom-right"
-        toastOptions={{
-          style: {
-            background: '#1f2937',
-            border: '1px solid #374151',
-            color: '#f9fafb',
-          },
-        }}
-      />
-    </div>
-  );
+            {/* Toast Notifications */}
+            <Toaster
+                theme="dark"
+                position="bottom-right"
+                toastOptions={{
+                    style: {
+                        background: '#1f2937',
+                        border: '1px solid #374151',
+                        color: '#f9fafb',
+                    },
+                }}
+            />
+        </div>
+    );
 }
