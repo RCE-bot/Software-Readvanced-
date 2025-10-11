@@ -2,6 +2,7 @@
 
 
 # Software Revanced PWA App Development
+- first react project for year12 at1
 
     - uses react to run 
     - uses tailwind for styling 
