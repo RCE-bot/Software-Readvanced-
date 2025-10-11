@@ -11,7 +11,6 @@ import { useState } from 'react';
 import Hero from './components/routes/Homepage/Hero';
 import AboutSection from './components/routes/Homepage/AboutSection';
 import HelpSection from './components/routes/Homepage/HelpSection';
-import Footer from './components/routes/Homepage/Footer';
 import PWAInstaller from './components/PWAInstaller';
 import ScrollProgress from './components/style/ScrollProgress';
 import MatrixEffect from './components/style/MatrixEffect';
@@ -46,10 +45,11 @@ export default function App() {
           <>
             <Hero onNavigateToResources={handleNavigateToResources} />
             <AboutSection onNavigateToResources={handleNavigateToResources} />
-            <HelpSection />
-            <Footer
-              onNavigateToResources={handleNavigateToResources}
-              onNavigateToSettings={handleNavigateToSettings}/>
+            <HelpSection
+                onNavigateToResources={handleNavigateToResources}
+                onNavigateToSettings={handleNavigateToSettings}
+            />
+
           </>
         );
       case 'resources':

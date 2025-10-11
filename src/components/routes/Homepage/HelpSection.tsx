@@ -2,7 +2,14 @@ import { useEffect, useRef } from 'react';
 import { Button } from '@ui/button';
 import { gsap, ScrollTrigger } from '../../../hooks/useGSAP';
 
-export default function HelpSection() {
+interface Props
+{
+    onNavigateToResources?: () => void;
+    onNavigateToSettings?: () => void;
+}
+
+export default function HelpSection({onNavigateToResources,
+                                    onNavigateToSettings}: Props) {
     const sectionRef = useRef<HTMLElement>(null);
     const titleRef = useRef<HTMLHeadingElement>(null);
     const contactsRef = useRef<HTMLDivElement>(null);
@@ -190,6 +197,20 @@ export default function HelpSection() {
                                 className="bg-green-400 hover:bg-green-600 text-black px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
                             >
                                 give feedback
+                            </Button>
+                            <Button/>
+                            <Button
+                                onClick={onNavigateToResources}
+                                className="bg-green-400 hover:bg-green-600 text-black px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
+                            >
+                                search for resource
+                            </Button>
+                            <Button
+                                onClick={onNavigateToSettings}
+                                variant="outline"
+                                className="bg-green-400 hover:bg-green-600 text-black px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
+                            >
+                                settings
                             </Button>
                         </div>
                     </div>
