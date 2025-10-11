@@ -7,7 +7,7 @@ app.tsx:
 more information about react default structure:
 https://medium.com/@mazeenacader/demystifying-the-file-structure-of-a-react-app-a-beginners-guide-to-what-goes-where-523d67518a3d
 */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Hero from './components/routes/Homepage/Hero';
 import AboutSection from './components/routes/Homepage/AboutSection';
 import HelpSection from './components/routes/Homepage/HelpSection';
@@ -20,11 +20,21 @@ import {SettingsSection} from './components/routes/Settings/SettingsSection';
 import Navigation from './components/Navigation';
 import { Toaster } from '@ui/sonner';
 
+
 export default function App() {
   // State to manage which section is currently active
   const [currentSection, setCurrentSection] = useState<'home' | 'resources' | 'settings'>('home');
   // State to track if user navigated to resources via search button
   const [shouldFocusSearch, setShouldFocusSearch] = useState(false);
+
+
+  useEffect(() => {
+      // useEffect => always scroll to top of page when switching sections
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }, [currentSection]);
 
   // Handle navigation to resources from search button
   const handleNavigateToResources = () => {
