@@ -5,11 +5,10 @@ def server_setup():
     handle running server
     - automation
      - runs the server
-     - installs external requirements
+     - installs external requirements.txt
     """
     print("🚀 Starting backend server...")
-
-
+    # logic to setup server
 
 def client_setup():
     """
@@ -20,16 +19,19 @@ def client_setup():
         - saves time to users with less experience
     """
     print("🚀 Starting frontend client...")
-    os.chdir("client")
-    if not os.path.exists("node_modules"):
+    # logic to setup client
+    os.chdir("client") #change dir to client folder
+    if not os.path.exists("node_modules"):              # check if user ran npm i
+        # handle installing endpoints and running client
         print("installing client dependencies...")
         os.system("npm i")
         os.system("npm run dev")
     else:
+        #handle running client
         print("running client")
         os.system("npm run dev")
 
-
+# run functions + handle if script is ran
 if __name__ == "__main__":
     try:
         server_setup()
@@ -37,4 +39,6 @@ if __name__ == "__main__":
     except Exception as e:
         print('failed to setup ')
         print(e)
-
+else:
+    print("invalid use!")
+    print("run this script to setup frontend + backend")
