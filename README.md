@@ -1,6 +1,3 @@
-
-
-
 # Software Revanced PWA App Development
 - first react project for year12 at1
 
