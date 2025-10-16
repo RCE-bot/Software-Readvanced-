@@ -2,7 +2,8 @@ import { useEffect, useRef } from 'react';
 import { Button } from '../../ui/button';
 import { gsap, ScrollTrigger } from '../../../hooks/useGSAP';
 
-interface AboutProps {
+interface AboutProps
+{
     onNavigateToResources?: () => void;
 }
 

@@ -7,8 +7,10 @@ def server_setup():
      - runs the server
      - installs external requirements.txt
     """
+    os.system(r'color E')
     print("🚀 Starting backend server...")
-    # logic to setup server
+    os.system(r'start cmd /k "cd server && python -m app"')
+
 
 def client_setup():
     """
@@ -18,16 +20,19 @@ def client_setup():
         - runs client for user
         - saves time to users with less experience
     """
+    os.system(r'color 2')
     print("🚀 Starting frontend client...")
     # logic to setup client
     os.chdir("client") #change dir to client folder
     if not os.path.exists("node_modules"):              # check if user ran npm i
+        os.system(r'color E')
         # handle installing endpoints and running client
         print("installing client dependencies...")
         os.system("npm i")
         os.system("npm run dev")
     else:
         #handle running client
+        os.system(r'color B')
         print("running client")
         os.system("npm run dev")
 

@@ -5,7 +5,7 @@ app.tsx:
 - contains global variables and code which applies for all the app
 */
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect} from 'react';
 import Hero from './components/routes/Homepage/Hero';
 import AboutSection from './components/routes/Homepage/AboutSection';
 import HelpSection from './components/routes/Homepage/HelpSection';
@@ -19,17 +19,11 @@ import Navigation from './components/Navigation';
 import { Toaster } from '@ui/sonner';
 
 
-export default function App() {
-
+export default function App()
+{
     // State to manage which section is currently active
     const [currentSection, setCurrentSection] = useState<'home' | 'resources' | 'settings'>('home');
     const [shouldFocusSearch, setShouldFocusSearch] = useState(false);
-
-    // Refs for homepage sections
-    const heroRef = useRef<HTMLElement>(null);
-    const aboutRef = useRef<HTMLElement>(null);
-    const helpRef = useRef<HTMLElement>(null);
-
     // Scroll to top when switching main sections
     useEffect(() => {
         window.scrollTo({
