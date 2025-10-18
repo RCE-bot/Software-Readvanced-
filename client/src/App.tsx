@@ -11,7 +11,6 @@ import AboutSection from './components/routes/Homepage/AboutSection';
 import HelpSection from './components/routes/Homepage/HelpSection';
 import PWAInstaller from './components/PWAInstaller';
 import ScrollProgress from './components/style/ScrollProgress';
-import MatrixEffect from './components/style/MatrixEffect';
 import CursorEffect from './components/style/CursorEffect';
 import ResourcesSection from './components/routes/Resources/ResourcesSection';
 import { SettingsSection } from './components/routes/Settings/SettingsSection';
@@ -72,10 +71,11 @@ export default function App()
     };
 
     return (
-        <div className="min-h-screen bg-black text-white overflow-x-hidden relative smooth-scroll">
+        <div
+            className="min-h-screen bg-black text-white overflow-x-hidden relative smooth-scroll
+             bg-cover bg-center bg-no-repeat">
             {/* Background Effects - Applied to all sections */}
             <CursorEffect />
-            <MatrixEffect />
             <ScrollProgress />
 
             {/* Navigation */}

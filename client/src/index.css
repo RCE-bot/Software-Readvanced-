@@ -7,3 +7,9 @@
     overscroll-behavior: none;
 }
 
+main {
+    scroll-behavior: smooth;
+    background-image: url("public/background.png");
+    --rdp-background-color: brightness(4);
+}
+
