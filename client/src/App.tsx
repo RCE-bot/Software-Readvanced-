@@ -16,15 +16,32 @@ import ResourcesSection from './components/routes/Resources/ResourcesSection';
 import { SettingsSection } from './components/routes/Settings/SettingsSection';
 import Navigation from './components/Navigation';
 import { Toaster } from '@ui/sonner';
+import {toast} from "sonner";
 
 
 export default function App()
 {
+      useEffect(() =>
+      {
+    fetch("/api/test")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("✅ React frontend connected to Flask backend!");
+        console.log("Backend message:", data.message);
+        toast.success("Server connected to client!");
+      })
+      .catch((err) => {
+        console.error("❌ Could not connect to backend", err);
+        toast.error("Failed to connected server to client -_-");
+      });
+  });
+
     // State to manage which section is currently active
     const [currentSection, setCurrentSection] = useState<'home' | 'resources' | 'settings'>('home');
     const [shouldFocusSearch, setShouldFocusSearch] = useState(false);
     // Scroll to top when switching main sections
-    useEffect(() => {
+    useEffect(() =>
+    {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'

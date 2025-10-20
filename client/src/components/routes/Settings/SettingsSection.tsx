@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react';
-import { Button } from '../../ui/button';
+import { Button } from '@ui/button';
 import {
     Card,
     CardContent,
     CardDescription,
     CardHeader,
     CardTitle
-} from '../../ui/card';
+} from '@ui/card';
 import { 
   Settings as SettingsIcon,
   LogOut,
