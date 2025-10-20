@@ -1,4 +1,3 @@
-# construct routes
 from flask import Blueprint
 
 # Create a Blueprint called 'endpoints'
@@ -10,6 +9,7 @@ try:
     from . import route_log_out
     from . import route_login_in
     from . import route_sign_up
+    from . import test
     print("Loaded endpoints successfully!")
 except ImportError as e:
     print(f"{e}\nFailed to construct endpoint packages\nat: app/endpoints/__init__.py")

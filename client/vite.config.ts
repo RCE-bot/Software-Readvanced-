@@ -1,9 +1,8 @@
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react-swc';
+import path from 'path';
 
-  import { defineConfig } from 'vite';
-  import react from '@vitejs/plugin-react-swc';
-  import path from 'path';
-
-  export default defineConfig({
+export default defineConfig({
     plugins: [react()],
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
@@ -56,6 +55,9 @@
       outDir: 'build',
     },
     server: {
+      proxy: {
+      '/api': 'http://127.0.0.1:5000', // Flask backend hook
+    },
       port: 3000,
       open: true,
     },
