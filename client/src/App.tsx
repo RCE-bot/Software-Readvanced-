@@ -34,14 +34,13 @@ export default function App()
         console.error("❌ Could not connect to backend", err);
         toast.error("Failed to connected server to client -_-");
       });
-  });
+  }, []);
 
     // State to manage which section is currently active
     const [currentSection, setCurrentSection] = useState<'home' | 'resources' | 'settings'>('home');
     const [shouldFocusSearch, setShouldFocusSearch] = useState(false);
     // Scroll to top when switching main sections
-    useEffect(() =>
-    {
+    useEffect(() => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
