@@ -65,12 +65,12 @@ export default function CursorEffect() {
       {/* Main cursor glow effect */}
       <div
         ref={glowRef}
-        className="absolute w-72 h-72 bg-green-500/10 rounded-full blur-3xl transition-opacity duration-300 hover:opacity-80"
+        className="absolute w-72 h-72 bg-green-400 rounded-full blur-3xl transition-opacity duration-300 hover:opacity-20"
         style={{ transform: 'translate(-50%, -50%)' }}
       />
       
       {/* Additional subtle background reactivity */}
-      <div className="absolute inset-0 bg-gradient-radial from-green-500/5 via-transparent to-transparent opacity-50" />
+      <div className="absolute inset-0 bg-gradient-radial from-green-500 via-transparent to-transparent opacity-25" />
     </div>
   );
 }

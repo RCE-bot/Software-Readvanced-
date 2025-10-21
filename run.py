@@ -21,7 +21,7 @@ def server_setup():
     """
     os.system(r'color E')
     print("🚀 Starting backend server...")
-    os.system(r'start cmd /k "cd server && python -m app"') #no need for if statement cmd will display error if file not found
+    os.system(r'start cmd /k "cd server && python server_debug.py"') #no need for if statement cmd will display error if file not found
 
 """
 BEGIN client_setup
