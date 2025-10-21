@@ -3,6 +3,8 @@ try:
     import fade
 except ImportError:
     os.system("pip install fade")
+    import fade
+    os.system("cls")
 
 class Banner(object):
     def __init__(self):
