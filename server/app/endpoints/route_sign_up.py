@@ -18,13 +18,26 @@ BEGIN SignUp
 END SignUp 
 """
     def __init__(self, username, password):
-        self._username = username #private
-        self._password = password  #private
-        self._database = "database/app.db" #database path
-        if self._username not in self._database:
-            pass
-            #add variables to database and redirect
+        if request.method == "POST":  # When user submits the form
+            username = request.form["username"]
+            password = request.form["password"]
 
+            conn = get_db_connection()
+            try:
+                # Insert new user into database
+                conn.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
+                conn.commit()
+                conn.close()
+
+                # After signup, redirect to login page
+                return redirect(url_for("login"))
+
+            except sqlite3.IntegrityError:
+                # This happens if the username already exists
+                return "Username already exists! Try another."
+
+            # If GET request, show signup form
+        return render_template("signup.html")
 
 @endpoints.route('/api/signup', methods=['POST', 'GET'])
 def getSignUp():

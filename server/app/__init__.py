@@ -10,4 +10,5 @@ except ImportError:
 def create_app():
     app = Flask("api.software-readvanced")
     app.register_blueprint(endpoints)
+    Models(app)
     return app

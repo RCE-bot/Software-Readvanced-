@@ -1,4 +1,9 @@
+/* use tailwind syntax and import to project */
 @import "tailwindcss";
+/*
+fetch precured css code (generated from figma) encapsulating in project for better development
+- requires a valid wifi connection + access to github
+*/
 @import url("https://airstriker123.github.io/figma-css-export/figmacompiled.css");
 
 /* prevents scroll chaining & bouncing */
@@ -8,8 +13,8 @@
 }
 
 main {
+    /* image and scroll behaviour to main html content */
     scroll-behavior: smooth;
     background-image: url("public/background.png");
-    --rdp-background-color: brightness(4);
 }
 
