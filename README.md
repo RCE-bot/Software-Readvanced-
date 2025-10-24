@@ -9,7 +9,10 @@
 
 ## Running the app on your machine
 
-Run `npm i` to install the dependencies.
+open run.py to start
 
-Run `npm run dev` to start the development server.
+or run this in cmd
+```bash
+python run.py
+```
   

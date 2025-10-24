@@ -20,7 +20,7 @@ import {toast} from "sonner";
 
 export default function App()
 {
-      useEffect(() =>
+    useEffect(() =>
       {
     fetch("/api/test")
       .then((res) => res.json())
@@ -87,7 +87,7 @@ export default function App()
 
     return (
         <div
-            className="min-h-screen bg-black text-white overflow-x-hidden relative smooth-scroll
+            className="min-h-screen  text-white overflow-x-hidden relative smooth-scroll
              bg-cover bg-center bg-no-repeat">
             {/* Background Effects - Applied to all sections */}
             <ScrollProgress />
