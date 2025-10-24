@@ -1,11 +1,8 @@
 import React from 'react';
 import {Button} from "@ui/button";
 
-interface Account
-{
-    handleAccountSignUp: () => void;
-}
-export default function LoginForm({handleAccountSignUp}: Account)
+
+export default function SignUpForm()
 {
     return (
         <div className="drop-shadow-green-400 drop-shadow-2xl lg:h-screen flex items-center justify-center p-4">
@@ -14,18 +11,17 @@ export default function LoginForm({handleAccountSignUp}: Account)
                     {/* Form Section */}
                     <form className="max-w-md mx-auto w-full p-4 md:p-6">
                         <div className="mb-8">
-                            <a href="#" className="inline-block">
+                            <div className="inline-block">
                                 <img
                                     src="https://readymadeui.com/readymadeui.svg"
                                     alt="logo"
                                     className="w-40"
                                 />
-                            </a>
+                            </div>
                         </div>
-
                         <div className="space-y-6">
                             <label className="text-green-400 text-sm font-medium mb-2 block">
-                                Username
+                                Select your Username
                             </label>
                             <div className="relative flex items-center">
                                 <input
@@ -46,10 +42,12 @@ export default function LoginForm({handleAccountSignUp}: Account)
                                     <path d="M480 480q-60 0-102-42t-42-102q0-60 42-102t102-42q60 0 102 42t42 102q0 60-42 102t-102 42ZM192 768v-96q0-23 12.5-43.5T239 594q55-32 116.29-49 61.29-17 124.5-17t124.71 17Q666 594 721 626q22 13 34.5 34t12.5 44v96H192Z" />
                                 </svg>
                             </div>
+
+
                             {/* Password Field */}
                             <div>
                                 <label className="text-green-400 text-sm font-medium mb-2 block">
-                                    Password
+                                    Select your Password
                                 </label>
                                 <div className="relative flex items-center">
                                     <input
@@ -79,24 +77,17 @@ export default function LoginForm({handleAccountSignUp}: Account)
                             </div>
                         </div>
 
-                        <p className="text-sm mt-6 text-center text-white">
-                            Don't have an account?
-                            <Button onclick={handleAccountSignUp} className="text-green-400 font-medium tracking-wide hover:underline ml-1">
-                                Register here
-                            </Button>
-                        </p>
-
-
                         {/* Submit Button */}
                         <div className="mt-12">
                             <Button
                                 type="submit"
                                 className="border-green-400 border-[3px] w-full shadow-xl py-2 px-4 text-[15px] tracking-wide font-medium rounded-md text-white bg-green-400 hover:bg-green-700 focus:outline-none cursor-pointer"
                             >
-                                Sign in
+                                Sign Up
                             </Button>
                         </div>
                     </form>
+
                     {/* Image Section */}
                     <div className="w-full h-full">
                         <div className="aspect-square bg-gray-50 relative before:absolute before:inset-0 before:bg-black/40 rounded-md overflow-hidden w-full h-full border-green-400 border-[2px]">
@@ -109,7 +100,7 @@ export default function LoginForm({handleAccountSignUp}: Account)
                                 <div>
                                     <h1 className="text-white text-4xl font-semibold"><b>Sign in</b></h1>
                                     <p className="text-green-400 text-[15px] font-medium mt-6 leading-relaxed">
-                                        <h1><b>Sign in to your account to proceed</b> <br/><br/></h1>
+                                        <h1><b>Create your account to proceed</b> <br/><br/></h1>
 
                                         Software Readvanced is a web application designed to help students learn the new HSC software engineering course, by providing useful learning resources to students for their studies.
                                     </p>

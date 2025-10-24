@@ -15,10 +15,19 @@ import {
 } from 'lucide-react';
 import { gsap } from '../../../hooks/useGSAP';
 // @ts-ignore-error
-import { toast } from 'sonner@2.0.3';
 
+
+
+
+interface AccountSettingsProps {
+    handleLogout: () => void;
+    handleDeleteAccount: () => void;
+}
 // Settings Section Component - Allows users to manage account (delete, logout)
-export function SettingsSection() {
+export function SettingsSection({
+    handleLogout,
+    handleDeleteAccount
+}: AccountSettingsProps) {
     const sectionRef = useRef<HTMLElement>(null);
     const headerRef = useRef<HTMLDivElement>(null);
     const cardsRef = useRef<HTMLDivElement>(null);
@@ -69,33 +78,6 @@ export function SettingsSection() {
         return () => ctx.revert();
     }, []);
 
-
-    // Logout function
-    const handleLogout = () => {
-        const logout = window.confirm(
-            "Are you sure you want to logout? (type yes to confirm)"
-        ); if (logout == true) {
-            // notify user of logout
-            toast.success('logout success!')
-            // (backend logic) remvoe oauth token, etc
-        }
-
-        console.log('User logged out');
-    };
-
-    // Delete account function
-    const handleDeleteAccount = () => {
-        // In a real app, this would show a confirmation dialog
-        const confirmed = window.confirm(
-            'Are you sure you want to delete your account? This action cannot be undone and will permanently remove all your data.'
-        ); if (confirmed) {
-            const finalConfirm = window.prompt('enter "delete" to delete account.');
-            if (finalConfirm.toLowerCase() == "delete") {
-                toast.success('delete success!');
-                // logic to delete account (backend bs)
-            }
-        }
-    };
 
     return (
         // render the settings seciton

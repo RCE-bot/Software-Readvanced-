@@ -7,19 +7,10 @@ https://medium.com/@mazeenacader/demystifying-the-file-structure-of-a-react-app-
  */
 import React from 'react';
 import { createRoot } from "react-dom/client"; //import react
-import App from "./App"; //import the react app
+import {App} from "./App"; //import the react app
 import "./index.css";
-import LoginForm from "./components/routes/Login/LoginForm";
+
 // render to index.html
-let user;
-
-user = true;
-
-
-if (!user) createRoot(document.getElementById("root")!).render(
-        <LoginForm />,
-
-);
-else createRoot(document.getElementById("root")!).render(
+createRoot(document.getElementById("root")!).render(
     <App />,
 );
