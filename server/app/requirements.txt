@@ -1,7 +1,0 @@
-flask
-colorama>=0.4.6
-fade
-sqlite3
-gunicorn
-requests
-datetime
