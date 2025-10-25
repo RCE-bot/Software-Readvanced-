@@ -12,7 +12,7 @@
 open run.py to start
 
 or run this in cmd
-```sh
+```bat
 git clone https://github.com/Airstriker123/Software-Readvanced.git
 cd Software-Readvanced
 python run.py
