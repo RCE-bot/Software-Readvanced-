@@ -142,11 +142,10 @@ export default function AboutSection({ onNavigateToResources }: AboutProps) {
   return (
     <section ref={sectionRef} className="py-20 px-6 relative bg-black">
       {/* Corner Green Glows */}
-      <div className="absolute top-0 left-0 w-24 h-32 bg-green-500/15 rounded-full blur-3xl"></div>
-      <div className="absolute top-0 right-0 w-40 h-40 bg-green-400 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-36 h-36 bg-emerald-500/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-28 h-28 bg-green-600 rounded-full blur-3xl"></div>
-      
+      <div className="absolute top-0 left-0 w-24 h-32 bg-green-500/4 rounded-full blur-3xl"></div>
+      <div className="absolute top-0 right-0 w-40 h-40 bg-green-400/50 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-36 h-36 bg-emerald-500/4 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-28 h-28 bg-green-600/50 rounded-full blur-3xl"></div>
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Code display */}

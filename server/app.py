@@ -28,7 +28,6 @@ except ImportError:
 
 app = Flask("api.software.readvanced")
 app.config.from_object(ApplicationConfig)
-app.config.from_object(ApplicationConfig)
 
 bcrypt = Bcrypt(app)
 CORS(app, supports_credentials=True)
@@ -38,6 +37,13 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
+
+
+@app.route('/api/test')
+def test():
+    print(f"SUCCESS -- called message from BACKEND")
+    return jsonify({
+        "message": "BACKEND IS WORKING!"})
 
 @app.route("/@me")
 def get_current_user():

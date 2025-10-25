@@ -15,3 +15,28 @@ body {
     scroll-behavior: smooth;
     background-image: url("public/background.png");
 }
+
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 10px;              /* scrollbar width */
+}
+
+::-webkit-scrollbar-track {
+    background: #0f172a;      /* dark background (Tailwind 'slate-900') */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #22c55e; /* Tailwind green-500 */
+    border-radius: 10px;
+    border: 2px solid #0f172a; /* space around the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #16a34a; /* Tailwind green-600 on hover */
+}
+
+/* Optional: Firefox support */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #22c55e #0f172a;
+}

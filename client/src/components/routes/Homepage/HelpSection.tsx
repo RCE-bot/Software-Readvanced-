@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Button } from '@ui/button';
-import { gsap, ScrollTrigger } from '../../../hooks/useGSAP';
+import { gsap} from '../../../hooks/useGSAP';
 
 interface Props
 {
@@ -124,37 +124,14 @@ export default function HelpSection({onNavigateToResources,
                 repeat: -1,
                 ease: "none"
             });
-
-            // Animate corner glows with subtle pulsing effect
-            const cornerGlows = sectionRef.current?.querySelectorAll('.absolute.bg-green-500\\/15, .absolute.bg-green-400\\/12, .absolute.bg-emerald-500\\/18, .absolute.bg-green-600\\/10');
-            if (cornerGlows) {
-                cornerGlows.forEach((glow, index) => {
-                    gsap.to(glow, {
-                        opacity: 0.8 + (Math.sin(index) * 0.2),
-                        scale: 1.05 + (index * 0.05),
-                        duration: 3 + (index * 0.3),
-                        repeat: -1,
-                        yoyo: true,
-                        ease: "sine.inOut",
-                        delay: index * 0.6
-                    });
-                });
-            }
-
         }, sectionRef);
 
         return () => ctx.revert();
     }, []);
 
     return (
-        <section ref={sectionRef} className="bg-blend-darken  py-20 px-6 relative bg-gradient-to-br from-green-400 to-black" style={{ backgroundSize: "200% 200%" }}>
+        <section ref={sectionRef} className="bg-blend-darken py-20 px-6 relative bg-gradient-to-br from-black/10 to-green-400/16 " style={{ backgroundSize: "200% 200%" }}>
             {/* Additional Corner Green Glows */}
-            <div className="bg-[url('public/background.png')]"/>
-            <div className="absolute top-4 left-4 w-24 h-24 bg-green-500/15 rounded-full blur-2xl"></div>
-            <div className="absolute top-8 right-8 w-32 h-32 bg-green-400/12 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-4 left-8 w-28 h-28 bg-emerald-500/18 rounded-full blur-2xl"></div>
-            <div className="absolute bottom-8 right-4 w-36 h-36 bg-green-600/10 rounded-full blur-3xl"></div>
-
             <div className="container mx-auto max-w-6xl relative z-10">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     {/* Left side - Help content */}
@@ -200,7 +177,7 @@ export default function HelpSection({onNavigateToResources,
                             >
                                 give feedback
                             </Button>
-                            <Button className="bg-black/10"/>
+                            <Button className="bg-transparent"/>
                             <Button
                                 onClick={onNavigateToResources}
                                 className="bg-green-400 hover:bg-green-600 text-black px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
