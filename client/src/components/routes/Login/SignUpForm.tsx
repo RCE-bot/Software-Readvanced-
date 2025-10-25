@@ -98,7 +98,7 @@ export default function SignUpForm()
                             />
                             <div className="absolute inset-0 m-auto max-w-sm p-6 flex items-center justify-center">
                                 <div>
-                                    <h1 className="text-white text-4xl font-semibold"><b>Sign in</b></h1>
+                                    <h1 className="text-white text-4xl font-semibold"><b>Sign Up</b></h1>
                                     <p className="text-green-400 text-[15px] font-medium mt-6 leading-relaxed">
                                         <h1><b>Create your account to proceed</b> <br/><br/></h1>
 

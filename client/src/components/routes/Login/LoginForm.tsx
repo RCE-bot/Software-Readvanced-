@@ -81,7 +81,7 @@ export default function LoginForm({handleAccountSignUp}: Account)
 
                         <p className="text-sm mt-6 text-center text-white">
                             Don't have an account?
-                            <Button onclick={handleAccountSignUp} className="text-green-400 font-medium tracking-wide hover:underline ml-1">
+                            <Button onClick={handleAccountSignUp} className="text-green-400 font-medium tracking-wide hover:underline ml-1">
                                 Register here
                             </Button>
                         </p>

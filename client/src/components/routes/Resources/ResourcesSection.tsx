@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
-import { Button } from '../../ui/button';
-import { Input } from '../../ui/input';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../ui/card';
-import { Badge } from '../../ui/badge';
-import { Tabs, TabsList, TabsTrigger } from '../../ui/tabs';
+import { Button } from '@ui/button';
+import { Input } from '@ui/input';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@ui/card';
+import { Badge } from '@ui/badge';
+import { Tabs, TabsList, TabsTrigger } from '@ui/tabs';
 import { Search, BookOpen, Code, Database, Cpu, Globe, FileText } from 'lucide-react';
 import { gsap, ScrollTrigger } from '../../../hooks/useGSAP';
 
@@ -397,7 +397,7 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center gap-2">
                     {getTypeIcon(resource.type)}
-                    <Badge variant="outline" className="text-white bg-white border-gray-600">
+                    <Badge variant="outline" className="text-white bg-green-500/20 border-gray-600">
                       {resource.type}
                     </Badge>
                   </div>

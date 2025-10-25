@@ -35,7 +35,7 @@ export function App() {
     }, []);
 
     // State to manage which section is currently active
-    const [currentSection, setCurrentSection] = useState<'signup' | 'login' | 'home' | 'resources' | 'settings'>('home');
+    const [currentSection, setCurrentSection] = useState<'signup' | 'login' | 'home' | 'resources' | 'settings'>('login');
     const [shouldFocusSearch, setShouldFocusSearch] = useState(false);
     // Scroll to top when switching main sections
     useEffect(() => {
@@ -85,15 +85,18 @@ export function App() {
         }
     };
 
+    const handleNavigateToSignUp = () => {
+        setCurrentSection('signup');
+        console.log("swapped to signup")
+    }
+
     // Render different sections based on current selection
     const renderCurrentSection = () => {
         switch (currentSection) {
+            case 'signup':
+                return <SignUpForm/>
             case 'login':
-                return (
-                    <LoginForm
-                        handleAccountSignUp={() => setCurrentSection('signup')}
-                    />
-                )
+                return <LoginForm handleAccountSignUp={handleNavigateToSignUp}/>
             case 'home':
                 return (
                     <>
@@ -120,12 +123,12 @@ export function App() {
             default:
                 return null;
         }
-    };
-    if (currentSection == 'login') {return (
-        <LoginForm handleAccountSignUp={function(): void {
-            throw new Error("Function not implemented.");
-        } }/>
-    )}
+    }
+    if (currentSection == 'login') return <LoginForm handleAccountSignUp={handleNavigateToSignUp}/>;
+    else if (currentSection == 'signup') {
+        return (
+            <SignUpForm/>)
+    }
     else {
         return (
             <div
