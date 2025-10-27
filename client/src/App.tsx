@@ -25,7 +25,7 @@ export function App() {
         new Test();
     }, []);
     // State to manage which section is currently active
-    const [currentSection, setCurrentSection] = useState<'signup' | 'login' | 'home' | 'resources' | 'settings'>('login');
+    const [currentSection, setCurrentSection] = useState<'signup' | 'login' | 'home' | 'resources' | 'settings'>('home');
     const [shouldFocusSearch, setShouldFocusSearch] = useState(false);
     // Scroll to top when switching main sections
     useEffect(() => {
@@ -193,5 +193,4 @@ export function App() {
             </div>
         );
     }
-
 }
