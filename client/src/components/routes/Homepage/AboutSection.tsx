@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
-import { Button } from '../../ui/button';
-import { gsap, ScrollTrigger } from '../../../hooks/useGSAP';
+import { Button } from '@ui/button';
+import { gsap} from '../../../hooks/useGSAP';
 
 interface AboutProps
 {
@@ -18,7 +18,7 @@ export default function AboutSection({ onNavigateToResources }: AboutProps) {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Code block animation
-      gsap.fromTo(codeRef.current, 
+      gsap.fromTo(codeRef.current,
         { x: -100, opacity: 0, rotateY: 15 },
         {
           x: 0,

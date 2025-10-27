@@ -17,25 +17,15 @@ import Navigation from './components/Navigation';
 import { Toaster } from '@ui/sonner';
 import {toast} from "sonner";
 import LoginForm from './components/routes/Login/LoginForm';
+import Test from './api/test';
 import SignUpForm from './components/routes/Login/SignUpForm';
 
 export function App() {
     useEffect(() => {
-        fetch("/api/test")
-            .then((res) => res.json())
-            .then((data) => {
-                console.log("✅ React frontend connected to Flask backend!");
-                console.log("Backend message:", data.message);
-                toast.success("Server connected to client!");
-            })
-            .catch((err) => {
-                console.error("❌ Could not connect to backend", err);
-                toast.error("Failed to connected server to client -_-");
-            });
+        new Test();
     }, []);
-
     // State to manage which section is currently active
-    const [currentSection, setCurrentSection] = useState<'signup' | 'login' | 'home' | 'resources' | 'settings'>('home');
+    const [currentSection, setCurrentSection] = useState<'signup' | 'login' | 'home' | 'resources' | 'settings'>('login');
     const [shouldFocusSearch, setShouldFocusSearch] = useState(false);
     // Scroll to top when switching main sections
     useEffect(() => {
@@ -76,7 +66,8 @@ export function App() {
         const confirmed = window.confirm('Are you sure you want to delete your account? This action cannot be undone and will permanently remove all your data.');
         if (confirmed) {
             const finalConfirm = window.prompt('enter "delete" to delete account.');
-            if (finalConfirm.toLowerCase() == "delete") {
+            //@ts-ignore ignore error from if statement
+            if ("delete" == finalConfirm.toLowerCase()) {
                 toast.success('delete success!');
                 // logic to delete account (backend bs)
                 setShouldFocusSearch(true);
@@ -124,10 +115,46 @@ export function App() {
                 return null;
         }
     }
-    if (currentSection == 'login') return <LoginForm handleAccountSignUp={handleNavigateToSignUp}/>;
+    /*
+    IF user auth = true display home section
+    ELSE display login section
+    return TYPESCRIPT XML based on currentSection value (login,signup, home)
+     */
+    if (currentSection == 'login') {
+        return (
+            <div>
+                <LoginForm handleAccountSignUp={handleNavigateToSignUp}/>
+                <Toaster
+                    theme="dark"
+                    position="bottom-right"
+                    toastOptions={{
+                        style: {
+                            background: '#1f2937',
+                            border: '1px solid #374151',
+                            color: '#f9fafb',
+                        },
+                    }}
+                />
+            </div>
+        )
+    }
     else if (currentSection == 'signup') {
         return (
-            <SignUpForm/>)
+            <div>
+                <SignUpForm/>
+                <Toaster
+                    theme="dark"
+                    position="bottom-right"
+                    toastOptions={{
+                        style: {
+                            background: '#1f2937',
+                            border: '1px solid #374151',
+                            color: '#f9fafb',
+                        },
+                    }}
+                />
+            </div>
+        )
     }
     else {
         return (
