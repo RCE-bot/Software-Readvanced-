@@ -20,7 +20,7 @@ export default function LoginForm({handleAccountSignUp, handleLandingPage}: Acco
             const response = await httpClient.post("/api/login", {
                 username, password
             });
-            toast.success("Logged in successfully")
+            window.alert("Logged in successfully")
             handleLandingPage();
         } catch (error:any)
         {

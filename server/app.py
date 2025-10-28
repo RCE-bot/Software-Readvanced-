@@ -6,6 +6,7 @@ app.py:
 - signup, delete account
 """
 import os
+import logging
 
 #------------    <imports>    ------------#
 try:
@@ -48,6 +49,7 @@ bcrypt = Bcrypt(app)
 CORS(app, supports_credentials=True)
 server_session = Session(app)
 db.init_app(app)
+logging.getLogger('sqlalchemy.engine').setLevel(logging.WARNING)
 
 with app.app_context():
     db.create_all()
@@ -83,33 +85,53 @@ def get_current_user():
 
 @app.route("/api/register", methods=["POST"])
 def register_user():  # register a new user
+    try:
+        try:
+            # request json data from client (username and password)
+            username = request.json["username"]
+            password = request.json["password"]
+        except KeyError as e:
+            print(f"[ERROR] failed to fetch username and password from client \n {e}")
+            return None
 
-    #request json data from client (username and password)
-    username = request.json["username"]
-    password = request.json["password"]
+        try:
+            # CHECK IF USER EXISTDS IN DATABASE
+            user_exists = User.query.filter_by(username=username).first() is not None
 
-    # CHECK IF USER EXISTDS IN DATABASE
-    user_exists = User.query.filter_by(username=username).first() is not None
+            if user_exists:
+                # if they do exist, notify client that user exists and prevent duplicate accounts
+                return jsonify({"error": "User already exists"}), 409
+        except KeyError as e:
+            print(f"[ERROR] failed to perform SQL query in database \n {e}")
+            return None
 
-    if user_exists:
-        # if they do exist, notify client that user exists and prevent duplicate accounts
-        return jsonify({"error": "User already exists"}), 409
+        try:
+            # ---- security methods (encryption/hasing passwords) ----#
+            hashed_password = bcrypt.generate_password_hash(password)
+            new_user = User(username=username, password=hashed_password)
+            db.session.add(new_user)
+            db.session.commit()
+            # ---- </security methods> ----#
+        except IntegrityError as e:
+            print(f"[ERROR] failed to perform hashing/encrypting of account \n {e}")
+            return None
 
-    # ---- security methods (encryption/hasing passwords) ----#
-    hashed_password = bcrypt.generate_password_hash(password)
-    new_user = User(username=username, password=hashed_password)
-    db.session.add(new_user)
-    db.session.commit()
-    # ---- </security methods> ----#
+        print("[SUCCESS] user registered")
+        # store user id in session
+        session["user_id"] = new_user.id
 
-    # store user id in session
-    session["user_id"] = new_user.id
+        # return json data to client for storage
+        return jsonify({
+            "id": new_user.id,
+            "username": new_user.username
+        }) , 200
 
-    # return json data to client for storage
-    return jsonify({
-        "id": new_user.id,
-        "username": new_user.username
-    })
+    except Exception as e:
+        print("[FAILED ROUTE] at account creation /api/register")
+        print(e)
+        return None
+
+
 
 
 @app.route("/api/login", methods=["POST"])
@@ -129,8 +151,8 @@ def login_user(): # login a user by checking if they exist in database and if pa
     if not bcrypt.check_password_hash(user.password, password):
         return jsonify({"error": "Unauthorized"}), 401
 
+    print("[SUCCESS] A USER LOGGED IN!")
     session["user_id"] = user.id # store user id in session
-
     # return to client user id and username
     return jsonify({
         "id": user.id,
