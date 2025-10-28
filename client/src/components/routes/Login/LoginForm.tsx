@@ -1,12 +1,34 @@
 import React from 'react';
 import {Button} from "@ui/button";
+import httpClient from "../../../api/httpClient";
+import { toast } from "sonner";
 
 interface Account
 {
     handleAccountSignUp: () => void;
+    handleLandingPage: () => void;
 }
-export default function LoginForm({handleAccountSignUp}: Account)
+export default function LoginForm({handleAccountSignUp, handleLandingPage}: Account)
 {
+    const [username, setUsername] = React.useState<string>("");
+    const [password, setPassword] = React.useState<string>("");
+
+    const loginUser = async () =>
+    {
+        try
+        {
+            const response = await httpClient.post("/api/login", {
+                username, password
+            });
+            toast.success("Logged in successfully")
+            handleLandingPage();
+        } catch (error:any)
+        {
+          if(error.response.status === 401) {
+              window.alert("invalid credentials");
+          }
+        }
+    }
     return (
         <div className="drop-shadow-green-400 drop-shadow-2xl lg:h-screen flex items-center justify-center p-4">
             <div className=" border-green-400 border-[3px] max-w-6xl bg-white/8  [box-shadow:0_2px_10px_-3px_rgba(6,81,237,0.3)] p-4 lg:p-5 rounded-md">
@@ -32,7 +54,10 @@ export default function LoginForm({handleAccountSignUp}: Account)
                                     name="username"
                                     type="text"
                                     required
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
                                     placeholder="Enter username"
+                                    id=""
                                     className="border-green-400 border-[1px] w-full text-sm text-slate-900 bg-slate-100 focus: pl-4 pr-10 py-3 rounded-md focus:border-blue-600 outline-none transition-all"
                                 />
                                 <svg
@@ -55,6 +80,9 @@ export default function LoginForm({handleAccountSignUp}: Account)
                                     <input
                                         name="password"
                                         type="password"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        id=""
                                         required
                                         placeholder="Enter password"
                                         className="border-green-400 border-[1px] w-full text-sm text-slate-900 bg-slate-100 focus: pl-4 pr-10 py-3 rounded-md  focus:border-blue-600 outline-none transition-all"
@@ -91,6 +119,7 @@ export default function LoginForm({handleAccountSignUp}: Account)
                         <div className="mt-12">
                             <Button
                                 type="submit"
+                                onClick={() => loginUser()}
                                 className="border-green-400 border-[3px] w-full shadow-xl py-2 px-4 text-[15px] tracking-wide font-medium rounded-md text-white bg-green-400 hover:bg-green-700 focus:outline-none cursor-pointer"
                             >
                                 Sign in

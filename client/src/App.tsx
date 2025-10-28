@@ -21,11 +21,14 @@ import Test from './api/test';
 import SignUpForm from './components/routes/Login/SignUpForm';
 
 export function App() {
-    useEffect(() => {
-        new Test();
-    }, []);
+    const test = false; // for debugging (should be turned off)
+    if (test) {
+        useEffect(() => {
+            new Test();
+        }, []);
+    }
     // State to manage which section is currently active
-    const [currentSection, setCurrentSection] = useState<'signup' | 'login' | 'home' | 'resources' | 'settings'>('home');
+    const [currentSection, setCurrentSection] = useState<'signup' | 'login' | 'home' | 'resources' | 'settings'>('login');
     const [shouldFocusSearch, setShouldFocusSearch] = useState(false);
     // Scroll to top when switching main sections
     useEffect(() => {
@@ -78,8 +81,15 @@ export function App() {
 
     const handleNavigateToSignUp = () => {
         setCurrentSection('signup');
-        console.log("swapped to signup")
+        console.log("swapped to signup");
     }
+
+    const handleNavigateToLandingPage = () => {
+        setCurrentSection('home');
+        toast.success('logged in');
+    }
+
+ 
 
     // Render different sections based on current selection
     const renderCurrentSection = () => {
@@ -87,7 +97,8 @@ export function App() {
             case 'signup':
                 return <SignUpForm/>
             case 'login':
-                return <LoginForm handleAccountSignUp={handleNavigateToSignUp}/>
+                return <LoginForm handleAccountSignUp={handleNavigateToSignUp}
+                                  handleLandingPage={handleNavigateToLandingPage}/>
             case 'home':
                 return (
                     <>
@@ -123,7 +134,9 @@ export function App() {
     if (currentSection == 'login') {
         return (
             <div>
-                <LoginForm handleAccountSignUp={handleNavigateToSignUp}/>
+                <LoginForm handleAccountSignUp={handleNavigateToSignUp}
+                handleLandingPage={handleNavigateToLandingPage}
+                />
                 <Toaster
                     theme="dark"
                     position="bottom-right"
