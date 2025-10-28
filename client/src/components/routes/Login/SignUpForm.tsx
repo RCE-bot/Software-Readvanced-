@@ -17,7 +17,7 @@ export default function SignUpForm()
             window.alert("Signed up successfully")
         } catch (error:any)
         {
-            window.alert("Failed to sign up")
+            window.alert("Failed to sign up - username taken")
         }
     }
     return (

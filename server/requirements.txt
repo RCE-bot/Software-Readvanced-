@@ -1,12 +1,11 @@
+# list of dependencies that must be installed
 flask
 flask-sqlalchemy
 flask-bcrypt
 python-dotenv
 flask-session
-redis
 flask-cors
 colorama>=0.4.6
 fade
-gunicorn
+# gunicorn
 requests
-datetime
