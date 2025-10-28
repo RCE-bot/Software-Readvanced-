@@ -5,7 +5,7 @@ import {Button} from "@ui/button";
 export default function SignUpForm()
 {
     return (
-        <div className="drop-shadow-green-400 drop-shadow-2xl lg:h-screen flex items-center justify-center p-4">
+        <div className="bg-gradient-to-br from-black/67 to-green-400/24 lg:h-screen flex items-center justify-center p-4">
             <div className=" border-green-400 border-[3px] max-w-6xl bg-white/8  [box-shadow:0_2px_10px_-3px_rgba(6,81,237,0.3)] p-4 lg:p-5 rounded-md">
                 <div className="grid md:grid-cols-2 items-center gap-y-8">
                     {/* Form Section */}
