@@ -1,0 +1,11 @@
+# list of dependencies that must be installed
+flask
+flask-sqlalchemy
+flask-bcrypt
+python-dotenv
+flask-session
+flask-cors
+colorama>=0.4.6
+fade
+# gunicorn
+requests

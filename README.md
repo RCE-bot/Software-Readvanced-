@@ -1,6 +1,3 @@
-
-
-
 # Software Revanced PWA App Development
 - first react project for year12 at1
 
@@ -12,7 +9,12 @@
 
 ## Running the app on your machine
 
-Run `npm i` to install the dependencies.
+open run.py to start
 
-Run `npm run dev` to start the development server.
+or run this in cmd
+```bat
+git clone https://github.com/Airstriker123/Software-Readvanced.git
+cd Software-Readvanced
+python run.py
+```
   

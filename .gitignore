@@ -1,5 +1,6 @@
-/node_modules
 /.idea
-/.idea
-.idea/modules.xml
-.idea/modules.xml
+/server/flask_session
+/server/flask_session
+*.pyc
+/server/instance
+server/instance/db.sqlite
