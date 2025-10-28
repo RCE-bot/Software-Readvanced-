@@ -50,6 +50,8 @@ CORS(app, supports_credentials=True)
 server_session = Session(app)
 db.init_app(app)
 logging.getLogger('sqlalchemy.engine').setLevel(logging.WARNING)
+logging.getLogger('werkzeug').setLevel(logging.ERROR)
+
 
 with app.app_context():
     db.create_all()
