@@ -16,8 +16,6 @@ import {
 import { gsap } from '../../../hooks/useGSAP';
 // @ts-ignore-error
 
-
-
 interface AccountSettingsProps {
     handleLogout: () => void;
     handleDeleteAccount: () => void;
@@ -80,7 +78,7 @@ export function SettingsSection({
 
     return (
         // render the settings seciton
-        <section ref={sectionRef} className="py-20 px-6 bg-gradient-to-b from-gray-900/30 via-black to-gray-900/30">
+        <section ref={sectionRef} className="py-20 px-6 bg-black/10">
             <div className="container mx-auto max-w-6xl">
                 {/* Header */}
                 <div ref={headerRef} className="text-center mb-12">
@@ -100,9 +98,12 @@ export function SettingsSection({
                     {
                         /*
                         Account Settings
+                       - add task
+                       - remove task
                        - manage logout
                        - delete account
                        */}
+                    {/* add task / remove task */ }
                     <Card className="bg-gray-800/50 border-gray-700">
                         <CardHeader>
                             <div className="flex items-center gap-2">
@@ -123,11 +124,14 @@ export function SettingsSection({
                                     variant="outline"
                                     className="w-full border-red-600 text-red-500 hover:bg-red-600 hover:text-white"
                                     onClick={handleDeleteAccount}>
+                                    <Trash2 className="w-4 h-4 mr-2"/>
                                     Delete Resource
                                 </Button>
                             </div>
                         </CardContent>
                     </Card>
+
+                    {/* delete/logout card */ }
                     <Card className="bg-gray-800/50 border-gray-700">
                         <CardHeader>
                             <div className="flex items-center gap-2">

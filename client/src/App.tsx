@@ -31,14 +31,16 @@ export function App() {
     let [currentSection, setCurrentSection] = useState<'signup' | 'login' | 'home' | 'resources' | 'settings'>('home');
     const [shouldFocusSearch, setShouldFocusSearch] = useState(false);
     // Scroll to top when switching main sections
-    useEffect(() => {
+    useEffect(() =>
+    {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
         });
     }, [currentSection]);
 
-    useEffect(() => {
+    useEffect(() =>
+    {
         const auth = localStorage.getItem('auth');
         if (auth) {
             setCurrentSection("home")
