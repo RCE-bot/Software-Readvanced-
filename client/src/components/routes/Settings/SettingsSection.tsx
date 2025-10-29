@@ -18,7 +18,6 @@ import { gsap } from '../../../hooks/useGSAP';
 
 
 
-
 interface AccountSettingsProps {
     handleLogout: () => void;
     handleDeleteAccount: () => void;
@@ -104,6 +103,31 @@ export function SettingsSection({
                        - manage logout
                        - delete account
                        */}
+                    <Card className="bg-gray-800/50 border-gray-700">
+                        <CardHeader>
+                            <div className="flex items-center gap-2">
+                                <Shield className="w-5 h-5 text-green-400"/>
+                                <CardTitle className="text-white">Account Settings</CardTitle>
+                            </div>
+                            <CardDescription>Manage your SR account resources</CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            <div className="pt-2 space-y-2">
+                                <Button
+                                    variant="outline"
+                                    className="w-full border-green-400 text-white hover:bg-green-700 hover:text-white"
+                                    onClick={handleLogout}>
+                                    Add Resource
+                                </Button>
+                                <Button
+                                    variant="outline"
+                                    className="w-full border-red-600 text-red-500 hover:bg-red-600 hover:text-white"
+                                    onClick={handleDeleteAccount}>
+                                    Delete Resource
+                                </Button>
+                            </div>
+                        </CardContent>
+                    </Card>
                     <Card className="bg-gray-800/50 border-gray-700">
                         <CardHeader>
                             <div className="flex items-center gap-2">

@@ -21,6 +21,7 @@ export default function LoginForm({handleAccountSignUp, handleLandingPage}: Acco
                 username, password
             });
             window.alert("Logged in successfully")
+            localStorage.setItem("auth", "true");
             handleLandingPage();
         } catch (error:any)
         {

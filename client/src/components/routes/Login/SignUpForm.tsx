@@ -2,7 +2,11 @@ import React from 'react';
 import {Button} from "@ui/button";
 import httpClient from "../../../api/httpClient";
 
-export default function SignUpForm()
+export interface Auth
+{
+    handleLandingPage: () => void;
+}
+export default function SignUpForm({handleLandingPage}: Auth)
 {
     const [username, setUsername] = React.useState<string>("");
     const [password, setPassword] = React.useState<string>("");
@@ -14,7 +18,9 @@ export default function SignUpForm()
             const response = await httpClient.post("/api/register", {
                 username, password
             });
-            window.alert("Signed up successfully")
+            window.location.href = "/";
+            localStorage.setItem("auth", "true");
+            handleLandingPage();
         } catch (error:any)
         {
             window.alert("Failed to sign up - username taken")
@@ -29,8 +35,8 @@ export default function SignUpForm()
                         <div className="mb-8">
                             <div className="inline-block">
                                 <img
-                                    src="https://readymadeui.com/readymadeui.svg"
-                                    alt="logo"
+                                    src="https://readymadeui.com/.svg"
+                                    alt="Software Readvanced"
                                     className="w-40"
                                 />
                             </div>

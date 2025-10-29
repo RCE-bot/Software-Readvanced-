@@ -2,5 +2,4 @@
 /server/flask_session
 /server/flask_session
 *.pyc
-/server/instance
-server/instance/db.sqlite
+

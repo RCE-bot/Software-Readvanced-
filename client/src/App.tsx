@@ -28,7 +28,7 @@ export function App() {
         }, []);
     }
     // State to manage which section is currently active
-    const [currentSection, setCurrentSection] = useState<'signup' | 'login' | 'home' | 'resources' | 'settings'>('login');
+    let [currentSection, setCurrentSection] = useState<'signup' | 'login' | 'home' | 'resources' | 'settings'>('home');
     const [shouldFocusSearch, setShouldFocusSearch] = useState(false);
     // Scroll to top when switching main sections
     useEffect(() => {
@@ -37,6 +37,14 @@ export function App() {
             behavior: 'smooth'
         });
     }, [currentSection]);
+
+    useEffect(() => {
+        const auth = localStorage.getItem('auth');
+        if (auth) {
+            setCurrentSection("home")
+            currentSection = "home"
+        }
+    }, []);
 
     // Navigation handlers
     const handleNavigateToResources = () => {
@@ -86,16 +94,18 @@ export function App() {
 
     const handleNavigateToLandingPage = () => {
         setCurrentSection('home');
+        currentSection =="home";
         toast.success('logged in');
     }
-
 
 
     // Render different sections based on current selection
     const renderCurrentSection = () => {
         switch (currentSection) {
             case 'signup':
-                return <SignUpForm/>
+                return <SignUpForm
+                  handleLandingPage={handleNavigateToLandingPage}
+                />
             case 'login':
                 return <LoginForm handleAccountSignUp={handleNavigateToSignUp}
                                   handleLandingPage={handleNavigateToLandingPage}/>
@@ -154,7 +164,9 @@ export function App() {
     else if (currentSection == 'signup') {
         return (
             <div>
-                <SignUpForm/>
+                <SignUpForm
+                handleLandingPage={handleNavigateToLandingPage}
+                />
                 <Toaster
                     theme="dark"
                     position="bottom-right"

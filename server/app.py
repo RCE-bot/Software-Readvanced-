@@ -131,7 +131,7 @@ def register_user():  # register a new user
     except Exception as e:
         print("[FAILED ROUTE] at account creation /api/register")
         print(e)
-        return None
+        return
 
 
 
