@@ -18,8 +18,8 @@ import Navigation from './components/Navigation';
 import { Toaster } from '@ui/sonner';
 // login components
 import Test from "@/api/test"
-import SignUpForm from "@/components/routes/Login/SignUpForm";
-import LoginForm from "@/components/routes/Login/LoginForm";
+import SignUpForm from "@/components/routes/Auth/SignUpForm";
+import LoginForm from "@/components/routes/Auth/LoginForm";
 import { logoutUser } from "@/api/auth";
 import {toast} from "sonner";
 
@@ -42,7 +42,7 @@ export function App() {
 
     // ✅ Check session on mount
     useEffect(() => {
-        const auth = localStorage.getItem('auth');
+        const auth = sessionStorage.getItem('auth');
         if (auth) {
             setCurrentSection('home');
         } else {
@@ -52,7 +52,7 @@ export function App() {
 
     // ✅ Called when login succeeds
     const handleLoginSuccess = (userData: any) => {
-        localStorage.setItem('auth', JSON.stringify(userData));
+        sessionStorage.setItem('auth', JSON.stringify(userData));
         setCurrentSection('home');
     };
 
@@ -61,14 +61,14 @@ export function App() {
         setCurrentSection("login");
     };
 
-    // ✅ Logout (calls backend + clears localStorage)
+    // ✅ Logout (calls backend + clears sessionstorage)
     const handleLogout = async () => {
         try {
             await logoutUser();
         } catch (err) {
             console.warn("Logout request failed (maybe user not logged in).");
         }
-        localStorage.removeItem('auth'); // remove token from storage
+        sessionStorage.removeItem('auth'); // remove token from storage
         setCurrentSection('login');
     };
 
@@ -98,7 +98,7 @@ export function App() {
 
     // ✅ (optional) redirect unauthenticated users trying to access other pages
     useEffect(() => {
-        const auth = localStorage.getItem('auth');
+        const auth = sessionStorage.getItem('auth');
         if (!auth && currentSection !== 'login' && currentSection !== 'signup') {
             setCurrentSection('login');
         }

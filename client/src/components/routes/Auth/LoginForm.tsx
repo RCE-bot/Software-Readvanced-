@@ -71,7 +71,7 @@ export default function LoginForm({ setUser, onNavigateToSignUp }: LoginFormProp
                             disabled={loading}
                             className="border-green-400 border-[3px] w-full shadow-xl mt-6 py-2 text-[15px] font-medium rounded-md text-white bg-green-400 hover:bg-green-700"
                         >
-                            {loading ? "Logging in..." : "Login"}
+                            {loading ? "Logging in..." : "Auth"}
                         </Button>
 
                         <p className="text-green-400 text-sm mt-4 text-center">
