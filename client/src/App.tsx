@@ -17,9 +17,9 @@ import { SettingsSection } from './components/routes/Settings/SettingsSection';
 import Navigation from './components/Navigation';
 import { Toaster } from '@ui/sonner';
 // login components
+import Test from "@/api/test"
 import SignUpForm from "@/components/routes/Login/SignUpForm";
 import LoginForm from "@/components/routes/Login/LoginForm";
-// import API helpers (ADD THIS)
 import { logoutUser } from "@/api/auth";
 import {toast} from "sonner";
 
@@ -28,6 +28,10 @@ export function App() {
     let [currentSection, setCurrentSection] = useState<'login' | 'signup' | 'home' | 'resources' | 'settings'>('login');
     const [shouldFocusSearch, setShouldFocusSearch] = useState(false);
 
+    useEffect(() => {
+        // check if server is connected to client
+        new Test();
+    }, []);
     // Scroll to top when switching main sections
     useEffect(() => {
         window.scrollTo({
@@ -60,11 +64,11 @@ export function App() {
     // ✅ Logout (calls backend + clears localStorage)
     const handleLogout = async () => {
         try {
-            await logoutUser(); // <-- backend /api/logout call
+            await logoutUser();
         } catch (err) {
             console.warn("Logout request failed (maybe user not logged in).");
         }
-        localStorage.removeItem('auth');
+        localStorage.removeItem('auth'); // remove token from storage
         setCurrentSection('login');
     };
 
@@ -87,6 +91,11 @@ export function App() {
         setCurrentSection('settings');
     };
 
+    const handleDeleteAccount = () => {
+        setCurrentSection('login');
+        // TODO: complete backend logic for this function
+    };
+
     // ✅ (optional) redirect unauthenticated users trying to access other pages
     useEffect(() => {
         const auth = localStorage.getItem('auth');
@@ -99,10 +108,24 @@ export function App() {
         switch (currentSection) {
             case 'login':
                 return (
-                    <LoginForm
-                        setUser={handleLoginSuccess}
-                        onNavigateToSignUp={handleNavigateToSignUp}
-                    />
+                    <div>
+                        <LoginForm
+                            setUser={handleLoginSuccess}
+                            onNavigateToSignUp={handleNavigateToSignUp}
+                        />
+                        {/* Toast Notifications */}
+                        <Toaster
+                            theme="dark"
+                            position="bottom-right"
+                            toastOptions={{
+                                style: {
+                                    background: '#1f2937',
+                                    border: '1px solid #374151',
+                                    color: '#f9fafb',
+                                },
+                            }}
+                        />
+                    </div>
                 );
             case 'signup':
                 return (
@@ -130,13 +153,15 @@ export function App() {
                     />
                 );
             case 'settings':
-                return <SettingsSection />;
+                return <SettingsSection
+                        handleLogout={handleLogout}
+                        handleDeleteAccount={handleDeleteAccount}
+                />;
             default:
                 return null;
         }
     };
-
-    // ✅ Conditional return
+    // if not logged in render login/signup
     if (currentSection === 'login' || currentSection === 'signup') {
         return renderCurrentSection();
     } else {

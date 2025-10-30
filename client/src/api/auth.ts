@@ -7,7 +7,7 @@ export interface User {
 }
 
 export async function logoutUser() {
-    const res = await fetch(`${API_BASE}/api/logout`, {
+    const res = await fetch(`/api/logout`, {
         method: "POST",
         credentials: "include",
     });
@@ -16,7 +16,7 @@ export async function logoutUser() {
 }
 
 export async function login(username: string, password: string): Promise<User> {
-    const res = await fetch(`${API_BASE}/login`, {
+    const res = await fetch(`/api/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -34,7 +34,7 @@ export async function login(username: string, password: string): Promise<User> {
 }
 
 export async function register(username: string, password: string): Promise<User> {
-    const res = await fetch(`${API_BASE}/register`, {
+    const res = await fetch(`/api/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -52,14 +52,14 @@ export async function register(username: string, password: string): Promise<User
 }
 
 export async function getCurrentUser(): Promise<User | null> {
-    const res = await fetch(`${API_BASE}/@me`, { credentials: "include" });
+    const res = await fetch(`/api/@me`, { credentials: "include" });
     if (res.status === 401) return null;
     if (!res.ok) return null;
     return res.json();
 }
 
 export async function logout(): Promise<void> {
-    await fetch(`${API_BASE}/logout`, {
+    await fetch(`/api/logout`, {
         method: "POST",
         credentials: "include",
     });

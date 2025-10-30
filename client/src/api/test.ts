@@ -18,7 +18,7 @@ export default class Test
                   // if data received, display success message
                   console.log("[SUCCESS] React frontend connected to Flask backend!");
                   console.log(`Backend message: ${data.message}`);
-                  toast.success("Server connected to client!");
+                  toast.success(`connected to backend server`);
               }).catch((err):void => { // error handling (arrow function
               // display this if unable to fetch json from api
               console.error("[FAIL] Could not connect to backend", err);

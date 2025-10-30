@@ -65,7 +65,9 @@ def test():
     # test if api works CALLABLE from client
     print(f"SUCCESS -- called message from BACKEND")
     return jsonify({
-        "message": "BACKEND IS WORKING!"})
+        "message": "BACKEND IS WORKING!",
+      }
+    )
 
 @app.route("/api/@me")
 def get_current_user():

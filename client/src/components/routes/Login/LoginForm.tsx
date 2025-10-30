@@ -21,7 +21,7 @@ export default function LoginForm({ setUser, onNavigateToSignUp }: LoginFormProp
             const user = await login(username, password);
             setUser(user);
         } catch (err: any) {
-            setError(err.message);
+            setError("invalid username/password");
         } finally {
             setLoading(false);
         }
