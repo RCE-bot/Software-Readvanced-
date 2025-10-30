@@ -1,69 +1,97 @@
-// src/services/auth.ts
-export interface User {
+/*
+file contains various api calls related to user login (auth)
+- login
+- register
+- logout
+- getCurrentUser
+- isAuthedLocally
+ */
+
+
+export interface User
+{
     id: number;
     username: string;
 }
 
-export async function logoutUser() {
-    const res = await fetch(`/api/logout`, {
+export async function logoutUser(): Promise<string>
+{
+    /* function api call to logout user */
+    const res = await fetch(`/api/logout`, // fetch endpoint backend handles rest
+    {
+        //json method
         method: "POST",
         credentials: "include",
     });
-    if (!res.ok) throw new Error("Logout failed");
+    if (!res.ok) throw new Error("Logout failed"); // if error
     return res.text();
 }
 
-export async function login(username: string, password: string): Promise<User> {
-    const res = await fetch(`/api/login`, {
+export async function login(username: string, password: string): Promise<User>
+{
+    /* function to login user */
+    const res = await fetch(`/api/login`, //api endpoint fetch method
+    {
+        // check if input username and password is valid
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify({ username, password }),
     });
 
-    if (!res.ok) {
+    if (!res.ok)  // if not ok notify invalid user/password
+    {
         const err = await res.json().catch(() => ({}));
         throw new Error(err.error || "Invalid username or password");
     }
-
+    // if ok, store user data in local storage
     const data = await res.json();
+    // add  token to local storage (only way I could be bothered with account creation i don't care if it not secure not important for this project
     localStorage.setItem("auth", JSON.stringify({ id: data.id, username: data.username }));
     return data;
 }
 
-export async function register(username: string, password: string): Promise<User> {
-    const res = await fetch(`/api/register`, {
+export async function register(username: string, password: string): Promise<User>
+{
+    /*method to register new user in database  */
+    const res = await fetch(`/api/register`,
+    {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify({ username, password }),
     });
 
-    if (!res.ok) {
+    if (!res.ok) // if not ok notify registration failed (username taken)
+    {
         const err = await res.json().catch(() => ({}));
         throw new Error(err.error || "Registration failed");
     }
-
+    // otherwise do same logic as login process
     const data = await res.json();
     localStorage.setItem("auth", JSON.stringify({ id: data.id, username: data.username }));
     return data;
 }
 
-export async function getCurrentUser(): Promise<User | null> {
+export async function getCurrentUser(): Promise<User | null>
+{
     const res = await fetch(`/api/@me`, { credentials: "include" });
     if (res.status === 401) return null;
     if (!res.ok) return null;
     return res.json();
 }
 
-export async function logout(): Promise<void> {
-    await fetch(`/api/logout`, {
+export async function logout(): Promise<void>
+{
+    await fetch(`/api/logout`,
+    {
         method: "POST",
         credentials: "include",
     });
     localStorage.removeItem("auth");
 }
 
-export function isAuthedLocally(): boolean {
+export function isAuthedLocally(): boolean
+{
     return !!localStorage.getItem("auth");
 }

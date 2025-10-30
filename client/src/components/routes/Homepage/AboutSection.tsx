@@ -150,7 +150,6 @@ export default function AboutSection({ onNavigateToResources }: AboutProps) {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Code display */}
           <div ref={codeRef} className="relative">
-
                 <img src="src/public/aboutsr.webp"/>
           </div>
           

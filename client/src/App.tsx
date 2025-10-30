@@ -40,7 +40,7 @@ export function App() {
         });
     }, [currentSection]);
 
-    // ✅ Check session on mount
+    //  Check session on mount
     useEffect(() => {
         const auth = localStorage.getItem('auth');
         if (auth) {
@@ -50,7 +50,7 @@ export function App() {
         }
     }, []);
 
-    // ✅ Called when login succeeds
+    // Called when login succeeds
     const handleLoginSuccess = (userData: any) => {
         localStorage.setItem('auth', JSON.stringify(userData));
         setCurrentSection('home');
@@ -61,7 +61,7 @@ export function App() {
         setCurrentSection("login");
     };
 
-    // ✅ Logout (calls backend + clears localStorage)
+    //  Logout (calls backend + clears localStorage)
     const handleLogout = async () => {
         try {
             await logoutUser();
