@@ -1,5 +1,4 @@
 import {toast} from "sonner";
-
 // test api calls
 export default class Test
 {

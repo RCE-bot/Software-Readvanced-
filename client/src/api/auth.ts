@@ -1,6 +1,4 @@
 // src/services/auth.ts
-const API_BASE = "http://localhost:5000/api";
-
 export interface User {
     id: number;
     username: string;

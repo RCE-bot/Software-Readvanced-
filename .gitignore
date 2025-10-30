@@ -4,3 +4,4 @@
 *.pyc
 
 /server/flask_session
+/server/flask_session
