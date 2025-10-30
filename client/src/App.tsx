@@ -42,7 +42,7 @@ export function App() {
 
     // ✅ Check session on mount
     useEffect(() => {
-        const auth = sessionStorage.getItem('auth');
+        const auth = localStorage.getItem('auth');
         if (auth) {
             setCurrentSection('home');
         } else {
@@ -52,7 +52,7 @@ export function App() {
 
     // ✅ Called when login succeeds
     const handleLoginSuccess = (userData: any) => {
-        sessionStorage.setItem('auth', JSON.stringify(userData));
+        localStorage.setItem('auth', JSON.stringify(userData));
         setCurrentSection('home');
     };
 
@@ -61,14 +61,14 @@ export function App() {
         setCurrentSection("login");
     };
 
-    // ✅ Logout (calls backend + clears sessionstorage)
+    // ✅ Logout (calls backend + clears localStorage)
     const handleLogout = async () => {
         try {
             await logoutUser();
         } catch (err) {
             console.warn("Logout request failed (maybe user not logged in).");
         }
-        sessionStorage.removeItem('auth'); // remove token from storage
+        localStorage.removeItem('auth'); // remove token from storage
         setCurrentSection('login');
     };
 
@@ -98,7 +98,7 @@ export function App() {
 
     // ✅ (optional) redirect unauthenticated users trying to access other pages
     useEffect(() => {
-        const auth = sessionStorage.getItem('auth');
+        const auth = localStorage.getItem('auth');
         if (!auth && currentSection !== 'login' && currentSection !== 'signup') {
             setCurrentSection('login');
         }

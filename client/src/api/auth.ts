@@ -27,7 +27,7 @@ export async function login(username: string, password: string): Promise<User> {
     }
 
     const data = await res.json();
-    sessionStorage.setItem("auth", JSON.stringify({ id: data.id, username: data.username }));
+    localStorage.setItem("auth", JSON.stringify({ id: data.id, username: data.username }));
     return data;
 }
 
@@ -45,7 +45,7 @@ export async function register(username: string, password: string): Promise<User
     }
 
     const data = await res.json();
-    sessionStorage.setItem("auth", JSON.stringify({ id: data.id, username: data.username }));
+    localStorage.setItem("auth", JSON.stringify({ id: data.id, username: data.username }));
     return data;
 }
 
@@ -61,9 +61,9 @@ export async function logout(): Promise<void> {
         method: "POST",
         credentials: "include",
     });
-    sessionStorage.removeItem("auth");
+    localStorage.removeItem("auth");
 }
 
 export function isAuthedLocally(): boolean {
-    return !!sessionStorage.getItem("auth");
+    return !!localStorage.getItem("auth");
 }
