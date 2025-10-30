@@ -12,6 +12,6 @@ import "./index.css";
 
 // render to index.html
 createRoot(document.getElementById("root")!).render(
-    <App />,
+    <App />
 );
 

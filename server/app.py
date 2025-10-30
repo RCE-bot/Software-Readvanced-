@@ -134,8 +134,6 @@ def register_user():  # register a new user
         return
 
 
-
-
 @app.route("/api/login", methods=["POST"])
 def login_user(): # login a user by checking if they exist in database and if password is correct
 

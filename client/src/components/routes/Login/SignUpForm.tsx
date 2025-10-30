@@ -1,121 +1,91 @@
-import React from 'react';
-import {Button} from "@ui/button";
-import httpClient from "../../../api/httpClient";
+import React, { useState } from 'react';
+import { Button } from "@ui/button";
+import { register } from "@/api/auth";
 
-export interface Auth
-{
-    handleLandingPage: () => void;
+interface SignUpFormProps {
+    onRegister: (user: any) => void;
+    onNavigateToLogin: () => void;
 }
-export default function SignUpForm({handleLandingPage}: Auth)
-{
-    const [username, setUsername] = React.useState<string>("");
-    const [password, setPassword] = React.useState<string>("");
 
-    const signUpUser= async ():Promise<void> =>
-    {
-        try
-        {
-            const response = await httpClient.post("/api/register", {
-                username, password
-            });
-            window.location.href = "/";
-            localStorage.setItem("auth", "true");
-            handleLandingPage();
-        } catch (error:any)
-        {
-            window.alert("Failed to sign up - username taken")
+export default function SignUpForm({ onRegister, onNavigateToLogin }: SignUpFormProps) {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
+
+    const signUpUser = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setLoading(true);
+        setError(null);
+        try {
+            const user = await register(username, password);
+            onRegister(user);
+        } catch (err: any) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
         }
-    }
+    };
+
     return (
         <div className="bg-gradient-to-br from-black/67 to-green-400/24 lg:h-screen flex items-center justify-center p-4">
-            <div className=" border-green-400 border-[3px] max-w-6xl bg-white/8  [box-shadow:0_2px_10px_-3px_rgba(6,81,237,0.3)] p-4 lg:p-5 rounded-md">
+            <div className="border-green-400 border-[3px] max-w-6xl bg-white/8 shadow-xl p-6 rounded-md">
                 <div className="grid md:grid-cols-2 items-center gap-y-8">
-                    {/* Form Section */}
-                    <form className="max-w-md mx-auto w-full p-4 md:p-6">
+                    <form className="max-w-md mx-auto w-full" onSubmit={signUpUser}>
                         <div className="mb-8">
-                            <div className="inline-block">
-                                <img
-                                    src="https://readymadeui.com/.svg"
-                                    alt="Software Readvanced"
-                                    className="w-40"
-                                />
-                            </div>
-                        </div>
-                        <div className="space-y-6">
-                            <label className="text-green-400 text-sm font-medium mb-2 block">
-                                Select your Username
-                            </label>
-                            <div className="relative flex items-center">
-                                <input
-                                    name="username"
-                                    type="text"
-                                    value={username}
-                                    onChange={(e) => setUsername(e.target.value)}
-                                    id=""
-                                    required
-                                    placeholder="Enter username"
-                                    className="border-green-400 border-[1px] w-full text-sm text-slate-900 bg-slate-100 focus: pl-4 pr-10 py-3 rounded-md focus:border-blue-600 outline-none transition-all"
-                                />
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 960 960"
-                                    width="20"
-                                    height="20"
-                                    fill="#000000"
-                                    className="absolute right-4 top-1/2 -translate-y-1/2"
-                                >
-                                    <path d="M480 480q-60 0-102-42t-42-102q0-60 42-102t102-42q60 0 102 42t42 102q0 60-42 102t-102 42ZM192 768v-96q0-23 12.5-43.5T239 594q55-32 116.29-49 61.29-17 124.5-17t124.71 17Q666 594 721 626q22 13 34.5 34t12.5 44v96H192Z" />
-                                </svg>
-                            </div>
-
-
-                            {/* Password Field */}
-                            <div>
-                                <label className="text-green-400 text-sm font-medium mb-2 block">
-                                    Select your Password
-                                </label>
-                                <div className="relative flex items-center">
-                                    <input
-                                        name="password"
-                                        type="password"
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        id=""
-                                        required
-                                        placeholder="Enter password"
-                                        className="border-green-400 border-[1px] w-full text-sm text-slate-900 bg-slate-100 focus: pl-4 pr-10 py-3 rounded-md  focus:border-blue-600 outline-none transition-all"
-                                    />
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000" className="absolute right-4 top-1/2 -translate-y-1/2"><path d="M288-384q-40 0-68-28t-28-68q0-40 28-68t68-28q40 0 68 28t28 68q0 40-28 68t-68 28Zm0 144q-100 0-170-70T48-480q0-100 70-170t170-70q65 0 120 32.5t88 87.5h344l120 120-180 168-84-60-72 60-96-72h-20q-24 68-85.5 106T288-240Zm0-72q63 0 111-40.5T454-456h98l70 52 71-59 81 58 82-76-46-47H449q-19-53-62.5-86.5T288-648q-70 0-119 49t-49 119q0 70 49 119t119 49Z"/></svg>
-                                </div>
-                            </div>
-
-                            {/* Remember Me */}
-                            <div className="flex flex-wrap items-center gap-4 justify-between">
-                                <div className="flex items-center">
-                                    <input
-                                        id="remember-me"
-                                        name="remember-me"
-                                        type="checkbox"
-                                        className="shrink-0 h-4 w-4 text-blue-600 focus:ring-blue-500  rounded-md"
-                                    />
-                                    <label htmlFor="remember-me" className="ml-3 block text-sm text-green-400">
-                                        Remember me
-                                    </label>
-                                </div>
-                            </div>
+                            <img
+                                src="https://readymadeui.com/.svg"
+                                alt="Software Readvanced"
+                                className="w-40"
+                            />
                         </div>
 
-                        {/* Submit Button */}
-                        <div className="mt-12">
-                            <Button
-                                type="submit"
-                                onClick={() => signUpUser()}
-                                className="border-green-400 border-[3px] w-full shadow-xl py-2 px-4 text-[15px] tracking-wide font-medium rounded-md text-white bg-green-400 hover:bg-green-700 focus:outline-none cursor-pointer"
+                        <label className="text-green-400 text-sm font-medium mb-2 block">
+                            Username
+                        </label>
+                        <input
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            required
+                            placeholder="Enter username"
+                            className="border-green-400 border-[1px] w-full text-sm text-slate-900 bg-slate-100 pl-4 pr-10 py-3 rounded-md mb-4"
+                        />
+
+                        <label className="text-green-400 text-sm font-medium mb-2 block">
+                            Password
+                        </label>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            placeholder="Enter password"
+                            className="border-green-400 border-[1px] w-full text-sm text-slate-900 bg-slate-100 pl-4 pr-10 py-3 rounded-md"
+                        />
+
+                        {error && <p className="text-red-500 mt-2 text-sm">{error}</p>}
+
+                        <Button
+                            type="submit"
+                            disabled={loading}
+                            className="border-green-400 border-[3px] w-full shadow-xl mt-6 py-2 text-[15px] font-medium rounded-md text-white bg-green-400 hover:bg-green-700"
+                        >
+                            {loading ? "Signing up..." : "Sign Up"}
+                        </Button>
+
+                        <p className="text-green-400 text-sm mt-4 text-center">
+                            Already have an account?{" "}
+                            <button
+                                type="button"
+                                onClick={onNavigateToLogin}
+                                className="underline hover:text-green-300"
                             >
-                                Sign Up
-                            </Button>
-                        </div>
+                                Login
+                            </button>
+                        </p>
                     </form>
+
 
                     {/* Image Section */}
                     <div className="w-full h-full">
@@ -123,15 +93,14 @@ export default function SignUpForm({handleLandingPage}: Auth)
                             <img
                                 src="https://airstriker123.github.io/figma-css-export/login.jpg"
                                 className="w-full h-full object-cover"
-                                alt="login img"
+                                alt="signup img"
                             />
                             <div className="absolute inset-0 m-auto max-w-sm p-6 flex items-center justify-center">
                                 <div>
                                     <h1 className="text-white text-4xl font-semibold"><b>Sign Up</b></h1>
                                     <p className="text-green-400 text-[15px] font-medium mt-6 leading-relaxed">
-                                        <h1><b>Create your account to proceed</b> <br/><br/></h1>
-
-                                        Software Readvanced is a web application designed to help students learn the new HSC software engineering course, by providing useful learning resources to students for their studies.
+                                        <b>Create your account to proceed</b> <br /><br />
+                                        Software Readvanced is a web application designed to help students learn the new HSC software engineering course by providing useful learning resources for their studies.
                                     </p>
                                 </div>
                             </div>
@@ -141,6 +110,4 @@ export default function SignUpForm({handleLandingPage}: Auth)
             </div>
         </div>
     );
-};
-
-
+}

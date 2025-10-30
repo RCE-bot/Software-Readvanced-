@@ -16,15 +16,11 @@ import {
 import { gsap } from '../../../hooks/useGSAP';
 // @ts-ignore-error
 
-interface AccountSettingsProps {
-    handleLogout: () => void;
-    handleDeleteAccount: () => void;
-}
+
+
 // Settings Section Component - Allows users to manage account (delete, logout)
 export function SettingsSection({
-    handleLogout,
-    handleDeleteAccount
-}: AccountSettingsProps) {
+}) {
     const sectionRef = useRef<HTMLElement>(null);
     const headerRef = useRef<HTMLDivElement>(null);
     const cardsRef = useRef<HTMLDivElement>(null);
@@ -117,13 +113,13 @@ export function SettingsSection({
                                 <Button
                                     variant="outline"
                                     className="w-full border-green-400 text-white hover:bg-green-700 hover:text-white"
-                                    onClick={handleLogout}>
+                                    >
                                     Add Resource
                                 </Button>
                                 <Button
                                     variant="outline"
                                     className="w-full border-red-600 text-red-500 hover:bg-red-600 hover:text-white"
-                                    onClick={handleDeleteAccount}>
+                                    >
                                     <Trash2 className="w-4 h-4 mr-2"/>
                                     Delete Resource
                                 </Button>

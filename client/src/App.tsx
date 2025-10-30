@@ -4,8 +4,9 @@ app.tsx:
 - assembles (imports) different react components.
 - contains global variables and code which applies for all the app
 */
-
-import { useState, useEffect} from 'react';
+// ui components
+import { useState, useEffect } from 'react';
+// landing components
 import Hero from './components/routes/Homepage/Hero';
 import AboutSection from './components/routes/Homepage/AboutSection';
 import HelpSection from './components/routes/Homepage/HelpSection';
@@ -15,38 +16,65 @@ import ResourcesSection from './components/routes/Resources/ResourcesSection';
 import { SettingsSection } from './components/routes/Settings/SettingsSection';
 import Navigation from './components/Navigation';
 import { Toaster } from '@ui/sonner';
+// login components
+import SignUpForm from "@/components/routes/Login/SignUpForm";
+import LoginForm from "@/components/routes/Login/LoginForm";
+// import API helpers (ADD THIS)
+import { logoutUser } from "@/api/auth";
 import {toast} from "sonner";
-import LoginForm from './components/routes/Login/LoginForm';
-import Test from './api/test';
-import SignUpForm from './components/routes/Login/SignUpForm';
 
 export function App() {
-    const test = false; // for debugging (should be turned off)
-    if (test) {
-        useEffect(() => {
-            new Test();
-        }, []);
-    }
     // State to manage which section is currently active
-    let [currentSection, setCurrentSection] = useState<'signup' | 'login' | 'home' | 'resources' | 'settings'>('home');
+    let [currentSection, setCurrentSection] = useState<'login' | 'signup' | 'home' | 'resources' | 'settings'>('login');
     const [shouldFocusSearch, setShouldFocusSearch] = useState(false);
+
     // Scroll to top when switching main sections
-    useEffect(() =>
-    {
+    useEffect(() => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
         });
     }, [currentSection]);
 
-    useEffect(() =>
-    {
+    // ✅ Check session on mount
+    useEffect(() => {
         const auth = localStorage.getItem('auth');
         if (auth) {
-            setCurrentSection("home")
-            currentSection = "home"
+            setCurrentSection('home');
+        } else {
+            setCurrentSection('login');
         }
     }, []);
+
+    // ✅ Called when login succeeds
+    const handleLoginSuccess = (userData: any) => {
+        localStorage.setItem('auth', JSON.stringify(userData));
+        setCurrentSection('home');
+    };
+
+    const handleRegisterSuccess = () => {
+        toast.success("Account created successfully! Please log in.");
+        setCurrentSection("login");
+    };
+
+    // ✅ Logout (calls backend + clears localStorage)
+    const handleLogout = async () => {
+        try {
+            await logoutUser(); // <-- backend /api/logout call
+        } catch (err) {
+            console.warn("Logout request failed (maybe user not logged in).");
+        }
+        localStorage.removeItem('auth');
+        setCurrentSection('login');
+    };
+
+    const handleNavigateToSignUp = () => {
+        setCurrentSection('signup');
+    };
+
+    const handleNavigateToLogin = () => {
+        setCurrentSection('login');
+    };
 
     // Navigation handlers
     const handleNavigateToResources = () => {
@@ -58,59 +86,31 @@ export function App() {
         setShouldFocusSearch(true);
         setCurrentSection('settings');
     };
-    // Logout function
-    const handleLogout = () => {
-        const logout = window.confirm(
-            "Are you sure you want to logout? (type yes to confirm)"
-        );
-        if (logout) {
-            // notify user of logout
-            toast.success('logout success!')
-            // (backend logic) remvoe oauth token, etc
-            console.log('User logged out');
-            setShouldFocusSearch(true);
-            setCurrentSection('login')
+
+    // ✅ (optional) redirect unauthenticated users trying to access other pages
+    useEffect(() => {
+        const auth = localStorage.getItem('auth');
+        if (!auth && currentSection !== 'login' && currentSection !== 'signup') {
+            setCurrentSection('login');
         }
-    };
+    }, [currentSection]);
 
-    // Delete account function
-    const handleDeleteAccount = () => {
-        // In a real app, this would show a confirmation dialog
-        const confirmed = window.confirm('Are you sure you want to delete your account? This action cannot be undone and will permanently remove all your data.');
-        if (confirmed) {
-            const finalConfirm = window.prompt('enter "delete" to delete account.');
-            //@ts-ignore ignore error from if statement
-            if ("delete" == finalConfirm.toLowerCase()) {
-                toast.success('delete success!');
-                // logic to delete account (backend bs)
-                setShouldFocusSearch(true);
-                setCurrentSection('login')
-            }
-        }
-    };
-
-    const handleNavigateToSignUp = () => {
-        setCurrentSection('signup');
-        console.log("swapped to signup");
-    }
-
-    const handleNavigateToLandingPage = () => {
-        setCurrentSection('home');
-        currentSection =="home";
-        toast.success('logged in');
-    }
-
-
-    // Render different sections based on current selection
     const renderCurrentSection = () => {
         switch (currentSection) {
-            case 'signup':
-                return <SignUpForm
-                  handleLandingPage={handleNavigateToLandingPage}
-                />
             case 'login':
-                return <LoginForm handleAccountSignUp={handleNavigateToSignUp}
-                                  handleLandingPage={handleNavigateToLandingPage}/>
+                return (
+                    <LoginForm
+                        setUser={handleLoginSuccess}
+                        onNavigateToSignUp={handleNavigateToSignUp}
+                    />
+                );
+            case 'signup':
+                return (
+                    <SignUpForm
+                        onRegister={handleRegisterSuccess}
+                        onNavigateToLogin={handleNavigateToLogin}
+                    />
+                );
             case 'home':
                 return (
                     <>
@@ -130,63 +130,19 @@ export function App() {
                     />
                 );
             case 'settings':
-                return <SettingsSection
-                    handleLogout={handleLogout}
-                    handleDeleteAccount={handleDeleteAccount}
-                />;
+                return <SettingsSection />;
             default:
                 return null;
         }
-    }
-    /*
-    IF user auth = true display home section
-    ELSE display login section
-    return TYPESCRIPT XML based on currentSection value (login,signup, home)
-     */
-    if (currentSection == 'login') {
-        return (
-            <div>
-                <LoginForm handleAccountSignUp={handleNavigateToSignUp}
-                handleLandingPage={handleNavigateToLandingPage}
-                />
-                <Toaster
-                    theme="dark"
-                    position="bottom-right"
-                    toastOptions={{
-                        style: {
-                            background: '#1f2937',
-                            border: '1px solid #374151',
-                            color: '#f9fafb',
-                        },
-                    }}
-                />
-            </div>
-        )
-    }
-    else if (currentSection == 'signup') {
-        return (
-            <div>
-                <SignUpForm
-                handleLandingPage={handleNavigateToLandingPage}
-                />
-                <Toaster
-                    theme="dark"
-                    position="bottom-right"
-                    toastOptions={{
-                        style: {
-                            background: '#1f2937',
-                            border: '1px solid #374151',
-                            color: '#f9fafb',
-                        },
-                    }}
-                />
-            </div>
-        )
-    }
-    else {
+    };
+
+    // ✅ Conditional return
+    if (currentSection === 'login' || currentSection === 'signup') {
+        return renderCurrentSection();
+    } else {
         return (
             <div
-                className="min-h-screen  text-white overflow-x-hidden relative smooth-scroll
+                className="min-h-screen text-white overflow-x-hidden relative smooth-scroll
              bg-cover bg-center bg-no-repeat">
                 {/* Background Effects - Applied to all sections */}
                 <ScrollProgress/>
