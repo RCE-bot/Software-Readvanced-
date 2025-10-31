@@ -10,6 +10,7 @@ import manifest from './manifest.json';
 export default defineConfig({
     plugins: [
         react(),
+
         VitePWA({
             manifest,
             includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
@@ -77,5 +78,6 @@ export default defineConfig({
       host: true, //  allows access from other devices
       port: 3000, //default port
       open: true,
+
     },
   });
