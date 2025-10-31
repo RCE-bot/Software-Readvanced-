@@ -34,7 +34,7 @@ BEGIN client_setup
 	ENDIF
 END client_setup
 """
-def client_setup():
+def client_setup(choice):
     """
     handle running client
     - automation
@@ -42,7 +42,6 @@ def client_setup():
         - runs client for user
         - saves time to users with less experience
     """
-    choice = input("enter client run option [1] development [2] build: ")
 
     os.system(r'color 2')
     print("🚀 Starting frontend client...")
@@ -86,8 +85,11 @@ END main
 """
 if __name__ == "__main__":
     try:
+        os.system("color B")
+        choice = input("enter run option [1] development [2] build: ")
         server_setup()
-        client_setup()
+        client_setup(choice)
+        print("note: pwa feature: install only works on local host and not network")
     except Exception as e:
         print('failed to setup ')
         print(e)
