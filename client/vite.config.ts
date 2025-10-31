@@ -3,12 +3,12 @@ import react from '@vitejs/plugin-react-swc';
 import path from 'path';
 import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa';
-//import manifest from 'manifest.json';
+import manifest from './manifest.json';
 export default defineConfig({
     plugins: [
         react(),
         VitePWA({
-           // manifest,
+            manifest,
             includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
             // switch to "true" to enable sw on development
             devOptions: { enabled: true },
