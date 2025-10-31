@@ -1,8 +1,11 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
+// @ts-ignore
 import path from 'path';
+// @ts-ignore
 import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa';
+// @ts-ignore
 import manifest from './manifest.json';
 export default defineConfig({
     plugins: [
