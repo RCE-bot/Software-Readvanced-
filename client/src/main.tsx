@@ -1,5 +1,5 @@
 /*
-index.tsx is:
+main.tsx is:
 - the entry point to this pwa
 - exports code to index.html to render dynamic content instead of static
 more information about react app structure:
@@ -8,10 +8,12 @@ https://medium.com/@mazeenacader/demystifying-the-file-structure-of-a-react-app-
 import { createRoot } from "react-dom/client"; //import react
 import {App} from "./App"; //import the react app
 import "./index.css";
+import { registerSW } from 'virtual:pwa-register';
+registerSW({ immediate: true });
 
 
 // render to index.html
 createRoot(document.getElementById("root")!).render(
-    <App />,
+    <App />
 );
 

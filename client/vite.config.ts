@@ -1,11 +1,27 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
+// @ts-ignore
 import path from 'path';
+// @ts-ignore
 import tailwindcss from '@tailwindcss/vite'
+import { VitePWA } from 'vite-plugin-pwa';
+// @ts-ignore
+import manifest from './manifest.json';
 
 export default defineConfig({
     plugins: [
         react(),
+        VitePWA({
+            host: true, //  allows access from other devices
+            port: 3000, //default port
+            open: true,
+            manifest,
+            includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
+            // switch to "true" to enable sw on development
+            devOptions: { enabled: true },
+            registerType: 'autoUpdate',
+            workbox: { globPatterns: ['**/*.{js,css,html}', '**/*.{svg,png,jpg,gif}'] },
+        }),
         tailwindcss(),
     ],
     resolve: {
@@ -62,8 +78,8 @@ export default defineConfig({
       proxy: {
       '/api': 'http://127.0.0.1:5000', // Flask backend hook
     },
-      host: true, //  allows access from other devices
-      port: 3000, //default port
-      open: true,
+        host: true, //  allows access from other devices
+        port: 3000, //default port
+        open: true,
     },
   });

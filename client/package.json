@@ -44,6 +44,7 @@
             "react-dom": "^18.3.1",
             "react-hook-form": "^7.55.0",
             "react-resizable-panels": "^2.1.7",
+            "react-router-dom": "^7.9.5",
             "recharts": "^2.15.2",
             "sonner": "^2.0.3",
             "tailwind-merge": "*",
@@ -58,7 +59,8 @@
             "autoprefixer": "^10.4.21",
             "postcss": "^8.5.6",
             "tailwindcss": "^4.1.16",
-            "vite": "^6.3.5"
+            "vite": "^6.3.5",
+            "vite-plugin-pwa": "^1.1.0"
       },
       "scripts": {
             "dev": "vite",

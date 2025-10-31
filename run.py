@@ -42,6 +42,8 @@ def client_setup():
         - runs client for user
         - saves time to users with less experience
     """
+    choice = input("enter client run option [1] development [2] build: ")
+
     os.system(r'color 2')
     print("🚀 Starting frontend client...")
     # logic to setup client
@@ -51,12 +53,26 @@ def client_setup():
         # handle installing endpoints and running client
         print("installing client dependencies...")
         os.system("npm i")
-        os.system("npm run dev")
+        if choice == "2":
+            print('running client (build)')
+            os.system("npm run build")
+            os.system("npm run serve")
+        else:
+            print('running client (development)')
+            os.system("npm run dev")
+
     else:
         #handle running client
         os.system(r'color B')
-        print("running client")
-        os.system("npm run dev")
+        if choice == "2":
+            print('running client (network)')
+            os.system("npm run build")
+            os.system("npm run serve")
+        else:
+            print("running client (local)")
+            os.system("npm run dev")
+
+
 
 # run functions + handle if script is ran
 

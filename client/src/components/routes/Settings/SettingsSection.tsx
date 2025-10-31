@@ -1,3 +1,4 @@
+
 import { useEffect, useRef } from 'react';
 import { Button } from '@ui/button';
 import {
@@ -7,11 +8,11 @@ import {
     CardHeader,
     CardTitle
 } from '@ui/card';
-import { 
-  Settings as SettingsIcon,
-  LogOut,
-  Shield,
-  Trash2,
+import {
+    Settings as SettingsIcon,
+    LogOut,
+    Shield,
+    Trash2,
 } from 'lucide-react';
 import { gsap } from '../../../hooks/useGSAP';
 // @ts-ignore-error
@@ -25,9 +26,9 @@ interface AccountSettingsProps {
 }
 // Settings Section Component - Allows users to manage account (delete, logout)
 export function SettingsSection({
-    handleLogout,
-    handleDeleteAccount
-}: AccountSettingsProps) {
+                                    handleLogout,
+                                    handleDeleteAccount
+                                }: AccountSettingsProps) {
     const sectionRef = useRef<HTMLElement>(null);
     const headerRef = useRef<HTMLDivElement>(null);
     const cardsRef = useRef<HTMLDivElement>(null);

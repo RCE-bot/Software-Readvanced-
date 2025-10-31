@@ -65,7 +65,9 @@ def test():
     # test if api works CALLABLE from client
     print(f"SUCCESS -- called message from BACKEND")
     return jsonify({
-        "message": "BACKEND IS WORKING!"})
+        "message": "BACKEND IS WORKING!",
+      }
+    )
 
 @app.route("/api/@me")
 def get_current_user():
@@ -131,9 +133,7 @@ def register_user():  # register a new user
     except Exception as e:
         print("[FAILED ROUTE] at account creation /api/register")
         print(e)
-        return None
-
-
+        return
 
 
 @app.route("/api/login", methods=["POST"])
