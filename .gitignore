@@ -5,3 +5,6 @@
 
 /server/flask_session
 /server/flask_session
+/client/build
+server/instance/db.sqlite
+client/build/assets/index-BmCQPcYy.js
