@@ -34,7 +34,7 @@ export default function SignUpForm({ onRegister, onNavigateToLogin }: SignUpForm
                     <form className="max-w-md mx-auto w-full" onSubmit={signUpUser}>
                         <div className="mb-8">
                             <img
-                                src="src/public/logo.png"
+                                src="/logo.png"
                                 alt="Software Readvanced"
                                 className="w-40"
                             />

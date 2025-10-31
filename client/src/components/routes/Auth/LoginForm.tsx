@@ -34,7 +34,7 @@ export default function LoginForm({ setUser, onNavigateToSignUp }: LoginFormProp
                     <form className="max-w-md mx-auto w-full" onSubmit={handleLogin}>
                         <div className="mb-8">
                             <img
-                                src="src/public/logo.png"
+                                src="/logo.png"
                                 alt="Software Readvanced"
                                 className="w-40"
                             />

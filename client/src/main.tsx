@@ -1,5 +1,5 @@
 /*
-index.tsx is:
+main.tsx is:
 - the entry point to this pwa
 - exports code to index.html to render dynamic content instead of static
 more information about react app structure:
