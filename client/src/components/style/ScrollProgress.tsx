@@ -1,12 +1,16 @@
 import { useEffect, useRef } from 'react';
 import { gsap} from '../../hooks/useGSAP';
 
-export default function ScrollProgress() {
+export default function ScrollProgress()
+{
   const progressRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.to(progressRef.current, {
+  useEffect(() =>
+  {
+    const ctx = gsap.context(() =>
+    {
+      gsap.to(progressRef.current,
+      {
         scaleX: 1,
         ease: "none",
         scrollTrigger: {

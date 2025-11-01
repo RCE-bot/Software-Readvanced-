@@ -1,36 +1,36 @@
 import { useEffect, useRef } from 'react';
 import { Button } from '@ui/button';
-import {
+import
+{
     Card,
     CardContent,
     CardDescription,
     CardHeader,
     CardTitle
 } from '@ui/card';
-import {
+import
+{
     Settings as SettingsIcon,
     LogOut,
     Shield,
 } from 'lucide-react';
 import { gsap } from '../../../hooks/useGSAP';
-// @ts-ignore-error
 
-
-
-
-interface AccountSettingsProps {
+interface AccountSettingsProps
+{
     handleLogout: () => void;
 }
 // Settings Section Component - Allows users to manage account (delete, logout)
-export function SettingsSection({
-                                    handleLogout,
-                                }: AccountSettingsProps) {
+export function SettingsSection({handleLogout,}: AccountSettingsProps)
+{
     const sectionRef = useRef<HTMLElement>(null);
     const headerRef = useRef<HTMLDivElement>(null);
     const cardsRef = useRef<HTMLDivElement>(null);
     // GSAP Animations
-    useEffect(() => {
-        const ctx = gsap.context(() => {
+    useEffect(() =>
+    {
+        const ctx = gsap.context(() =>
+        {
             // Header animation
             gsap.fromTo(headerRef.current,
                 {y: -50, opacity: 0},
@@ -50,7 +50,8 @@ export function SettingsSection({
 
             // Cards animation with stagger
             const cards = cardsRef.current?.children;
-            if (cards) {
+            if (cards)
+            {
                 gsap.fromTo(cards,
                     {y: 40, opacity: 0, scale: 0.95},
                     {

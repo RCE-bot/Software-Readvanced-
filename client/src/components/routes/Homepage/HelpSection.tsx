@@ -17,11 +17,14 @@ export default function HelpSection({onNavigateToResources,
     const buttonsRef = useRef<HTMLDivElement>(null);
     const imageRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        const ctx = gsap.context(() => {
+    useEffect(() =>
+    {
+        const ctx = gsap.context(() =>
+        {
             // Title animation with split reveal
             const titleLines = titleRef.current?.children;
-            if (titleLines) {
+            if (titleLines)
+            {
                 gsap.fromTo(titleLines,
                     { y: 100, opacity: 0 },
                     {
@@ -42,7 +45,8 @@ export default function HelpSection({onNavigateToResources,
 
             // Contact info animation
             const contactItems = contactsRef.current?.children;
-            if (contactItems) {
+            if (contactItems)
+            {
                 gsap.fromTo(contactItems,
                     { x: -50, opacity: 0 },
                     {
@@ -63,7 +67,8 @@ export default function HelpSection({onNavigateToResources,
 
             // Buttons animation
             const buttons = buttonsRef.current?.children;
-            if (buttons) {
+            if (buttons)
+            {
                 gsap.fromTo(buttons,
                     { scale: 0.8, opacity: 0, y: 20 },
                     {
@@ -108,7 +113,8 @@ export default function HelpSection({onNavigateToResources,
             );
 
             // Floating animation for image
-            gsap.to(imageRef.current, {
+            gsap.to(imageRef.current,
+            {
                 y: "+=10",
                 duration: 3,
                 repeat: -1,
@@ -118,7 +124,8 @@ export default function HelpSection({onNavigateToResources,
             });
 
             // Background gradient animation
-            gsap.to(sectionRef.current, {
+            gsap.to(sectionRef.current,
+            {
                 backgroundPosition: "200% 200%",
                 duration: 20,
                 repeat: -1,

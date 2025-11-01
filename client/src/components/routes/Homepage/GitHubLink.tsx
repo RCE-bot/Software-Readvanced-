@@ -3,11 +3,14 @@ import { Github } from 'lucide-react';
 import { gsap } from '../../../hooks/useGSAP';
 
 // GitHub Link Component - Fixed position link in top right corner
-export default function GitHubLink() {
+export default function GitHubLink()
+{
   const linkRef = useRef<HTMLAnchorElement>(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
+  useEffect(() =>
+  {
+    const ctx = gsap.context(() =>
+    {
       // Initial animation - slide in from top right
       gsap.fromTo(linkRef.current,
         { 
@@ -29,9 +32,12 @@ export default function GitHubLink() {
 
       // Hover animation
       const link = linkRef.current;
-      if (link) {
-        link.addEventListener('mouseenter', () => {
-          gsap.to(link, {
+      if (link)
+      {
+        link.addEventListener('mouseenter', () =>
+        {
+          gsap.to(link,
+          {
             scale: 1.1,
             rotation: 5,
             duration: 0.3,
@@ -39,8 +45,10 @@ export default function GitHubLink() {
           });
         });
 
-        link.addEventListener('mouseleave', () => {
-          gsap.to(link, {
+        link.addEventListener('mouseleave', () =>
+        {
+          gsap.to(link,
+          {
             scale: 1,
             rotation: 0,
             duration: 0.3,
@@ -56,7 +64,7 @@ export default function GitHubLink() {
   return (
     <a
       ref={linkRef}
-      href="https://github.com/Airstriker123/Software-Readvanced" // Replace with your actual GitHub repo
+      href="https://github.com/Airstriker123/Software-Readvanced" //  the GitHub repo
       target="_blank"
       rel="noopener noreferrer"
       className="absolute top-6 right-6 z-50 group"

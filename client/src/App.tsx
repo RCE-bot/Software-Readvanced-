@@ -23,17 +23,20 @@ import LoginForm from "@/components/routes/Auth/LoginForm";
 import { logoutUser } from "@/api/auth";
 import {toast} from "sonner";
 
-export function App() {
+export default function App()
+{
     // State to manage which section is currently active
     let [currentSection, setCurrentSection] = useState<'login' | 'signup' | 'home' | 'resources' | 'settings'>('login');
     const [shouldFocusSearch, setShouldFocusSearch] = useState(false);
 
-    useEffect(() => {
+    useEffect(() =>
+    {
         // check if server is connected to client
         new Test();
     }, []);
     // Scroll to top when switching main sections
-    useEffect(() => {
+    useEffect(() =>
+    {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -41,67 +44,85 @@ export function App() {
     }, [currentSection]);
 
     //  Check session on mount
-    useEffect(() => {
+    useEffect(() =>
+    {
         const auth = localStorage.getItem('auth');
-        if (auth) {
+        if (auth)
+        {
             setCurrentSection('home');
-        } else {
+        }
+        else
+        {
             setCurrentSection('login');
         }
     }, []);
 
     // Called when login succeeds
-    const handleLoginSuccess = (userData: any) => {
+    const handleLoginSuccess = (userData: any) =>
+    {
         localStorage.setItem('auth', JSON.stringify(userData));
         setCurrentSection('home');
     };
 
-    const handleRegisterSuccess = () => {
+    const handleRegisterSuccess = () =>
+    {
         toast.success("Account created successfully! Please log in.");
         setCurrentSection("home");
     };
 
     //  Logout (calls backend + clears localStorage)
-    const handleLogout = async () => {
-        try {
+    const handleLogout = async () =>
+    {
+        try
+        {
             await logoutUser();
-        } catch (err) {
+        }
+        catch (err)
+        {
             console.warn("Logout request failed (maybe user not logged in).");
         }
         localStorage.removeItem('auth'); // remove token from storage
         setCurrentSection('login');
     };
 
-    const handleNavigateToSignUp = () => {
+    const handleNavigateToSignUp = () =>
+    {
         setCurrentSection('signup');
     };
 
-    const handleNavigateToLogin = () => {
+    const handleNavigateToLogin = () =>
+    {
         setCurrentSection('login');
     };
 
     // Navigation handlers
-    const handleNavigateToResources = () => {
+    const handleNavigateToResources = () =>
+    {
         setShouldFocusSearch(true);
         setCurrentSection('resources');
     };
 
-    const handleNavigateToSettings = () => {
+    const handleNavigateToSettings = () =>
+    {
         setShouldFocusSearch(true);
         setCurrentSection('settings');
     };
 
 
     // redirect unauthenticated users trying to access other pages
-    useEffect(() => {
+    useEffect(() =>
+    {
         const auth = localStorage.getItem('auth');
-        if (!auth && currentSection !== 'login' && currentSection !== 'signup') {
+        if (!auth && currentSection !== 'login' && currentSection !== 'signup')
+        {
             setCurrentSection('login');
         }
     }, [currentSection]);
 
-    const renderCurrentSection = () => {
-        switch (currentSection) {
+    const renderCurrentSection = () =>
+    {
+        switch (currentSection)
+        {
             case 'login':
                 return (
                     <div>
@@ -139,6 +160,7 @@ export function App() {
                             onNavigateToResources={handleNavigateToResources}
                             onNavigateToSettings={handleNavigateToSettings}
                         />
+                        <PWAInstaller/>
                     </>
                 );
             case 'resources':
@@ -149,50 +171,74 @@ export function App() {
                     />
                 );
             case 'settings':
-                return <SettingsSection
+                return <>
+                    <PWAInstaller/>
+                    <SettingsSection
                         handleLogout={handleLogout}
-                />;
+                /></>;
             default:
                 return null;
         }
     };
     // if not logged in render login/signup
-    if (currentSection === 'login' || currentSection === 'signup') {
+    if (currentSection === 'login' || currentSection === 'signup')
+    {
         return renderCurrentSection();
-    } else {
+    }
+    else if (currentSection === 'home')
+    {
+       return (
+           <div
+               className="min-h-screen text-white overflow-x-hidden relative smooth-scroll
+             bg-cover bg-center bg-no-repeat">
+               {/* Background Effects - Applied to all sections */}
+               <ScrollProgress/>
+               <PWAInstaller/>
+
+               {/* Navigation */}
+               <Navigation
+                   currentSection={currentSection}
+                   onSectionChange={setCurrentSection}
+               />
+
+               {/* Main Content */}
+               <main className="relative z-20 transform-gpu">
+                   {renderCurrentSection()}
+               </main>
+               {/* Toast Notifications */}
+               <Toaster
+                   theme="dark"
+                   position="bottom-right"
+                   toastOptions={{
+                       style: {
+                           background: '#1f2937',
+                           border: '1px solid #374151',
+                           color: '#f9fafb',
+                       },
+                   }}
+               />
+           </div>
+       );
+    }
+    else
+    {
         return (
             <div
                 className="min-h-screen text-white overflow-x-hidden relative smooth-scroll
              bg-cover bg-center bg-no-repeat">
-                {/* Background Effects - Applied to all sections */}
+                {/* Background Effects - scroll progress */}
                 <ScrollProgress/>
 
-                {/* Navigation */}
+                {/* Navigation component */}
                 <Navigation
                     currentSection={currentSection}
                     onSectionChange={setCurrentSection}
                 />
 
-                {/* Main Content */}
+                {/* render Main Content */}
                 <main className="relative z-20 transform-gpu">
                     {renderCurrentSection()}
                 </main>
-
-                {/* Global Components */}
-                <PWAInstaller/>
-
-                {/* Toast Notifications */}
-                <Toaster
-                    theme="dark"
-                    position="bottom-right"
-                    toastOptions={{
-                        style: {
-                            background: '#1f2937',
-                            border: '1px solid #374151',
-                            color: '#f9fafb',
-                        },
-                    }}
-                />
             </div>
         );
     }

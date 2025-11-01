@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Button } from '../../ui/button';
+import { Button } from '@ui/button';
 import GitHubLink from './GitHubLink';
 import { gsap } from 'gsap';
 
@@ -18,8 +18,10 @@ export default function Hero({ onNavigateToResources }: HeroProps)
   const glowRef2 = useRef<HTMLDivElement>(null);
   const glowRef3 = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
+  useEffect(() =>
+  {
+    const ctx = gsap.context(() =>
+    {
       // Initial state - hide elements
       gsap.set([titleRef.current, buttonRef.current], { opacity: 0, y: 50 });
       gsap.set([glowRef1.current, glowRef2.current, glowRef3.current], { scale: 0.8, opacity: 0 });

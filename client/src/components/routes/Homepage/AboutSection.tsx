@@ -15,8 +15,10 @@ export default function AboutSection({ onNavigateToResources }: AboutProps) {
   const textRef = useRef<HTMLParagraphElement>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
+  useEffect(() =>
+  {
+    const ctx = gsap.context(() =>
+    {
       // Code block animation
       gsap.fromTo(codeRef.current,
         { x: -100, opacity: 0, rotateY: 15 },
@@ -37,7 +39,8 @@ export default function AboutSection({ onNavigateToResources }: AboutProps) {
 
       // Animate individual code lines with stagger
       const codeLines = codeRef.current?.querySelectorAll('div > div');
-      if (codeLines) {
+      if (codeLines)
+      {
         gsap.fromTo(codeLines,
           { x: -20, opacity: 0 },
           {
@@ -108,7 +111,8 @@ export default function AboutSection({ onNavigateToResources }: AboutProps) {
       );
 
       // Parallax effect for the entire section
-      gsap.to(sectionRef.current, {
+      gsap.to(sectionRef.current,
+      {
         yPercent: -10,
         ease: "none",
         scrollTrigger: {
@@ -120,10 +124,20 @@ export default function AboutSection({ onNavigateToResources }: AboutProps) {
       });
 
       // Animate corner glows with subtle floating effect
-      const cornerGlows = sectionRef.current?.querySelectorAll('.absolute.bg-green-500\\/10, .absolute.bg-green-400\\/8, .absolute.bg-emerald-500\\/12, .absolute.bg-green-600\\/15');
-      if (cornerGlows) {
-        cornerGlows.forEach((glow, index) => {
-          gsap.to(glow, {
+      const cornerGlows = sectionRef.
+      current?.querySelectorAll
+      ('' +
+          '.absolute.bg-green-500\\/10, ' +
+          '.absolute.bg-green-400\\/8, ' +
+          '.absolute.bg-emerald-500\\/12, ' +
+          '.absolute.bg-green-600\\/15'
+      );
+      if (cornerGlows)
+      {
+        cornerGlows.forEach((glow, index) =>
+        {
+          gsap.to(glow,
+          {
             scale: 1.1 + (index * 0.1),
             duration: 4 + (index * 0.5),
             repeat: -1,

@@ -10,20 +10,25 @@ export default class Test
 
   private async test():Promise<void>
   {
-      try {
+      try
+      {
           fetch("/api/test") //fetch route
               .then((res):Promise<any> => res.json()) //request json data
-              .then((data) => {
+              .then((data) =>
+              {
                   // if data received, display success message
                   console.log("[SUCCESS] React frontend connected to Flask backend!");
                   console.log(`Backend message: ${data.message}`);
                   toast.success(`connected to backend server`);
-              }).catch((err):void => { // error handling (arrow function
+              }).catch((err):void =>
+          { // error handling (arrow function
               // display this if unable to fetch json from api
               console.error("[FAIL] Could not connect to backend", err);
               toast.error("Failed to connected server to client -_-");
           });
-      } catch (error) {
+      }
+      catch (error)
+      {
           toast.error(`Failed to send payload to api ${error}`);
       }
    }

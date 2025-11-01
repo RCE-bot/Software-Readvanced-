@@ -191,15 +191,21 @@ const mockResources = [
   }
 ];
 
-const categories = ["All", "Python", "OOP", "Software Engineering", "Database", "Algorithms", "Web Development", "DevOps", "Machine Learning", "System Design", "Backend", "Security"];
+const categories = [
+    "All", "Python", "OOP", "Software Engineering",
+    "Database", "Algorithms", "Web Development", "DevOps",
+    "Machine Learning", "System Design", "Backend", "Security"
+];
 
-interface ResourcesSectionProps {
+interface ResourcesSectionProps
+{
   shouldFocusSearch?: boolean;
   onSearchFocused?: () => void;
 }
 
 // Resources Section Component - Allows browsing, searching, and cataloguing software engineering resources
-export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }: ResourcesSectionProps) {
+export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }: ResourcesSectionProps)
+{
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [filteredResources, setFilteredResources] = useState(mockResources);
@@ -211,16 +217,19 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   // Filter resources based on search and category
-  useEffect(() => {
+  useEffect(() =>
+  {
     let filtered = mockResources;
 
     // Filter by category
-    if (selectedCategory !== 'All') {
+    if (selectedCategory !== 'All')
+    {
       filtered = filtered.filter(resource => resource.category === selectedCategory);
     }
 
     // Filter by search term
-    if (searchTerm) {
+    if (searchTerm)
+    {
       filtered = filtered.filter(resource =>
         resource.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         resource.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -232,8 +241,10 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
   }, [searchTerm, selectedCategory]);
 
   // GSAP Animations
-  useEffect(() => {
-    const ctx = gsap.context(() => {
+  useEffect(() =>
+  {
+    const ctx = gsap.context(() =>
+    {
       // Header animation
       gsap.fromTo(headerRef.current,
         { y: -50, opacity: 0 },
@@ -271,7 +282,8 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
 
       // Cards animation
       const cards = cardsRef.current?.children;
-      if (cards) {
+      if (cards)
+      {
         gsap.fromTo(cards,
           { y: 30, opacity: 0, scale: 0.95 },
           {
@@ -297,10 +309,13 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
   }, [filteredResources]); // Re-run animation when resources change
 
   // Handle search focus when navigated from Hero
-  useEffect(() => {
-    if (shouldFocusSearch && searchInputRef.current) {
+  useEffect(() =>
+  {
+    if (shouldFocusSearch && searchInputRef.current)
+    {
       // Small delay to ensure the component is fully rendered
-      const timer = setTimeout(() => {
+      const timer = setTimeout(() =>
+      {
         searchInputRef.current?.focus();
         onSearchFocused?.();
       }, 500);
@@ -310,8 +325,10 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
   }, [shouldFocusSearch, onSearchFocused]);
 
   // Get icon for resource type
-  const getTypeIcon = (type: string) => {
-    switch (type) {
+  const getTypeIcon = (type: string) =>
+  {
+    switch (type)
+    {
       case 'Article': return <FileText className="w-4 h-4" />;
       case 'Tutorial': return <BookOpen className="w-4 h-4" />;
       case 'Course': return <Cpu className="w-4 h-4" />;
@@ -322,8 +339,10 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
   };
 
   // Get difficulty color
-  const getDifficultyColor = (difficulty: string) => {
-    switch (difficulty) {
+  const getDifficultyColor = (difficulty: string) =>
+  {
+    switch (difficulty)
+    {
       case 'Beginner': return 'bg-green-500/20 text-green-400 border-green-500/50';
       case 'Intermediate': return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/50';
       case 'Advanced': return 'bg-red-500/20 text-red-400 border-red-500/50';
@@ -345,23 +364,31 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
             Discover curated resources for software engineering, Python, OOP concepts, and more. 
             Build your knowledge with our comprehensive collection.
           </p>
+            {/* Centered Search Bar */}
+            <div className="flex justify-center items-center w-full mt-6">
+                <div className="relative flex-1 max-w-md">
+                    <Search className="absolute left-3 top-3 w-4 h-4 text-white" />
+                    <Input
+                        ref={searchInputRef}
+                        placeholder="Search resources, topics, or tags..."
+                        value={searchTerm}
+                        onChange=
+                        {
+                        (e) =>
+                            setSearchTerm(e.target.value)
+                        }
+                        className="pl-10 bg-gray-800/50 border-gray-700 text-white placeholder-white focus:border-green-500"
+                    />
+                </div>
+            </div>
+
         </div>
 
         {/* Search and Filters */}
         <div ref={searchRef} className="mb-8">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-6">
-            {/* Search Bar */}
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
-              <Input
-                ref={searchInputRef}
-                placeholder="Search resources, topics, or tags..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 bg-gray-800/50 border-gray-700 text-white placeholder-gray-400 focus:border-green-500"
-              />
-            </div>
-
+              {/* style*/}
+              <Button className="bg-transparent"/>
               {/* Category Tabs */}
               <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="w-full">
                   <TabsList className="flex flex-wrap justify-center gap-1 bg-gray-800/50 border-gray-700 p-2 h-auto">
