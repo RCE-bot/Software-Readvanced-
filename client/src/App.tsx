@@ -58,7 +58,7 @@ export function App() {
 
     const handleRegisterSuccess = () => {
         toast.success("Account created successfully! Please log in.");
-        setCurrentSection("login");
+        setCurrentSection("home");
     };
 
     //  Logout (calls backend + clears localStorage)
@@ -91,12 +91,8 @@ export function App() {
         setCurrentSection('settings');
     };
 
-    const handleDeleteAccount = () => {
-        setCurrentSection('login');
-        // TODO: complete backend logic for this function
-    };
 
-    // ✅ (optional) redirect unauthenticated users trying to access other pages
+    // redirect unauthenticated users trying to access other pages
     useEffect(() => {
         const auth = localStorage.getItem('auth');
         if (!auth && currentSection !== 'login' && currentSection !== 'signup') {
@@ -155,7 +151,6 @@ export function App() {
             case 'settings':
                 return <SettingsSection
                         handleLogout={handleLogout}
-                        handleDeleteAccount={handleDeleteAccount}
                 />;
             default:
                 return null;

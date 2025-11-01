@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react';
 import { Button } from '@ui/button';
 import {
@@ -12,7 +11,6 @@ import {
     Settings as SettingsIcon,
     LogOut,
     Shield,
-    Trash2,
 } from 'lucide-react';
 import { gsap } from '../../../hooks/useGSAP';
 // @ts-ignore-error
@@ -22,12 +20,10 @@ import { gsap } from '../../../hooks/useGSAP';
 
 interface AccountSettingsProps {
     handleLogout: () => void;
-    handleDeleteAccount: () => void;
 }
 // Settings Section Component - Allows users to manage account (delete, logout)
 export function SettingsSection({
                                     handleLogout,
-                                    handleDeleteAccount
                                 }: AccountSettingsProps) {
     const sectionRef = useRef<HTMLElement>(null);
     const headerRef = useRef<HTMLDivElement>(null);
@@ -99,12 +95,10 @@ export function SettingsSection({
                 {/* Settings Cards */}
                 <div ref={cardsRef} className="grid lg:grid-cols-2 gap-6 mb-8">
 
-                    {
-                        /*
+                    {/*
                         Account Settings
                        - manage logout
-                       - delete account
-                       */}
+                    */}
                     <Card className="bg-gray-800/50 border-gray-700">
                         <CardHeader>
                             <div className="flex items-center gap-2">
@@ -121,13 +115,6 @@ export function SettingsSection({
                                     onClick={handleLogout}>
                                     <LogOut className="w-4 h-4 mr-2"/>
                                     Logout
-                                </Button>
-                                <Button
-                                    variant="outline"
-                                    className="w-full border-red-600 text-red-500 hover:bg-red-600 hover:text-white"
-                                    onClick={handleDeleteAccount}>
-                                    <Trash2 className="w-4 h-4 mr-2"/>
-                                    Delete Account
                                 </Button>
                             </div>
                         </CardContent>
