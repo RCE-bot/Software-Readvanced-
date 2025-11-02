@@ -1,3 +1,4 @@
+// precured code look at readme.md
 import * as React from "react";
 
 import { cn } from "./utils";

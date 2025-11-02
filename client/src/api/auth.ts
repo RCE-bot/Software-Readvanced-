@@ -51,7 +51,7 @@ export async function login(username: string, password: string): Promise<User>
     return data;
 }
 
-export async function register(username: string, password: string): Promise<User>
+export async function register(username: string, password: string):Promise<User>
 {
     /*method to register new user in database  */
     const res = await fetch(`/api/register`,

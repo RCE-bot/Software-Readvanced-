@@ -2,6 +2,10 @@ import {toast} from "sonner";
 // test api calls
 export default class Test
 {
+  /*
+   using class to test api for debug
+   also using this to test OOP in typescript
+   */
   public constructor()
   {
       // api call "api/test" calls api to see if api calls work on client (used for debugging)

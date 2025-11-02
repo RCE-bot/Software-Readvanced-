@@ -2,6 +2,12 @@
 
 ## What is the `/components/ui` folder?
 
+```
+THE CODE IN UI IS PRECURED FROM SHADCN UI
+```
+https://ui.shadcn.com/
+
+
 The `/components/ui` folder contains **shadcn/ui components**
 
 ### What is shadcn/ui?

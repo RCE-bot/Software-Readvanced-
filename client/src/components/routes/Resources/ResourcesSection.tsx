@@ -181,7 +181,7 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
             <span className="text-green-400">RESOURCES</span>
           </h2>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            Discover curated resources for software engineering, Python, OOP concepts, and more. 
+            Discover curated resources for software engineering, Python, OOP concepts, and more.
             Build your knowledge with our comprehensive collection.
           </p>
             {/* Centered Search Bar */}
@@ -265,7 +265,7 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
                     </Badge>
                   ))}
                 </div>
-                <Button 
+                <Button
                   className="w-full bg-green-500 hover:bg-green-600 text-black transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-500/30"
                   onClick={() => {
                     window.open(resource.url, '_blank', 'noopener,noreferrer');
@@ -288,8 +288,8 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
             <p className="text-gray-400 mb-4">
               Try adjusting your search terms or selecting a different category.
             </p>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               onClick={() => {
                 setSearchTerm('');
                 setSelectedCategory('All');

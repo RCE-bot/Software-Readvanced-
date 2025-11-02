@@ -1,5 +1,5 @@
 "use client";
-
+// precured code look at readme.md
 import * as React from "react";
 import * as TabsPrimitive from '@radix-ui/react-tabs@1.1.3';
 

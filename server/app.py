@@ -60,6 +60,23 @@ with app.app_context():
 
 
 #------------ <app routes ------------#
+
+
+#base route when open api url
+@app.route("/")
+def base():
+    return \
+"""
+<style> 
+    :root
+    {
+    background-color: black;
+    color: red;
+    }
+</style>
+<h1>welcome to the backend api of SR 
+- to fetch data use a valid endpoint e.g /api/test</h1> 
+"""
 @app.route('/api/test')
 def test():
     # test if api works CALLABLE from client
@@ -116,7 +133,7 @@ def register_user():  # register a new user
             db.session.add(new_user)
             db.session.commit()
             # ---- </security methods> ----#
-        except IntegrityError as e:
+        except Exception as e:
             print(f"[ERROR] failed to perform hashing/encrypting of account \n {e}")
             return None
 
@@ -171,7 +188,8 @@ def logout_user(): # logout a user by removing user id from session
 
 #------------ <app run> ------------#
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)
+    #  url should be http://127.0.0.1:5000
 #------------ </app run> ------------#
 
 
