@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "title": "Introduction to Object-Oriented Programming",
+    "description": "Learn the fundamentals of OOP including classes, objects, inheritance, and polymorphism.",
+    "category": "OOP",
+    "difficulty": "Beginner",
+    "type": "Article",
+    "tags": ["Classes", "Objects", "Inheritance", "Polymorphism"],
+    "url": "https://realpython.com/python3-object-oriented-programming/"
+  },
+  {
+    "id": 2,
+    "title": "Python Data Structures Deep Dive",
+    "description": "Comprehensive guide to Python's built-in data structures and their use cases.",
+    "category": "Python",
+    "difficulty": "Intermediate",
+    "type": "Tutorial",
+    "tags": ["Lists", "Dictionaries", "Sets", "Tuples"],
+    "url": "https://docs.python.org/3/tutorial/datastructures.html"
+  },
+  {
+    "id": 3,
+    "title": "Software Design Patterns",
+    "description": "Essential design patterns every software engineer should know.",
+    "category": "Software Engineering",
+    "difficulty": "Advanced",
+    "type": "Documentation",
+    "tags": ["Singleton", "Factory", "Observer", "Strategy"],
+    "url": "https://refactoring.guru/design-patterns"
+  },
+  {
+    "id": 4,
+    "title": "Database Normalization Guide",
+    "description": "Understanding database normalization and its importance in system design.",
+    "category": "Database",
+    "difficulty": "Intermediate",
+    "type": "Guide",
+    "tags": ["SQL", "Normalization", "Design", "Performance"],
+    "url": "https://www.studytonight.com/dbms/database-normalization.php"
+  },
+  {
+    "id": 5,
+    "title": "Algorithms and Complexity Analysis",
+    "description": "Big O notation, common algorithms, and performance optimization techniques.",
+    "category": "Algorithms",
+    "difficulty": "Intermediate",
+    "type": "Course",
+    "tags": ["Big O", "Sorting", "Searching", "Optimization"],
+    "url": "https://www.khanacademy.org/computing/computer-science/algorithms"
+  },
+  {
+    "id": 6,
+    "title": "Web Development Fundamentals",
+    "description": "HTML, CSS, and JavaScript basics for building modern web applications.",
+    "category": "Web Development",
+    "difficulty": "Beginner",
+    "type": "Tutorial",
+    "tags": ["HTML", "CSS", "JavaScript", "Frontend"],
+    "url": "https://developer.mozilla.org/en-US/docs/Learn"
+  },
+  {
+    "id": 7,
+    "title": "Python Decorators Explained",
+    "description": "Master Python decorators with practical examples and real-world use cases.",
+    "category": "Python",
+    "difficulty": "Advanced",
+    "type": "Article",
+    "tags": ["Decorators", "Functions", "Metaprogramming", "Advanced"],
+    "url": "https://realpython.com/primer-on-python-decorators/"
+  },
+  {
+    "id": 8,
+    "title": "Clean Code Principles",
+    "description": "Writing maintainable, readable code that stands the test of time.",
+    "category": "Software Engineering",
+    "difficulty": "Intermediate",
+    "type": "Guide",
+    "tags": ["Clean Code", "Best Practices", "Refactoring", "Maintainability"],
+    "url": "https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html"
+  },
+  {
+    "id": 9,
+    "title": "React Hooks Complete Guide",
+    "description": "Comprehensive guide to React Hooks including custom hooks and advanced patterns.",
+    "category": "Web Development",
+    "difficulty": "Intermediate",
+    "type": "Tutorial",
+    "tags": ["React", "Hooks", "useState", "useEffect"],
+    "url": "https://react.dev/reference/react"
+  },
+  {
+    "id": 10,
+    "title": "SQL Query Optimization",
+    "description": "Techniques to optimize SQL queries for better database performance.",
+    "category": "Database",
+    "difficulty": "Advanced",
+    "type": "Course",
+    "tags": ["SQL", "Performance", "Indexing", "Query Planning"],
+    "url": "https://sqlbolt.com/"
+  },
+  {
+    "id": 11,
+    "title": "Git Version Control Mastery",
+    "description": "From basic commits to advanced Git workflows and collaboration strategies.",
+    "category": "DevOps",
+    "difficulty": "Intermediate",
+    "type": "Tutorial",
+    "tags": ["Git", "Version Control", "Branching", "Collaboration"],
+    "url": "https://learngitbranching.js.org/"
+  },
+  {
+    "id": 12,
+    "title": "Docker Containerization Guide",
+    "description": "Learn containerization with Docker from basics to production deployment.",
+    "category": "DevOps",
+    "difficulty": "Intermediate",
+    "type": "Course",
+    "tags": ["Docker", "Containers", "Deployment", "DevOps"],
+    "url": "https://docs.docker.com/get-started/"
+  },
+  {
+    "id": 13,
+    "title": "Machine Learning Fundamentals",
+    "description": "Introduction to ML concepts, algorithms, and practical implementations.",
+    "category": "Machine Learning",
+    "difficulty": "Beginner",
+    "type": "Course",
+    "tags": ["ML", "Algorithms", "Python", "Data Science"],
+    "url": "https://www.coursera.org/learn/machine-learning"
+  },
+  {
+    "id": 14,
+    "title": "TypeScript for JavaScript Developers",
+    "description": "Transition from JavaScript to TypeScript with practical examples and best practices.",
+    "category": "Web Development",
+    "difficulty": "Intermediate",
+    "type": "Tutorial",
+    "tags": ["TypeScript", "JavaScript", "Types", "Static Analysis"],
+    "url": "https://www.typescriptlang.org/docs/"
+  },
+  {
+    "id": 15,
+    "title": "System Design Interview Prep",
+    "description": "Design scalable systems like experienced engineers do in big tech companies.",
+    "category": "System Design",
+    "difficulty": "Advanced",
+    "type": "Course",
+    "tags": ["System Design", "Scalability", "Architecture", "Interviews"],
+    "url": "https://github.com/donnemartin/system-design-primer"
+  },
+  {
+    "id": 16,
+    "title": "REST API Design Best Practices",
+    "description": "Build robust and scalable RESTful APIs following industry standards.",
+    "category": "Backend",
+    "difficulty": "Intermediate",
+    "type": "Guide",
+    "tags": ["REST", "API", "HTTP", "Backend"],
+    "url": "https://restfulapi.net/"
+  },
+  {
+    "id": 17,
+    "title": "Data Structures in Python",
+    "description": "Implement and understand key data structures with Python examples.",
+    "category": "Algorithms",
+    "difficulty": "Beginner",
+    "type": "Tutorial",
+    "tags": ["Data Structures", "Python", "Arrays", "Trees"],
+    "url": "https://www.programiz.com/dsa"
+  },
+  {
+    "id": 18,
+    "title": "Cybersecurity Fundamentals",
+    "description": "Essential security concepts every developer should understand.",
+    "category": "Security",
+    "difficulty": "Beginner",
+    "type": "Course",
+    "tags": ["Security", "Cryptography", "Authentication", "HTTPS"],
+    "url": "https://owasp.org/www-project-top-ten/"
+  }
+]

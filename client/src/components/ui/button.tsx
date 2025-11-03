@@ -1,3 +1,4 @@
+// precured code look at readme.md
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot@1.1.2";
 import { cva, type VariantProps } from "class-variance-authority@0.7.1";
@@ -33,7 +34,8 @@ const buttonVariants = cva(
   },
 );
 
-function Button({
+function Button(
+{
   className,
   variant,
   size,
@@ -42,9 +44,9 @@ function Button({
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean;
-  }) {
+  })
+{
   const Comp = asChild ? Slot : "button";
-
   return (
     <Comp
       data-slot="button"

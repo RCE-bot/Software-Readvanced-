@@ -2,27 +2,35 @@ import React, { useState } from "react";
 import { Button } from "@ui/button";
 import { login } from "@/api/auth";
 
-interface LoginFormProps {
+interface LoginFormProps
+{
     setUser: (user: any) => void;
     onNavigateToSignUp: () => void;
 }
 
-export default function LoginForm({ setUser, onNavigateToSignUp }: LoginFormProps) {
+export default function LoginForm({ setUser, onNavigateToSignUp }: LoginFormProps)
+{
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    const handleLogin = async (e: React.FormEvent) => {
+    const handleLogin = async (e: React.FormEvent) =>
+    {
         e.preventDefault();
         setLoading(true);
         setError(null);
-        try {
+        try
+        {
             const user = await login(username, password);
             setUser(user);
-        } catch (err: any) {
+        }
+        catch (err: any)
+        {
             setError("invalid username/password");
-        } finally {
+        }
+        finally
+        {
             setLoading(false);
         }
     };
@@ -88,7 +96,7 @@ export default function LoginForm({ setUser, onNavigateToSignUp }: LoginFormProp
                     <div className="w-full h-full">
                         <div className="aspect-square bg-gray-50 relative before:absolute before:inset-0 before:bg-black/40 rounded-md overflow-hidden w-full h-full border-green-400 border-[2px]">
                             <img
-                                src="https://airstriker123.github.io/figma-css-export/login.jpg"
+                                src="/login.jpg"
                                 className="w-full h-full object-cover"
                                 alt="login img"
                             />

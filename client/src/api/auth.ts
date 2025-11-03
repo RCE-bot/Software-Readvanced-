@@ -51,7 +51,7 @@ export async function login(username: string, password: string): Promise<User>
     return data;
 }
 
-export async function register(username: string, password: string): Promise<User>
+export async function register(username: string, password: string):Promise<User>
 {
     /*method to register new user in database  */
     const res = await fetch(`/api/register`,
@@ -73,25 +73,7 @@ export async function register(username: string, password: string): Promise<User
     return data;
 }
 
-export async function getCurrentUser(): Promise<User | null>
-{
-    const res = await fetch(`/api/@me`, { credentials: "include" });
-    if (res.status === 401) return null;
-    if (!res.ok) return null;
-    return res.json();
-}
 
-export async function logout(): Promise<void>
-{
-    await fetch(`/api/logout`,
-    {
-        method: "POST",
-        credentials: "include",
-    });
-    localStorage.removeItem("auth");
-}
 
-export function isAuthedLocally(): boolean
-{
-    return !!localStorage.getItem("auth");
-}
+
+

@@ -1,3 +1,13 @@
+/*
+config for the react vite client server
+what it does:
+- include all the plugins and dependencies
+- include all the aliases
+- include all the paths
+- include import extensiion types (ts, json)
+- include server proxy to connect backend (flask)
+- include open port for network hosting
+*/
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 // @ts-ignore
@@ -12,13 +22,11 @@ export default defineConfig({
     plugins: [
         react(),
         VitePWA({
-            host: true, //  allows access from other devices
-            port: 3000, //default port
-            open: true,
+            //pwa config
             manifest,
             includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
             // switch to "true" to enable sw on development
-            devOptions: { enabled: true },
+            devOptions: { enabled: true }, //allow pwa features on development server
             registerType: 'autoUpdate',
             workbox: { globPatterns: ['**/*.{js,css,html}', '**/*.{svg,png,jpg,gif}'] },
         }),
@@ -27,6 +35,7 @@ export default defineConfig({
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       alias: {
+          //path aliases for packages
         'vaul@1.1.2': 'vaul',
         'sonner@2.0.3': 'sonner',
         'recharts@2.15.2': 'recharts',
@@ -80,6 +89,6 @@ export default defineConfig({
     },
         host: true, //  allows access from other devices
         port: 3000, //default port
-        open: true,
+        open: true, //open port to network
     },
   });

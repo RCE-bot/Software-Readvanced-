@@ -8,3 +8,4 @@
 /client/build
 server/instance/db.sqlite
 client/build/assets/index-BmCQPcYy.js
+/client/dev-dist

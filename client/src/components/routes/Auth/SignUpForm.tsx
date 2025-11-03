@@ -2,27 +2,35 @@ import React, { useState } from 'react';
 import { Button } from "@ui/button";
 import { register } from "@/api/auth";
 
-interface SignUpFormProps {
+interface SignUpFormProps
+{
     onRegister: (user: any) => void;
     onNavigateToLogin: () => void;
 }
 
-export default function SignUpForm({ onRegister, onNavigateToLogin }: SignUpFormProps) {
+export default function SignUpForm({ onRegister, onNavigateToLogin }: SignUpFormProps)
+{
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
 
-    const signUpUser = async (e: React.FormEvent) => {
+    const signUpUser = async (e: React.FormEvent) =>
+    {
         e.preventDefault();
         setLoading(true);
         setError(null);
-        try {
+        try
+        {
             const user = await register(username, password);
             onRegister(user);
-        } catch (err: any) {
+        }
+        catch (err: any)
+        {
             setError(err.message);
-        } finally {
+        }
+        finally
+        {
             setLoading(false);
         }
     };
@@ -48,7 +56,7 @@ export default function SignUpForm({ onRegister, onNavigateToLogin }: SignUpForm
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             required
-                            placeholder="Enter username"
+                            placeholder="Enter a username for your account"
                             className="border-green-400 border-[1px] w-full text-sm text-slate-900 bg-slate-100 pl-4 pr-10 py-3 rounded-md mb-4"
                         />
 
@@ -60,7 +68,7 @@ export default function SignUpForm({ onRegister, onNavigateToLogin }: SignUpForm
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
-                            placeholder="Enter password"
+                            placeholder="Enter a password for your account"
                             className="border-green-400 border-[1px] w-full text-sm text-slate-900 bg-slate-100 pl-4 pr-10 py-3 rounded-md"
                         />
 
@@ -91,7 +99,7 @@ export default function SignUpForm({ onRegister, onNavigateToLogin }: SignUpForm
                     <div className="w-full h-full">
                         <div className="aspect-square bg-gray-50 relative before:absolute before:inset-0 before:bg-black/40 rounded-md overflow-hidden w-full h-full border-green-400 border-[2px]">
                             <img
-                                src="https://airstriker123.github.io/figma-css-export/login.jpg"
+                                src="/login.jpg"
                                 className="w-full h-full object-cover"
                                 alt="signup img"
                             />

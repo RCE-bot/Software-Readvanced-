@@ -1,5 +1,5 @@
 "use client";
-
+// precured code look at readme.md
 import * as React from "react";
 import * as SelectPrimitive from "@radix-ui/react-select@2.1.6";
 import {
@@ -142,7 +142,8 @@ function SelectSeparator({
 function SelectScrollUpButton({
   className,
   ...props
-}: React.ComponentProps<typeof SelectPrimitive.ScrollUpButton>) {
+}: React.ComponentProps<typeof SelectPrimitive.ScrollUpButton>)
+{
   return (
     <SelectPrimitive.ScrollUpButton
       data-slot="select-scroll-up-button"
@@ -160,7 +161,8 @@ function SelectScrollUpButton({
 function SelectScrollDownButton({
   className,
   ...props
-}: React.ComponentProps<typeof SelectPrimitive.ScrollDownButton>) {
+}: React.ComponentProps<typeof SelectPrimitive.ScrollDownButton>)
+{
   return (
     <SelectPrimitive.ScrollDownButton
       data-slot="select-scroll-down-button"

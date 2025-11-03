@@ -1,9 +1,10 @@
 "use client";
-
+// precured code look at readme.md
 import { useTheme } from "next-themes@0.4.6";
 import { Toaster as Sonner, ToasterProps } from "sonner@2.0.3";
 
-const Toaster = ({ ...props }: ToasterProps) => {
+const Toaster = ({ ...props }: ToasterProps) =>
+{
   const { theme = "system" } = useTheme();
 
   return (

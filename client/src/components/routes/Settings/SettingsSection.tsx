@@ -1,40 +1,36 @@
-
 import { useEffect, useRef } from 'react';
 import { Button } from '@ui/button';
-import {
+import
+{
     Card,
     CardContent,
     CardDescription,
     CardHeader,
     CardTitle
 } from '@ui/card';
-import {
+import
+{
     Settings as SettingsIcon,
     LogOut,
     Shield,
-    Trash2,
 } from 'lucide-react';
 import { gsap } from '../../../hooks/useGSAP';
-// @ts-ignore-error
 
-
-
-
-interface AccountSettingsProps {
+interface AccountSettingsProps
+{
     handleLogout: () => void;
-    handleDeleteAccount: () => void;
 }
 // Settings Section Component - Allows users to manage account (delete, logout)
-export function SettingsSection({
-                                    handleLogout,
-                                    handleDeleteAccount
-                                }: AccountSettingsProps) {
+export function SettingsSection({handleLogout,}: AccountSettingsProps)
+{
     const sectionRef = useRef<HTMLElement>(null);
     const headerRef = useRef<HTMLDivElement>(null);
     const cardsRef = useRef<HTMLDivElement>(null);
     // GSAP Animations
-    useEffect(() => {
-        const ctx = gsap.context(() => {
+    useEffect(() =>
+    {
+        const ctx = gsap.context(() =>
+        {
             // Header animation
             gsap.fromTo(headerRef.current,
                 {y: -50, opacity: 0},
@@ -54,7 +50,8 @@ export function SettingsSection({
 
             // Cards animation with stagger
             const cards = cardsRef.current?.children;
-            if (cards) {
+            if (cards)
+            {
                 gsap.fromTo(cards,
                     {y: 40, opacity: 0, scale: 0.95},
                     {
@@ -99,12 +96,10 @@ export function SettingsSection({
                 {/* Settings Cards */}
                 <div ref={cardsRef} className="grid lg:grid-cols-2 gap-6 mb-8">
 
-                    {
-                        /*
+                    {/*
                         Account Settings
                        - manage logout
-                       - delete account
-                       */}
+                    */}
                     <Card className="bg-gray-800/50 border-gray-700">
                         <CardHeader>
                             <div className="flex items-center gap-2">
@@ -121,13 +116,6 @@ export function SettingsSection({
                                     onClick={handleLogout}>
                                     <LogOut className="w-4 h-4 mr-2"/>
                                     Logout
-                                </Button>
-                                <Button
-                                    variant="outline"
-                                    className="w-full border-red-600 text-red-500 hover:bg-red-600 hover:text-white"
-                                    onClick={handleDeleteAccount}>
-                                    <Trash2 className="w-4 h-4 mr-2"/>
-                                    Delete Account
                                 </Button>
                             </div>
                         </CardContent>
