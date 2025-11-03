@@ -205,7 +205,7 @@ export default function HelpSection({onNavigateToResources,
                     <div ref={imageRef} className="relative perspective-1000">
                         <div className="bg-gradient-to-br from-blue-400/20 to-green-400/20 rounded-2xl p-8 backdrop-blur-sm transform-gpu">
                             <img
-                                src="https://images.unsplash.com/photo-1637073849667-91120a924221?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2Z0d2FyZSUyMGRldmVsb3BtZW50JTIwdGVhbSUyMGNvbGxhYm9yYXRpb24lMjBjb2Rpbmd8ZW58MXx8fHwxNzU5NDA5MDYyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                                src="/help.jpg"
                                 alt="Failed to fetch image source"
                                 className="w-full rounded-xl"
                             />
