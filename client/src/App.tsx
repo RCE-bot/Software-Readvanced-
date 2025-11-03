@@ -25,6 +25,13 @@ import {toast} from "sonner";
 
 export default function App()
 {
+    /*
+    app components combines all child components into one parent component
+    - which handles the logic of this single page pwa
+    - handles what component to render under condition
+    - if user is logged in
+    - if user installed the app on device
+    */
     // State to manage which section is currently active
     let [currentSection, setCurrentSection] = useState<'login' | 'signup' | 'home' | 'resources' | 'settings'>('login');
     const [shouldFocusSearch, setShouldFocusSearch] = useState(false);
@@ -34,6 +41,7 @@ export default function App()
         // check if server is connected to client
         new Test();
     }, []);
+
     // Scroll to top when switching main sections
     useEffect(() =>
     {
@@ -60,19 +68,24 @@ export default function App()
     // Called when login succeeds
     const handleLoginSuccess = (userData: any) =>
     {
-        localStorage.setItem('auth', JSON.stringify(userData));
+        localStorage.setItem('auth', JSON.stringify(userData)); // store data in localStorage
         setCurrentSection('home');
+        toast.success('Logged in!')
     };
-
+    // called when register succeeds
     const handleRegisterSuccess = () =>
     {
-        toast.success("Account created successfully! Please log in.");
+        // redirect to home
         setCurrentSection("home");
+        toast.success('Logged in!')
     };
 
     //  Logout (calls backend + clears localStorage)
     const handleLogout = async () =>
     {
+        // confirm to logut
+        window.confirm("are you sure you want to logout?")
+        if (!window.confirm) return;
         try
         {
             await logoutUser();
@@ -85,23 +98,25 @@ export default function App()
         setCurrentSection('login');
     };
 
+    // swap current section to signup
     const handleNavigateToSignUp = () =>
     {
         setCurrentSection('signup');
     };
-
+    // swap current section to login
     const handleNavigateToLogin = () =>
     {
         setCurrentSection('login');
     };
 
-    // Navigation handlers
+    // swap current section to resources
     const handleNavigateToResources = () =>
     {
         setShouldFocusSearch(true);
         setCurrentSection('resources');
     };
 
+    // swap current section to settings
     const handleNavigateToSettings = () =>
     {
         setShouldFocusSearch(true);
@@ -119,9 +134,10 @@ export default function App()
         }
     }, [currentSection]);
 
+    // render current section based on functions above
     const renderCurrentSection = () =>
     {
-        switch (currentSection)
+        switch (currentSection) //switch render content based on current section
         {
             case 'login':
                 return (
@@ -187,6 +203,7 @@ export default function App()
     }
     else if (currentSection === 'home')
     {
+        // if logged in render home
        return (
            <div
                className="min-h-screen text-white overflow-x-hidden relative smooth-scroll
@@ -222,6 +239,7 @@ export default function App()
     }
     else
     {
+        // if section is not home or login/sign render this to client
         return (
             <div
                 className="min-h-screen text-white overflow-x-hidden relative smooth-scroll

@@ -10,11 +10,20 @@ interface SignUpFormProps
 
 export default function SignUpForm({ onRegister, onNavigateToLogin }: SignUpFormProps)
 {
+    /*
+    component for the sign up form
+    - uses tailwind for styling
+    - uses useState for state management
+    - uses useEffect for side effects
+    - handles look of the sign up form
+    - stores the sign up form component
+     */
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
 
+    // logic to register user to database
     const signUpUser = async (e: React.FormEvent) =>
     {
         e.preventDefault();
@@ -22,10 +31,10 @@ export default function SignUpForm({ onRegister, onNavigateToLogin }: SignUpForm
         setError(null);
         try
         {
-            const user = await register(username, password);
+            const user = await register(username, password); // try to register api call
             onRegister(user);
         }
-        catch (err: any)
+        catch (err: any) // if fail return error message
         {
             setError(err.message);
         }
@@ -35,19 +44,24 @@ export default function SignUpForm({ onRegister, onNavigateToLogin }: SignUpForm
         }
     };
 
+    // return sign up form component
     return (
+        <>
+            {/* sign up form background look */}
         <div className="bg-gradient-to-br from-black/67 to-green-400/24 lg:h-screen flex items-center justify-center p-4">
             <div className="border-green-400 border-[3px] max-w-6xl bg-white/8 shadow-xl p-6 rounded-md">
                 <div className="grid md:grid-cols-2 items-center gap-y-8">
+                    {/* sign up form */}
                     <form className="max-w-md mx-auto w-full" onSubmit={signUpUser}>
                         <div className="mb-8">
+                            {/* logo */}
                             <img
                                 src="/logo.png"
                                 alt="Software Readvanced"
                                 className="w-40"
                             />
                         </div>
-
+                        {/* username field */}
                         <label className="text-green-400 text-sm font-medium mb-2 block">
                             Username
                         </label>
@@ -59,7 +73,7 @@ export default function SignUpForm({ onRegister, onNavigateToLogin }: SignUpForm
                             placeholder="Enter a username for your account"
                             className="border-green-400 border-[1px] w-full text-sm text-slate-900 bg-slate-100 pl-4 pr-10 py-3 rounded-md mb-4"
                         />
-
+                        {/* password field */}
                         <label className="text-green-400 text-sm font-medium mb-2 block">
                             Password
                         </label>
@@ -73,7 +87,7 @@ export default function SignUpForm({ onRegister, onNavigateToLogin }: SignUpForm
                         />
 
                         {error && <p className="text-red-500 mt-2 text-sm">{error}</p>}
-
+                        {/* sign up button to submit to api */}
                         <Button
                             type="submit"
                             disabled={loading}
@@ -81,7 +95,7 @@ export default function SignUpForm({ onRegister, onNavigateToLogin }: SignUpForm
                         >
                             {loading ? "Signing up..." : "Sign Up"}
                         </Button>
-
+                        {/*  redirect login button */}
                         <p className="text-green-400 text-sm mt-4 text-center">
                             Already have an account?{" "}
                             <button
@@ -103,8 +117,10 @@ export default function SignUpForm({ onRegister, onNavigateToLogin }: SignUpForm
                                 className="w-full h-full object-cover"
                                 alt="signup img"
                             />
+                            {/* image overlay */}
                             <div className="absolute inset-0 m-auto max-w-sm p-6 flex items-center justify-center">
                                 <div>
+                                    {/* image overlay text */}
                                     <h1 className="text-white text-4xl font-semibold"><b>Sign Up</b></h1>
                                     <p className="text-green-400 text-[15px] font-medium mt-6 leading-relaxed">
                                         <b>Create your account to proceed</b> <br /><br />
@@ -117,5 +133,6 @@ export default function SignUpForm({ onRegister, onNavigateToLogin }: SignUpForm
                 </div>
             </div>
         </div>
+     </>
     );
 }

@@ -11,6 +11,15 @@ interface Props
 export default function HelpSection({onNavigateToResources,
                                     onNavigateToSettings}: Props)
 {
+    /*
+    component for the help section of the homepage
+    - uses gsap for animations
+    - uses tailwind for styling
+    - uses useRef for reference to elements
+    - uses useEffect for animations
+    - handles look of the help section
+    - stores the help section component
+     */
     const sectionRef = useRef<HTMLElement>(null);
     const titleRef = useRef<HTMLHeadingElement>(null);
     const contactsRef = useRef<HTMLDivElement>(null);
