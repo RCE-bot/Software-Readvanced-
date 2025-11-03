@@ -10,6 +10,12 @@ interface BeforeInstallPromptEvent extends Event
 
 export default function PWAInstaller()
 {
+    /*
+    component handles installing the application on device
+    - renders button on screen for homepage
+    - prompts user to install app
+    - handles installation process
+     */
     const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
     const [showInstall, setShowInstall] = useState(false);
 
@@ -34,7 +40,7 @@ export default function PWAInstaller()
     {
         if (!deferredPrompt) return;
 
-        deferredPrompt.prompt();
+        deferredPrompt.prompt(); //prompt user to install
         const { outcome } = await deferredPrompt.userChoice;
 
         if (outcome === 'accepted')
@@ -47,6 +53,8 @@ export default function PWAInstaller()
     if (!showInstall) return null;
 
     return (
+        <>
+        {/* button to install app */}
         <div className="fixed bottom-6 right-6 z-50">
             <Button
                 onClick={handleInstallClick}
@@ -56,5 +64,6 @@ export default function PWAInstaller()
                 Install App
             </Button>
         </div>
+        </>
     );
 }

@@ -23,9 +23,18 @@ interface AccountSettingsProps
 // Settings Section Component - Allows users to manage account (delete, logout)
 export function SettingsSection({handleLogout,}: AccountSettingsProps)
 {
+    /*
+    component for the settings section
+    - uses tailwind for styling
+    - uses useState for state management
+    - uses useEffect for side effects
+    - handles look of the settings section
+    - stores the settings section component
+    */
     const sectionRef = useRef<HTMLElement>(null);
     const headerRef = useRef<HTMLDivElement>(null);
     const cardsRef = useRef<HTMLDivElement>(null);
+
     // GSAP Animations
     useEffect(() =>
     {
@@ -76,7 +85,7 @@ export function SettingsSection({handleLogout,}: AccountSettingsProps)
         return () => ctx.revert();
     }, []);
 
-
+    // component typescript XML - stores markup for structure , style and text
     return (
         // render the settings seciton
         <section ref={sectionRef} className="py-20 px-6 bg-gradient-to-b from-gray-900/30 via-black to-gray-900/30">
@@ -101,6 +110,7 @@ export function SettingsSection({handleLogout,}: AccountSettingsProps)
                        - manage logout
                     */}
                     <Card className="bg-gray-800/50 border-gray-700">
+                        {/* card header */}
                         <CardHeader>
                             <div className="flex items-center gap-2">
                                 <Shield className="w-5 h-5 text-green-400"/>
@@ -108,6 +118,8 @@ export function SettingsSection({handleLogout,}: AccountSettingsProps)
                             </div>
                             <CardDescription>Manage your SR account</CardDescription>
                         </CardHeader>
+
+                        {/* logout button */}
                         <CardContent className="space-y-4">
                             <div className="pt-2 space-y-2">
                                 <Button
@@ -120,6 +132,7 @@ export function SettingsSection({handleLogout,}: AccountSettingsProps)
                             </div>
                         </CardContent>
                     </Card>
+
                 </div>
             </div>
         </section>

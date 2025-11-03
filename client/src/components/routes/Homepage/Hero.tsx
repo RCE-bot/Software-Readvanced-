@@ -11,6 +11,15 @@ interface HeroProps
 
 export default function Hero({ onNavigateToResources }: HeroProps)
 {
+  /*
+  component for the hero section of the homepage
+  - uses gsap for animations
+  - uses tailwind for styling
+  - uses useRef for reference to elements
+  - uses useEffect for animations
+  - handles look of the hero section
+   */
+    // useRef = reacts version of getelementbyid
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
@@ -18,6 +27,7 @@ export default function Hero({ onNavigateToResources }: HeroProps)
   const glowRef2 = useRef<HTMLDivElement>(null);
   const glowRef3 = useRef<HTMLDivElement>(null);
 
+  //animations for the hero section
   useEffect(() =>
   {
     const ctx = gsap.context(() =>
@@ -85,7 +95,7 @@ export default function Hero({ onNavigateToResources }: HeroProps)
 
   return (
     <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-hero-gradient">
-      {/* Complex Gradient Background matching your webapp */}
+      {/* Complex Gradient Background for webapp */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-emerald-950/40 to-black">
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-green-500/10 to-transparent"></div>
@@ -97,7 +107,7 @@ export default function Hero({ onNavigateToResources }: HeroProps)
       <div ref={glowRef3} className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-green-500/20 rounded-full blur-3xl"></div>
 
       
-      {/* GitHub Link - Only visible in Hero section */}
+      {/* GitHub Link button component - Only visible in Hero section */}
       <GitHubLink />
       
       <div className="relative z-10 text-center px-6">

@@ -10,11 +10,20 @@ interface LoginFormProps
 
 export default function LoginForm({ setUser, onNavigateToSignUp }: LoginFormProps)
 {
+    /*
+    component for the login form
+    - uses tailwind for styling
+    - uses useState for state management
+    - uses useEffect for side effects
+    - handles look of the login form
+    - stores the login form component
+     */
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
+    // login handle backend (api call)
     const handleLogin = async (e: React.FormEvent) =>
     {
         e.preventDefault();
@@ -22,11 +31,12 @@ export default function LoginForm({ setUser, onNavigateToSignUp }: LoginFormProp
         setError(null);
         try
         {
-            const user = await login(username, password);
+            const user = await login(username, password); //try get login api response (api call)
             setUser(user);
         }
         catch (err: any)
         {
+            // fail = user not found in database
             setError("invalid username/password");
         }
         finally
@@ -35,12 +45,17 @@ export default function LoginForm({ setUser, onNavigateToSignUp }: LoginFormProp
         }
     };
 
+    // login form component look typescript xml
     return (
+        <>
+            {/*page background and style */}
         <div className="bg-gradient-to-br from-black/67 to-green-400/24 lg:h-screen flex items-center justify-center p-4">
             <div className="border-green-400 border-[3px] max-w-6xl bg-white/8 shadow-xl p-6 rounded-md">
                 <div className="grid md:grid-cols-2 items-center gap-y-8">
+                    {/* login form */}
                     <form className="max-w-md mx-auto w-full" onSubmit={handleLogin}>
                         <div className="mb-8">
+                            {/* logo */}
                             <img
                                 src="/logo.png"
                                 alt="Software Readvanced"
@@ -48,6 +63,7 @@ export default function LoginForm({ setUser, onNavigateToSignUp }: LoginFormProp
                             />
                         </div>
 
+                        {/* username input */}
                         <label className="text-green-400 text-sm font-medium mb-2 block">
                             Username
                         </label>
@@ -60,6 +76,7 @@ export default function LoginForm({ setUser, onNavigateToSignUp }: LoginFormProp
                             className="border-green-400 border-[1px] w-full text-sm text-slate-900 bg-slate-100 pl-4 pr-10 py-3 rounded-md mb-4"
                         />
 
+                        {/* password input */}
                         <label className="text-green-400 text-sm font-medium mb-2 block">
                             Password
                         </label>
@@ -74,6 +91,7 @@ export default function LoginForm({ setUser, onNavigateToSignUp }: LoginFormProp
 
                         {error && <p className="text-red-500 mt-2 text-sm">{error}</p>}
 
+                        {/* login button to submit to api*/}
                         <Button
                             type="submit"
                             disabled={loading}
@@ -82,6 +100,7 @@ export default function LoginForm({ setUser, onNavigateToSignUp }: LoginFormProp
                             {loading ? "Logging in..." : "Login"}
                         </Button>
 
+                        {/* login button to navigate to sign up */}
                         <p className="text-green-400 text-sm mt-4 text-center">
                             Don’t have an account?{" "}
                             <button
@@ -93,6 +112,8 @@ export default function LoginForm({ setUser, onNavigateToSignUp }: LoginFormProp
                             </button>
                         </p>
                     </form>
+
+                    {/* login image  to side*/}
                     <div className="w-full h-full">
                         <div className="aspect-square bg-gray-50 relative before:absolute before:inset-0 before:bg-black/40 rounded-md overflow-hidden w-full h-full border-green-400 border-[2px]">
                             <img
@@ -100,6 +121,8 @@ export default function LoginForm({ setUser, onNavigateToSignUp }: LoginFormProp
                                 className="w-full h-full object-cover"
                                 alt="login img"
                             />
+
+                            {/* login image text */}
                             <div className="absolute inset-0 m-auto max-w-sm p-6 flex items-center justify-center">
                                 <div>
                                     <h1 className="text-white text-4xl font-semibold">
@@ -120,6 +143,7 @@ export default function LoginForm({ setUser, onNavigateToSignUp }: LoginFormProp
                 </div>
             </div>
         </div>
+      </>
     );
 }
 

@@ -5,6 +5,15 @@ import { gsap } from '../../../hooks/useGSAP';
 // GitHub Link Component - Fixed position link in top right corner
 export default function GitHubLink()
 {
+    /*
+    components to render the github button on the Hero page
+    - uses gsap for animations
+    - uses tailwind for styling
+    - uses lucide-react for icons
+    - uses useRef for reference to the link
+    - uses useEffect for animations
+    - handles look of the button to redirect
+     */
   const linkRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() =>
@@ -61,7 +70,7 @@ export default function GitHubLink()
     return () => ctx.revert();
   }, []);
 
-  return (
+  return (<>{/* render the component */}
     <a
       ref={linkRef}
       href="https://github.com/Airstriker123/Software-Readvanced" //  the GitHub repo
@@ -89,5 +98,6 @@ export default function GitHubLink()
         <div className="absolute -top-1 right-4 w-2 h-2 bg-gray-800 transform rotate-45" />
       </div>
     </a>
+      </>
   );
 }

@@ -6,12 +6,13 @@ import { Badge } from '@ui/badge';
 import { Tabs, TabsList, TabsTrigger } from '@ui/tabs';
 import { Search, BookOpen, Code, Database, Cpu, Globe, FileText } from 'lucide-react';
 import { gsap } from '../../../hooks/useGSAP';
-import data from "./list.json"; //get json for data (instead of database)
+import data from "./list.json"; //get json for data (instead of database) the login db handles security
 
 // data for resources allowing user to browse different content
-const Resources = data;
+const Resources:typeof data = data;
 
-const categories = [
+// categories for resources
+const categories:string[] = [
     "All", "Python", "OOP", "Software Engineering",
     "Database", "Algorithms", "Web Development", "DevOps",
     "Machine Learning", "System Design", "Backend", "Security"
@@ -26,6 +27,14 @@ interface ResourcesSectionProps
 // Resources Section Component - Allows browsing, searching, and cataloguing software engineering resources
 export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }: ResourcesSectionProps)
 {
+    /*
+    component for the resources section
+    - uses tailwind for styling
+    - uses useState for state management
+    - uses useEffect for side effects
+    - handles look of the resources section
+    - stores the resources section component
+     */
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [filteredResources, setFilteredResources] = useState(Resources);
@@ -169,10 +178,11 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
       default: return 'bg-gray-500/20 text-gray-400 border-gray-500/50';
     }
   };
-
+  // component typescript XML - stores markup for structure , style and text
   return (
     <section ref={sectionRef} className="py-20 px-6 bg-gradient-to-b from-black via-gray-900/30 to-black">
       <div className="container mx-auto max-w-7xl">
+
         {/* Header */}
         <div ref={headerRef} className="text-center mb-12">
           <h2 className="text-4xl md:text-6xl mb-6">
@@ -184,6 +194,7 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
             Discover curated resources for software engineering, Python, OOP concepts, and more.
             Build your knowledge with our comprehensive collection.
           </p>
+
             {/* Centered Search Bar */}
             <div className="flex justify-center items-center w-full mt-6">
                 <div className="relative flex-1 max-w-md">
@@ -201,7 +212,6 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
                     />
                 </div>
             </div>
-
         </div>
 
         {/* Search and Filters */}
@@ -223,7 +233,6 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
                       ))}
                   </TabsList>
               </Tabs>
-
           </div>
         </div>
 
@@ -236,7 +245,17 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
           </p>
         </div>
 
-        {/* Resource Cards */}
+        {/* Resource Cards
+        - render resources from json
+        - style of resources card is handled here
+        - hover effect is handled here
+        - assign difficulty color to each resource
+        - assign type icon to each resource
+        - assign tags to each resource
+        - assign description to each resource
+        - assign title to each resource
+        - assign link to each resource
+        */}
         <div ref={cardsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredResources.map((resource) => (
             <Card key={resource.id} className="bg-gray-800/50 border-gray-700 hover:border-green-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-green-500/10 hover:scale-[1.02] hover:bg-gray-700/50">
@@ -278,7 +297,10 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
           ))}
         </div>
 
-        {/* No Results */}
+        {/*
+        No Results
+        - show this if query is invalid
+        */}
         {filteredResources.length === 0 && (
           <div className="text-center py-12">
             <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-800 flex items-center justify-center">
