@@ -86,7 +86,8 @@ END main
 if __name__ == "__main__":
     try:
         os.system("color B")
-        choice = input("enter run option [1] development [2] build: ")
+        print("recommend to run option 2 (production) to build into raw html,css,js")
+        choice = input("enter run option [1] development [2] production (build): ")
         server_setup()
         client_setup(choice)
         print("note: pwa feature: install only works on local host and not network")
