@@ -20,7 +20,6 @@ import { Toaster } from '@ui/sonner';
 import Test from "@/api/test"
 import SignUpForm from "@/components/routes/Auth/SignUpForm";
 import LoginForm from "@/components/routes/Auth/LoginForm";
-import { logoutUser } from "@/api/auth";
 import {toast} from "sonner";
 
 export default function App()
@@ -51,29 +50,29 @@ export default function App()
         });
     }, [currentSection]);
 
-    //  Check session on mount
+    //  Check session on mount (check if client is logged in)
     useEffect(() =>
     {
-        const auth = localStorage.getItem('auth');
-        if (auth)
+        const auth:string|null = localStorage.getItem('auth');
+        if (auth) //token exists in storage
         {
             setCurrentSection('home');
         }
-        else
+        else //token not found in localstorage
         {
             setCurrentSection('login');
         }
     }, []);
 
     // Called when login succeeds
-    const handleLoginSuccess = (userData: any) =>
+    const handleLoginSuccess = (userData: any):void =>
     {
         localStorage.setItem('auth', JSON.stringify(userData)); // store data in localStorage
         setCurrentSection('home');
         toast.success('Logged in!')
     };
     // called when register succeeds
-    const handleRegisterSuccess = () =>
+    const handleRegisterSuccess = ():void =>
     {
         // redirect to home
         setCurrentSection("home");
@@ -81,7 +80,7 @@ export default function App()
     };
 
     //  Logout (calls backend + clears localStorage)
-    const handleLogout = async () =>
+    const handleLogout = async ():Promise<void> =>
     {
         // confirm to log out
         window.confirm("are you sure you want to logout?")
@@ -91,25 +90,25 @@ export default function App()
     };
 
     // swap current section to signup
-    const handleNavigateToSignUp = () =>
+    const handleNavigateToSignUp = ():void =>
     {
         setCurrentSection('signup');
     };
     // swap current section to login
-    const handleNavigateToLogin = () =>
+    const handleNavigateToLogin = ():void =>
     {
         setCurrentSection('login');
     };
 
     // swap current section to resources
-    const handleNavigateToResources = () =>
+    const handleNavigateToResources = ():void =>
     {
         setShouldFocusSearch(true);
         setCurrentSection('resources');
     };
 
     // swap current section to settings
-    const handleNavigateToSettings = () =>
+    const handleNavigateToSettings = ():void =>
     {
         setShouldFocusSearch(true);
         setCurrentSection('settings');
@@ -117,7 +116,7 @@ export default function App()
 
 
     // redirect unauthenticated users trying to access other pages
-    useEffect(() =>
+    useEffect(():void =>
     {
         const auth = localStorage.getItem('auth');
         if (!auth && currentSection !== 'login' && currentSection !== 'signup')

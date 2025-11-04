@@ -7,7 +7,17 @@ interface AboutProps
     onNavigateToResources?: () => void;
 }
 
-export default function AboutSection({ onNavigateToResources }: AboutProps) {
+export default function AboutSection({ onNavigateToResources }: AboutProps)
+{
+    /*
+    component for the about section of the homepage
+    - uses gsap for animations
+    - uses tailwind for styling
+    - uses useRef for reference to elements
+    - uses useEffect for animations
+    - handles look of the about section
+    - handles navigation to resources
+     */
   const sectionRef = useRef<HTMLElement>(null);
   const codeRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -164,7 +174,7 @@ export default function AboutSection({ onNavigateToResources }: AboutProps) {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Code display */}
           <div ref={codeRef} className="relative">
-                <img src="/aboutsr.webp"/>
+                <img src="/aboutsr.webp" alt="about software readvanced"/>
           </div>
           
           {/* Right side - About content */}
