@@ -178,12 +178,6 @@ def login_user(): # login a user by checking if they exist in database and if pa
         "username": user.username
     })
 
-
-@app.route("/api/logout", methods=["POST"])
-def logout_user(): # logout a user by removing user id from session
-    session.pop("user_id") # remove session from storage
-    return "200"
-
 #------------ </app routes> ------------#
 
 #------------ <app run> ------------#

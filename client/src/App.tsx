@@ -83,17 +83,9 @@ export default function App()
     //  Logout (calls backend + clears localStorage)
     const handleLogout = async () =>
     {
-        // confirm to logut
+        // confirm to log out
         window.confirm("are you sure you want to logout?")
         if (!window.confirm) return;
-        try
-        {
-            await logoutUser();
-        }
-        catch (err)
-        {
-            console.warn("Logout request failed (maybe user not logged in).");
-        }
         localStorage.removeItem('auth'); // remove token from storage
         setCurrentSection('login');
     };
