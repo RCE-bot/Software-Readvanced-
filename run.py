@@ -20,7 +20,7 @@ def server_setup():
      - installs external requirements.txt
     """
     os.system(r'color E')
-    print("🚀 Starting backend server...")
+    print("Starting backend server...")
     os.system(r'start cmd /k "cd server && python start.py"') #no need for if statement cmd will display error if file not found
 
 """
@@ -44,7 +44,7 @@ def client_setup(choice):
     """
 
     os.system(r'color 2')
-    print("🚀 Starting frontend client...")
+    print("Starting frontend client...")
     # logic to setup client
     os.chdir("client") #change dir to client folder
     if not os.path.exists("node_modules"):              # check if user ran npm i
@@ -86,7 +86,8 @@ END main
 if __name__ == "__main__":
     try:
         os.system("color B")
-        choice = input("enter run option [1] development [2] build: ")
+        print("recommend to run option 2 (production) to build into raw html,css,js")
+        choice = input("enter run option [1] development [2] production (build): ")
         server_setup()
         client_setup(choice)
         print("note: pwa feature: install only works on local host and not network")

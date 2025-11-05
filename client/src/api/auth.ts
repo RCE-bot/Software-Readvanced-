@@ -14,18 +14,6 @@ export interface User
     username: string;
 }
 
-export async function logoutUser(): Promise<string>
-{
-    /* function api call to logout user */
-    const res = await fetch(`/api/logout`, // fetch endpoint backend handles rest
-    {
-        //json method
-        method: "POST",
-        credentials: "include",
-    });
-    if (!res.ok) throw new Error("Logout failed"); // if error
-    return res.text();
-}
 
 export async function login(username: string, password: string): Promise<User>
 {
