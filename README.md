@@ -1,4 +1,4 @@
-# Software Revanced PWA App Development
+# Software Readvanced PWA App Development 
 
 ## Project requirements
 - nodejs (npm)
@@ -19,7 +19,7 @@
 ## Running the app on your machine (automation)
 
 ### option 1
-1. run this in cmd
+1. run this in cmd (requires git installed on computer) or download the zip file and unzip it
 ```sh
 git clone https://github.com/Airstriker123/Software-Readvanced.git
 cd Software-Readvanced

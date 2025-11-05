@@ -3,7 +3,7 @@ app.py:
 - contains main code with app routes
 - frontend can fetch and send payloads to endpoints (routes)
 - login, logout
-- signup, delete account
+- signup
 """
 import os
 import logging
@@ -45,6 +45,12 @@ END app init
 app = Flask("api.software.readvanced")
 app.config.from_object(ApplicationConfig)
 
+"""
+Bcrypt class container for password hashing and checking logic using bcrypt,
+of course. This class may be used to initialize the Flask app object.
+The purpose is to provide a simple interface 
+for overriding Werkzeug's built-in password hashing utilities.
+"""
 bcrypt = Bcrypt(app)
 CORS(app, supports_credentials=True)
 server_session = Session(app)
@@ -74,17 +80,21 @@ def base():
     color: red;
     }
 </style>
-<h1>welcome to the backend api of SR 
-- to fetch data use a valid endpoint e.g /api/test</h1> 
+<h1>welcome to the backend api of SR </h1> 
+<p>
+- to fetch data use a valid endpoint e.g /api/test
+- to view client use the vite server terminal and press the o key
+</p>
 """
 @app.route('/api/test')
 def test():
     # test if api works CALLABLE from client
     print(f"SUCCESS -- called message from BACKEND")
-    return jsonify({
+    return jsonify(
+    {
         "message": "BACKEND IS WORKING!",
-      }
-    )
+    }
+)
 
 @app.route("/api/@me")
 def get_current_user():
@@ -97,15 +107,18 @@ def get_current_user():
 
     # if found do this
     user = User.query.filter_by(id=user_id).first() # query user from database
-    return jsonify({
+    return jsonify(
+    {
         # return json data to client for storage
         "id": user.id,
         "username": user.username
-    })
+    }
+)
 
 
 @app.route("/api/register", methods=["POST"])
 def register_user():  # register a new user
+    # as you can tell from amount of exceptions that function was annoying to code
     try:
         try:
             # request json data from client (username and password)
@@ -142,16 +155,17 @@ def register_user():  # register a new user
         session["user_id"] = new_user.id
 
         # return json data to client for storage
-        return jsonify({
+        return jsonify(
+        {
             "id": new_user.id,
             "username": new_user.username
-        }) , 200
+        }
+    ) , 200
 
     except Exception as e:
         print("[FAILED ROUTE] at account creation /api/register")
         print(e)
-        return
-
+        return None
 
 @app.route("/api/login", methods=["POST"])
 def login_user(): # login a user by checking if they exist in database and if password is correct
@@ -164,27 +178,40 @@ def login_user(): # login a user by checking if they exist in database and if pa
     user = User.query.filter_by(username=username).first()
 
     if user is None: #if requested username and password not found
-        return jsonify({"error": "Unauthorized"}), 401
+        return jsonify(
+        {
+            "error": "Unauthorized"
+        }
+    ), 401
 
     # check if password is correct
     if not bcrypt.check_password_hash(user.password, password):
-        return jsonify({"error": "Unauthorized"}), 401
+        return jsonify(
+        {
+            "error": "Unauthorized"
+        }
+    ), 401
 
     print("[SUCCESS] A USER LOGGED IN!")
     session["user_id"] = user.id # store user id in session
     # return to client user id and username
-    return jsonify({
+    return jsonify(
+    {
         "id": user.id,
         "username": user.username
-    })
+    }
+)
 
 #------------ </app routes> ------------#
 
 #------------ <app run> ------------#
 if __name__ == "__main__":
-    app.run(debug=True)
-    #  url should be http://127.0.0.1:5000
+    app.run(port=5000 , debug=True)
+    #  BACKEND NEEDS TO BE RUNNING ON http://127.0.0.1:5000
+    """
+     IF IT IS NOT CHANGE VITE.CONFIG.JS SERVER PROXY URL 
+     TO WHATEVER URL BACKEND IS RUNNING ON 
+     OR CLIENT WILL NOT CONNECT TO BACKEND 
+    """
 #------------ </app run> ------------#
-
-
 
