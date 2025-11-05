@@ -56,7 +56,6 @@ CORS(app, supports_credentials=True)
 server_session = Session(app)
 db.init_app(app)
 logging.getLogger('sqlalchemy.engine').setLevel(logging.WARNING)
-logging.getLogger('werkzeug').setLevel(logging.ERROR)
 
 
 with app.app_context():
@@ -206,10 +205,10 @@ def login_user(): # login a user by checking if they exist in database and if pa
 
 #------------ <app run> ------------#
 if __name__ == "__main__":
-    app.run(port=5000 , debug=True)
+    app.run(port=5000 , debug=False)
     #  BACKEND NEEDS TO BE RUNNING ON http://127.0.0.1:5000
     """
-     IF IT IS NOT CHANGE VITE.CONFIG.JS SERVER PROXY URL 
+     IF IT IS NOT - CHANGE VITE.CONFIG.TS SERVER PROXY URL 
      TO WHATEVER URL BACKEND IS RUNNING ON 
      OR CLIENT WILL NOT CONNECT TO BACKEND 
     """
