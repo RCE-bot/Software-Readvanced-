@@ -5,10 +5,10 @@ app.py:
 - login, logout
 - signup
 """
+#------------    <imports>    ------------#
 import os
 import logging
 
-#------------    <imports>    ------------#
 try:
     import fade
     from flask import Flask, request, jsonify, session
@@ -102,7 +102,11 @@ def get_current_user():
 
     if not user_id:
         # if user id is not found in session
-        return jsonify({"error": "Unauthorized"}), 401
+        return jsonify(
+        {
+            "error": "Unauthorized"
+        }
+    ), 401
 
     # if found do this
     user = User.query.filter_by(id=user_id).first() # query user from database
@@ -133,7 +137,11 @@ def register_user():  # register a new user
 
             if user_exists:
                 # if they do exist, notify client that user exists and prevent duplicate accounts
-                return jsonify({"error": "User already exists"}), 409
+                return jsonify(
+                {
+                    "error": "User already exists"
+                }
+            ), 409
         except KeyError as e:
             print(f"[ERROR] failed to perform SQL query in database \n {e}")
             return None
