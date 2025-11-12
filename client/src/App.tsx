@@ -83,8 +83,8 @@ export default function App()
     const handleLogout = async ():Promise<void> =>
     {
         // confirm to log out
-        window.confirm("are you sure you want to logout?")
-        if (!window.confirm) return;
+        let prompt = window.confirm("are you sure you want to logout?")
+        if (!prompt) return; //don't log-out if bool = false
         localStorage.removeItem('auth'); // remove token from storage
         setCurrentSection('login');
     };
