@@ -17,9 +17,6 @@ class Banner(object):
 
         self.faded_banner = Banner.purplepink(self.banner)
 
-
-
-
     @staticmethod
     def purplepink(text):
         """

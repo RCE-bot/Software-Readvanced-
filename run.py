@@ -80,7 +80,6 @@ def client_setup(choice):
     ClientBanner()
     if not os.path.exists("node_modules"):              # check if user ran npm i
         # handle installing endpoints and running client
-        os.system('color d')
         print("installing client dependencies...")
         os.system("npm i")
         if choice == "2":

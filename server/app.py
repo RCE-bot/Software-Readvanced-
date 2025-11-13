@@ -81,8 +81,10 @@ def base() -> str:
 </style>
 <h1>welcome to the backend api of SR </h1> 
 <p>
-- to fetch data use a valid endpoint e.g /api/test
-- to view client use the vite server terminal and press the o key
+- to fetch data use a valid endpoint e.g /api/test <br>
+- to view client use the vite server terminal and press <br>
+the o key<br>
+- make sure proxy server is set to the ip running on this server or client will not connect to backend
 </p>
 """
 @app.route('/api/test')
@@ -97,9 +99,6 @@ def test() -> Response:
 
 @app.route("/api/@me")
 def get_current_user() -> Union[Response, Tuple[Response, int]]:
-	'''client user id 
-	- determine if client is authorised
-	'''
     # get the client user and check if they are authorized
     user_id = session.get("user_id")
 
@@ -136,7 +135,6 @@ BEGIN registeruser(username,password)
 			DISPLAY "username taken!"
 		ENDIF
 END registeruser(username,password)
-
     """
     # as you can tell from amount of exceptions that function was annoying to code
     try:
@@ -191,8 +189,8 @@ END registeruser(username,password)
         return()
 
 @app.route("/api/login", methods=["POST"])
-def login_user() -> Union[Response, Tuple[Response, int]]: # login a user by checking if they exist in database and if password is correct
-	"""
+def login_user(): #login a user by checking if they exist in database and if password is correct
+    """
 BEGIN Login(username,password)
 	username = get input from the client user
 	password = get input from the client user
@@ -204,8 +202,8 @@ BEGIN Login(username,password)
 		session_id = append user_id to local storage
 	ENDIF
 END Login(username,password)
+    """
 
-	"""
     # request json data username and password
     username = request.json["username"]
     password = request.json["password"]
