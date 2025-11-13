@@ -160,7 +160,7 @@ export default function AboutSection({ onNavigateToResources }: AboutProps)
 
     }, sectionRef);
 
-    return () => ctx.revert();
+    return ():void => ctx.revert();
   }, []);
 
   return (
@@ -174,7 +174,7 @@ export default function AboutSection({ onNavigateToResources }: AboutProps)
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Code display */}
           <div ref={codeRef} className="relative">
-                <img src="/aboutsr.webp" alt="about software readvanced"/>
+                <img src="/aboutsr.png" alt="failed to fetch resource"/>
           </div>
           
           {/* Right side - About content */}

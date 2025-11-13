@@ -14,8 +14,7 @@ export default function Navigation({ currentSection, onSectionChange }: Navigati
     let [isMinimized, setIsMinimized] = useState(false);
     const navRef = useRef<HTMLDivElement>(null);
     // check if device is mobile to hide side nav
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-
+    const isMobile:boolean = window.matchMedia("(max-width: 768px)").matches;
     const navigationItems = [
         { id: 'home', label: 'Home', icon: Home },
         { id: 'resources', label: 'Resources', icon: BookOpen },
@@ -23,7 +22,7 @@ export default function Navigation({ currentSection, onSectionChange }: Navigati
     ] as const;
 
     // side bar navigation animation for smooth transition
-    useEffect(() =>
+    useEffect(():void =>
     {
         if (!navRef.current) return;
 

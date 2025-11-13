@@ -46,9 +46,9 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   // Filter resources based on search and category
-  useEffect(() =>
+  useEffect(():void =>
   {
-    let filtered = Resources;
+    let filtered:typeof Resources = Resources;
 
     // Filter by category
     if (selectedCategory !== 'All')
@@ -134,7 +134,7 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
       }
     }, sectionRef);
 
-    return () => ctx.revert();
+    return ():void => ctx.revert();
   }, [filteredResources]); // Re-run animation when resources change
 
   // Handle search focus when navigated from Hero
@@ -149,7 +149,7 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
         onSearchFocused?.();
       }, 500);
       
-      return () => clearTimeout(timer);
+      return ():void => clearTimeout(timer);
     }
   }, [shouldFocusSearch, onSearchFocused]);
 

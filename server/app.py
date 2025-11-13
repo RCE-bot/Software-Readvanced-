@@ -8,10 +8,10 @@ app.py:
 #------------    <imports>    ------------#
 import os
 import logging
-
+from typing import Union, Tuple
 try:
     import fade
-    from flask import Flask, request, jsonify, session
+    from flask import Flask, request, jsonify, session, Response
     from flask_bcrypt import Bcrypt
     from flask_cors import CORS, cross_origin
     from flask_session import Session
@@ -21,7 +21,7 @@ except ImportError:
     print("installing dependencies...")
     os.system("pip install -r requirements.txt")
     import fade
-    from flask import Flask, request, jsonify, session
+    from flask import Flask, request, jsonify, session, Response
     from flask_bcrypt import Bcrypt
     from flask_cors import CORS, cross_origin
     from flask_session import Session
@@ -51,11 +51,11 @@ of course. This class may be used to initialize the Flask app object.
 The purpose is to provide a simple interface 
 for overriding Werkzeug's built-in password hashing utilities.
 """
-bcrypt = Bcrypt(app)
+bcrypt = Bcrypt(app) #hashing method
 CORS(app, supports_credentials=True)
-server_session = Session(app)
-db.init_app(app)
-logging.getLogger('sqlalchemy.engine').setLevel(logging.WARNING)
+server_session = Session(app) #api server
+db.init_app(app) #construct database
+logging.getLogger('sqlalchemy.engine').setLevel(logging.WARNING) #stop spam sql in terminal
 
 
 with app.app_context():
@@ -69,7 +69,7 @@ with app.app_context():
 
 #base route when open api url
 @app.route("/")
-def base():
+def base() -> str:
     return \
 """
 <style> 
@@ -86,7 +86,7 @@ def base():
 </p>
 """
 @app.route('/api/test')
-def test():
+def test() -> Response:
     # test if api works CALLABLE from client
     print(f"SUCCESS -- called message from BACKEND")
     return jsonify(
@@ -96,7 +96,7 @@ def test():
 )
 
 @app.route("/api/@me")
-def get_current_user():
+def get_current_user() -> Union[Response, Tuple[Response, int]]:
     # get the client user and check if they are authorized
     user_id = session.get("user_id")
 
@@ -120,7 +120,21 @@ def get_current_user():
 
 
 @app.route("/api/register", methods=["POST"])
-def register_user():  # register a new user
+def register_user() -> tuple:  # register a new user
+    """
+BEGIN registeruser(username,password)
+		username = get input from client user
+		password = get input from client user
+		IF username does not exist in database THEN
+			append username,password to database
+			DISPLAY "account created"
+			renderapp = redirect to homepage with login(username,password)
+		ELSE
+			DISPLAY "username taken!"
+		ENDIF
+END registeruser(username,password)
+
+    """
     # as you can tell from amount of exceptions that function was annoying to code
     try:
         try:
@@ -129,8 +143,7 @@ def register_user():  # register a new user
             password = request.json["password"]
         except KeyError as e:
             print(f"[ERROR] failed to fetch username and password from client \n {e}")
-            return None
-
+            return()
         try:
             # CHECK IF USER EXISTDS IN DATABASE
             user_exists = User.query.filter_by(username=username).first() is not None
@@ -144,7 +157,7 @@ def register_user():  # register a new user
             ), 409
         except KeyError as e:
             print(f"[ERROR] failed to perform SQL query in database \n {e}")
-            return None
+            return()
 
         try:
             # ---- security methods (encryption/hasing passwords) ----#
@@ -155,7 +168,7 @@ def register_user():  # register a new user
             # ---- </security methods> ----#
         except Exception as e:
             print(f"[ERROR] failed to perform hashing/encrypting of account \n {e}")
-            return None
+            return()
 
         print("[SUCCESS] user registered")
         # store user id in session
@@ -172,10 +185,10 @@ def register_user():  # register a new user
     except Exception as e:
         print("[FAILED ROUTE] at account creation /api/register")
         print(e)
-        return None
+        return()
 
 @app.route("/api/login", methods=["POST"])
-def login_user(): # login a user by checking if they exist in database and if password is correct
+def login_user() -> Union[Response, Tuple[Response, int]]: # login a user by checking if they exist in database and if password is correct
 
     # request json data username and password
     username = request.json["username"]

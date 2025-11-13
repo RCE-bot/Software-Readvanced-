@@ -90,7 +90,7 @@ export default function Hero({ onNavigateToResources }: HeroProps)
 
     }, sectionRef);
 
-    return () => ctx.revert();
+    return ():void => ctx.revert();
   }, []);
 
   return (

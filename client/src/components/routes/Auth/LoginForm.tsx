@@ -24,7 +24,7 @@ export default function LoginForm({ setUser, onNavigateToSignUp }: LoginFormProp
     const [error, setError] = useState<string | null>(null);
 
     // login handle backend (api call)
-    const handleLogin = async (e: React.FormEvent) =>
+    const handleLogin: (e: React.FormEvent) => Promise<void> = async (e: React.FormEvent) : Promise<void> =>
     {
         e.preventDefault();
         setLoading(true);
