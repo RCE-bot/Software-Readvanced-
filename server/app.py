@@ -97,6 +97,9 @@ def test() -> Response:
 
 @app.route("/api/@me")
 def get_current_user() -> Union[Response, Tuple[Response, int]]:
+	'''client user id 
+	- determine if client is authorised
+	'''
     # get the client user and check if they are authorized
     user_id = session.get("user_id")
 
@@ -189,7 +192,20 @@ END registeruser(username,password)
 
 @app.route("/api/login", methods=["POST"])
 def login_user() -> Union[Response, Tuple[Response, int]]: # login a user by checking if they exist in database and if password is correct
+	"""
+BEGIN Login(username,password)
+	username = get input from the client user
+	password = get input from the client user
+	User_id = username and password
+	IF User_id does not match database records THEN
+		DISPLAY "invalid username or password"
+	ELSE
+		renderapp = redirect to homepage with login(username,password)
+		session_id = append user_id to local storage
+	ENDIF
+END Login(username,password)
 
+	"""
     # request json data username and password
     username = request.json["username"]
     password = request.json["password"]
