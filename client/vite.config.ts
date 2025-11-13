@@ -86,6 +86,7 @@ export default defineConfig({
     server: {
       proxy: {
       '/api': 'http://127.0.0.1:5000', // Flask backend hook (change to whatever url backend is running)
+          // also change api link in api folder in src/api for auth and test
     },
         host: true, //  allows access from other devices
         port: 3000, //default port

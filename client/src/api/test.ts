@@ -15,7 +15,7 @@ export default class Test
   {
       try
       {
-          fetch("/api/test") //fetch route
+          fetch("http://127.0.0.1:5000/api/test") //fetch route
               .then((res:Response):Promise<any> => res.json()) //request json data
               .then((data:any):void =>
               {
