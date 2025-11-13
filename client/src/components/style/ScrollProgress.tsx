@@ -30,7 +30,7 @@ export default function ScrollProgress()
       });
     }, progressRef);
 
-    return ()=> ctx.revert();
+    return ():void => ctx.revert();
   }, []);
 
   // return scroll component for render

@@ -160,7 +160,7 @@ export default function AboutSection({ onNavigateToResources }: AboutProps)
 
     }, sectionRef);
 
-    return () => ctx.revert();
+    return ():void => ctx.revert();
   }, []);
 
   return (

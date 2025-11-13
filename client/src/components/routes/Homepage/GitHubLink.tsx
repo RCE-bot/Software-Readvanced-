@@ -67,7 +67,7 @@ export default function GitHubLink()
       }
     }, linkRef);
 
-    return () => ctx.revert();
+    return ():void => ctx.revert();
   }, []);
 
   return (<>{/* render the component */}

@@ -21,37 +21,36 @@ export default function PWAInstaller()
 
     useEffect(() =>
     {
-        const handler = (e: Event) =>
+        // handle install prompt
+        const handler: (e: Event) => void = (e: Event) =>
         {
             e.preventDefault();
             setDeferredPrompt(e as BeforeInstallPromptEvent);
             setShowInstall(true);
         };
-
+        // listen for client install prompt
         window.addEventListener('beforeinstallprompt', handler);
 
-        return () =>
+        return ():void =>
         {
             window.removeEventListener('beforeinstallprompt', handler);
         };
     }, []);
 
-    const handleInstallClick = async () =>
+    const handleInstallClick: () => Promise<void> = async ():Promise<void> =>
     {
+        // handle client install click
         if (!deferredPrompt) return;
-
         deferredPrompt.prompt(); //prompt user to install
         const { outcome } = await deferredPrompt.userChoice;
-
         if (outcome === 'accepted')
         {
             setDeferredPrompt(null);
             setShowInstall(false);
         }
     };
-
+    // conditon to return null or XML
     if (!showInstall) return null;
-
     return (
         <>
         {/* button to install app */}

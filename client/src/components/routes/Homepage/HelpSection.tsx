@@ -142,7 +142,7 @@ export default function HelpSection({onNavigateToResources,
             });
         }, sectionRef);
 
-        return () => ctx.revert();
+        return ():void => ctx.revert();
     }, []);
 
     return (

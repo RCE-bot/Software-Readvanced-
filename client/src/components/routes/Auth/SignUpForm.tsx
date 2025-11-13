@@ -24,7 +24,7 @@ export default function SignUpForm({ onRegister, onNavigateToLogin }: SignUpForm
     const [loading, setLoading] = useState(false);
 
     // logic to register user to database
-    const signUpUser = async (e: React.FormEvent) =>
+    const signUpUser: (e: React.FormEvent) => Promise<void> = async (e: React.FormEvent):Promise<void> =>
     {
         e.preventDefault();
         setLoading(true);

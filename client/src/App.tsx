@@ -83,7 +83,7 @@ export default function App()
     const handleLogout = async ():Promise<void> =>
     {
         // confirm to log out
-        let prompt = window.confirm("are you sure you want to logout?")
+        let prompt:boolean = window.confirm("are you sure you want to logout?");
         if (!prompt) return; //don't log-out if bool = false
         localStorage.removeItem('auth'); // remove token from storage
         setCurrentSection('login');
@@ -118,7 +118,7 @@ export default function App()
     // redirect unauthenticated users trying to access other pages
     useEffect(():void =>
     {
-        const auth = localStorage.getItem('auth');
+        const auth:string | null = localStorage.getItem('auth');
         if (!auth && currentSection !== 'login' && currentSection !== 'signup')
         {
             setCurrentSection('login');

@@ -82,7 +82,7 @@ export function SettingsSection({handleLogout,}: AccountSettingsProps)
             }
         }, sectionRef);
 
-        return () => ctx.revert();
+        return ():void => ctx.revert();
     }, []);
 
     // component typescript XML - stores markup for structure , style and text
