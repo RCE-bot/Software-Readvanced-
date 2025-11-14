@@ -128,7 +128,9 @@ export default function LoginForm({ setUser, onNavigateToSignUp }: LoginFormProp
                                     <h1 className="text-white text-4xl font-semibold">
                                         <b>Sign in</b>
                                     </h1>
-                                    <p className="text-green-400 text-[15px] font-medium mt-6 leading-relaxed">
+                                    <p className="text-green-400
+drop-shadow-[green_1px_1px_1px]
+text-[15px] font-medium mt-6 leading-relaxed">
                                         <b>Sign in to your account to proceed</b>
                                         <br />
                                         <br />

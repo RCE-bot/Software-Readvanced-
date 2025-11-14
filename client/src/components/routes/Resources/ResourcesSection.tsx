@@ -15,7 +15,7 @@ const Resources:typeof data = data;
 const categories:string[] = [
     "All", "Python", "OOP", "Software Engineering",
     "Database", "Algorithms", "Web Development", "DevOps",
-    "Machine Learning", "System Design", "Backend", "Security"
+    "Machine Learning", "System Design", "Backend", "Security",
 ];
 
 interface ResourcesSectionProps
@@ -60,6 +60,9 @@ export default function ResourcesSection({ shouldFocusSearch, onSearchFocused }:
     if (searchTerm)
     {
       filtered = filtered.filter(resource =>
+        resource.difficulty.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        resource.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        resource.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
         resource.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         resource.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
         resource.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))

@@ -28,6 +28,7 @@ export default class Test
               // display this if unable to fetch json from api
               console.error("[FAIL] Could not connect to backend", err);
               toast.error("Failed to connected server to client -_-");
+              
           });
       }
       catch (error:any)
