@@ -198,14 +198,14 @@ export default function HelpSection({onNavigateToResources,
                                 onClick={onNavigateToResources}
                                 className="bg-green-400 hover:bg-green-600 text-black px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
                             >
-                                search for resource
+                                Search for resource
                             </Button>
                             <Button
                                 onClick={onNavigateToSettings}
                                 variant="outline"
                                 className="bg-green-400 hover:bg-green-600 text-black px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
                             >
-                                settings
+                                Settings
                             </Button>
                         </div>
                     </div>
