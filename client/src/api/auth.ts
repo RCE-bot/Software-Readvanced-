@@ -17,7 +17,7 @@ export interface User
 export async function login(username: string, password: string): Promise<User>
 {
     /* function to login user */
-    const res:Response = await fetch(`http://127.0.0.1:5000/api/login`, //api endpoint fetch method
+    const res:Response = await fetch(`/api/login`, //api endpoint fetch method
     {
         // check if input username and password is valid
         method: "POST",
@@ -49,7 +49,7 @@ export async function login(username: string, password: string): Promise<User>
 export async function register(username: string, password: string):Promise<User>
 {
     /*method to register new user in database  */
-    const res:Response = await fetch(`http://127.0.0.1:5000/api/register`,
+    const res:Response = await fetch(`/api/register`,
     {
         method: "POST",
         headers: { "Content-Type": "application/json" },
