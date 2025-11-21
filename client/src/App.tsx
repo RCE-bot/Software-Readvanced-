@@ -3,6 +3,14 @@ app.tsx:
 - main app component
 - assembles (imports) different react components.
 - contains global variables and code which applies for all the app
+    /*
+    app components combines all child components into one parent component
+    - which handles the logic of this single page pwa
+    - handles what component to render under condition
+    - if user is logged in
+    - if user installed the app on device
+    */
+    /*
 */
 // ui components
 import { useState, useEffect } from 'react';
@@ -24,13 +32,27 @@ import {toast} from "sonner";
 
 export default function App()
 {
-    /*
-    app components combines all child components into one parent component
-    - which handles the logic of this single page pwa
-    - handles what component to render under condition
-    - if user is logged in
-    - if user installed the app on device
-    */
+/*
+BEGIN Client 
+	session = get from the user client
+	IF session == null THEN
+		choice = get from client user
+		IF choice = login THEN
+			renderapp = redirect to Login()
+		ELSE IF choice = signup THEN
+			renderapp = redirect to registeruser()
+		ELSE
+			Login()
+		ENDIF
+	ELSE
+		renderapp = redirect to homepage() using client session
+	ENDIF
+	IF logout() THEN
+		session = null
+		renderapp = redirect to login()
+	ENDIF
+END Client
+*/
     // State to manage which section is currently active
     let [currentSection, setCurrentSection] = useState<'login' | 'signup' | 'home' | 'resources' | 'settings'>('login');
     const [shouldFocusSearch, setShouldFocusSearch] = useState(false);
