@@ -33,6 +33,7 @@ import {toast} from "sonner";
 export default function App()
 {
 /*
+~ below is a structured english on how this works:
 BEGIN Client 
 	session = get from the user client
 	IF session == null THEN
