@@ -125,15 +125,17 @@ def get_current_user() -> Union[Response, Tuple[Response, int]]:
 def register_user() -> tuple:  # register a new user
     """
 BEGIN registeruser(username,password)
-		username = get input from client user
-		password = get input from client user
-		IF username does not exist in database THEN
-			append username,password to database
+		username = get input from user
+		password = get input from user
+		UniqueUser() = check if username is unique
+		IF UniqueUser() THEN
+			append username,password to Users()
 			DISPLAY "account created"
-			renderapp = redirect to homepage with login(username,password)
+			session = generate a uuid and append to localstorage()
+			renderapp = redirect to homepage() with login(username,password)
 		ELSE
 			DISPLAY "username taken!"
-		ENDIF
+		ENDIF 
 END registeruser(username,password)
     """
     # as you can tell from amount of exceptions that function was annoying to code
@@ -192,14 +194,14 @@ END registeruser(username,password)
 def login_user(): #login a user by checking if they exist in database and if password is correct
     """
 BEGIN Login(username,password)
-	username = get input from the client user
-	password = get input from the client user
+	username = get input from the user
+	password = get input from the user
 	User_id = username and password
-	IF User_id does not match database records THEN
+	IF User_id does not match Users() records THEN
 		DISPLAY "invalid username or password"
 	ELSE
-		renderapp = redirect to homepage with login(username,password)
-		session_id = append user_id to local storage
+		renderapp = redirect to homepage() with login(username,password)
+		session = append uuid to localstorage()
 	ENDIF
 END Login(username,password)
     """
