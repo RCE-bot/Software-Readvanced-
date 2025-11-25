@@ -1,9 +1,9 @@
-# UI Components Folder Explanation
+# UI Components Folder Notice
 
 ## What is the `/components/ui` folder?
 
 ```
-THE CODE IN UI IS PRECURED FROM SHADCN UI
+THE CODE IN UI IS obtained FROM SHADCN UI
 ```
 https://ui.shadcn.com/
 
