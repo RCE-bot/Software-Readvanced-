@@ -1,5 +1,5 @@
 "use client";
-// precured code look at readme.md
+// not my code look at readme.md
 import * as React from "react";
 import * as SeparatorPrimitive from "@radix-ui/react-separator@1.1.2";
 
