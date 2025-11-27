@@ -1,5 +1,5 @@
 "use client";
-// precured code look at readme.md
+// not my code look at readme.md
 import * as React from "react";
 import * as SwitchPrimitive from "@radix-ui/react-switch@1.1.3";
 

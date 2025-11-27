@@ -15,6 +15,7 @@
     - uses gsap for animations
     - uses vite for running in browser (testing, production)
     - uses nodejs for package install , base
+    - uses sqlite3 with sqlalchemy(eliminates needing to write raw sql queries) for database
 
 ## Running the app on your machine (automation)
 
@@ -53,3 +54,4 @@ npm run serve
 ```
 - run the script in order 1. build 2. serve
 8. pwa should be running now
+

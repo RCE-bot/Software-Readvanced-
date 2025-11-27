@@ -188,7 +188,7 @@ export default function AboutSection({ onNavigateToResources }: AboutProps)
             </h2>
             
             <p ref={textRef} className="text-gray-300 text-lg mb-8 leading-relaxed">
-              Software Readvanced is a web application designed to help students learn the new hsc software engineering course, by providing useful learning resources to students for their studies.
+              Software Readvanced is a web application (PWA) designed to help students learn the new HSC software engineering course, by providing useful learning resources to students for their studies.
             </p>
             
             <div ref={buttonRef}>

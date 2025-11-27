@@ -122,7 +122,7 @@ export default function Hero({ onNavigateToResources }: HeroProps)
             className="bg-green-500 hover:bg-green-600 text-black px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
             onClick={onNavigateToResources}
           >
-            Search resource
+            Search Resource
           </Button>
         </div>
       </div>

@@ -122,7 +122,7 @@ export default function SignUpForm({ onRegister, onNavigateToLogin }: SignUpForm
                                 <div>
                                     {/* image overlay text */}
                                     <h1 className="text-white text-4xl font-semibold"><b>Sign Up</b></h1>
-                                    <p className="text-green-400 text-[15px] font-medium mt-6 leading-relaxed">
+                                    <p className="drop-shadow-[green_1px_1px_1px] text-green-400 text-[15px] font-medium mt-6 leading-relaxed">
                                         <b>Create your account to proceed</b> <br /><br />
                                         Software Readvanced is a web application designed to help students learn the new HSC software engineering course by providing useful learning resources for their studies.
                                     </p>
