@@ -22,3 +22,4 @@ class User(db.Model):
                          unique=True) #username field
     password = db.Column(db.Text,
                          nullable=False) #password field
+
