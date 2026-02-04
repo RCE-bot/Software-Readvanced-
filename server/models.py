@@ -1,25 +1,26 @@
-from flask_sqlalchemy import SQLAlchemy
+import sqlite3
 from uuid import uuid4
 
-db = SQLAlchemy() #db type
+DB_PATH = "./db.sqlite"
 
 def get_uuid() -> str:
-    return uuid4().hex #unique user id for each user
+    return uuid4().hex
 
-class User(db.Model):
-    """
-    construct the database Users table
-    """
-    __tablename__ = "users" #name
-    #table fields, colums (converts to sql)
-    id = db.Column(db.String(32),  #uuid string length
-                   primary_key=True,
-                   unique=True,
-                   default=get_uuid
-                   ) #uuid of each account
+def get_db_connection():
+    # Connects to the SQLite file and returns rows as dictionaries
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    return conn
 
-    username = db.Column(db.String(345),
-                         unique=True) #username field
-    password = db.Column(db.Text,
-                         nullable=False) #password field
-
+def init_db():
+    # Replaces db.create_all()
+    conn = get_db_connection()
+    conn.execute('''
+        CREATE TABLE IF NOT EXISTS users (
+            id TEXT PRIMARY KEY,
+            username VARCHAR(345) UNIQUE NOT NULL,
+            password TEXT NOT NULL
+        )
+    ''')
+    conn.commit()
+    conn.close()
