@@ -7,7 +7,8 @@ app.py:
 """
 #------------    <imports>    ------------#
 import os
-
+import logging
+from typing import Union, Tuple
 try:
     import fade
     from flask import Flask, request, jsonify, session, Response
@@ -15,7 +16,7 @@ try:
     from flask_cors import CORS, cross_origin
     from flask_session import Session
     from config import ApplicationConfig
-    from models import init_db, get_db_connection, get_uuid
+    from models import db, User
 except ImportError:
     print("installing dependencies...")
     os.system("pip install -r requirements.txt")
@@ -25,22 +26,45 @@ except ImportError:
     from flask_cors import CORS, cross_origin
     from flask_session import Session
     from config import ApplicationConfig
-    from models import init_db, get_db_connection, get_uuid
+    from models import db, User
 #------------ </imports>    ------------#
 
 
-# ... (imports remain the same, remove 'models' and 'flask_sqlalchemy')
-
-
-app = Flask(__name__)
+#------------ <app construct>    ------------#
+"""
+BEGIN app init
+    // create app instance
+    // configure app
+    // initialize bcrypt
+    // initialize cors
+    // initialize session
+    // initialize database
+    // create tables
+END app init
+"""
+app = Flask("api.software.readvanced")
 app.config.from_object(ApplicationConfig)
-bcrypt = Bcrypt(app)
-CORS(app, supports_credentials=True)
-server_session = Session(app)
 
-# Initialize the table on startup
+"""
+Bcrypt class container for password hashing and checking logic using bcrypt,
+of course. This class may be used to initialize the Flask app object.
+The purpose is to provide a simple interface 
+for overriding Werkzeug's built-in password hashing utilities.
+"""
+bcrypt = Bcrypt(app) #hashing method
+CORS(app, supports_credentials=True)
+server_session = Session(app) #api server
+db.init_app(app) #construct database
+logging.getLogger('sqlalchemy.engine').setLevel(logging.WARNING) #stop spam sql in terminal
+
+
 with app.app_context():
-    init_db()
+    db.create_all()
+
+#------------ </app construct> ------------#
+
+
+#------------ <app routes ------------#
 
 
 #base route when open api url
@@ -72,71 +96,149 @@ def test() -> Response:
         "message": "BACKEND IS WORKING!",
     }
 )
+
 @app.route("/api/@me")
-def get_current_user():
+def get_current_user() -> Union[Response, Tuple[Response, int]]:
+    # get the client user and check if they are authorized
     user_id = session.get("user_id")
+
     if not user_id:
-        return jsonify({"error": "Unauthorized"}), 401
+        # if user id is not found in session
+        return jsonify(
+        {
+            "error": "Unauthorized"
+        }
+    ), 401
 
-    conn = get_db_connection()
-    # SQL QUERY: Fetch user by ID
-    user = conn.execute('SELECT * FROM users WHERE id = ?', (user_id,)).fetchone()
-    conn.close()
-
-    if not user:
-        return jsonify({"error": "User not found"}), 404
-
-    return jsonify({
-        "id": user["id"],
-        "username": user["username"]
-    })
+    # if found do this
+    user = User.query.filter_by(id=user_id).first() # query user from database
+    return jsonify(
+    {
+        # return json data to client for storage
+        "id": user.id,
+        "username": user.username
+    }
+)
 
 
 @app.route("/api/register", methods=["POST"])
-def register_user():
-    username = request.json.get("username")
-    password = request.json.get("password")
-
-    conn = get_db_connection()
-    # SQL QUERY: Check if user exists
-    user_exists = conn.execute('SELECT id FROM users WHERE username = ?', (username,)).fetchone()
-
-    if user_exists:
-        conn.close()
-        return jsonify({"error": "User already exists"}), 409
-
-    hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
-    new_id = get_uuid()
-
-    # SQL QUERY: Insert new user
+def register_user() -> tuple:  # register a new user
+    """
+BEGIN registeruser(username,password)
+		username = get input from user
+		password = get input from user
+		UniqueUser() = check if username is unique
+		IF UniqueUser() THEN
+			append username,password to Users()
+			DISPLAY "account created"
+			session = generate a uuid and append to localstorage()
+			renderapp = redirect to homepage() with login(username,password)
+		ELSE
+			DISPLAY "username taken!"
+		ENDIF 
+END registeruser(username,password)
+    """
+    # as you can tell from amount of exceptions that function was annoying to code
     try:
-        conn.execute('INSERT INTO users (id, username, password) VALUES (?, ?, ?)',
-                     (new_id, username, hashed_password))
-        conn.commit()
+        try:
+            # request json data from client (username and password)
+            username = request.json["username"]
+            password = request.json["password"]
+        except KeyError as e:
+            print(f"[ERROR] failed to fetch username and password from client \n {e}")
+            return()
+        try:
+            # CHECK IF USER EXISTDS IN DATABASE
+            user_exists = User.query.filter_by(username=username).first() is not None
+
+            if user_exists:
+                # if they do exist, notify client that user exists and prevent duplicate accounts
+                return jsonify(
+                {
+                    "error": "User already exists"
+                }
+            ), 409
+        except KeyError as e:
+            print(f"[ERROR] failed to perform SQL query in database \n {e}")
+            return()
+
+        try:
+            # ---- security methods (encryption/hasing passwords) ----#
+            hashed_password = bcrypt.generate_password_hash(password)
+            new_user = User(username=username, password=hashed_password)
+            db.session.add(new_user)
+            db.session.commit()
+            # ---- </security methods> ----#
+        except Exception as e:
+            print(f"[ERROR] failed to perform hashing/encrypting of account \n {e}")
+            return()
+
+        print("[SUCCESS] user registered")
+        # store user id in session
+        session["user_id"] = new_user.id
+
+        # return json data to client for storage
+        return jsonify(
+        {
+            "id": new_user.id,
+            "username": new_user.username
+        }
+    ) , 200
+
     except Exception as e:
-        conn.close()
-        return jsonify({"error": str(e)}), 500
-
-    conn.close()
-    session["user_id"] = new_id
-    return jsonify({"id": new_id, "username": username}), 200
-
+        print("[FAILED ROUTE] at account creation /api/register")
+        print(e)
+        return()
 
 @app.route("/api/login", methods=["POST"])
-def login_user():
-    username = request.json.get("username")
-    password = request.json.get("password")
+def login_user(): #login a user by checking if they exist in database and if password is correct
+    """
+BEGIN Login(username,password)
+	username = get input from the user
+	password = get input from the user
+	User_id = username and password
+	IF User_id does not match Users() records THEN
+		DISPLAY "invalid username or password"
+	ELSE
+		renderapp = redirect to homepage() with login(username,password)
+		session = append uuid to localstorage()
+	ENDIF
+END Login(username,password)
+    """
 
-    conn = get_db_connection()
-    # SQL QUERY: Find user by username
-    user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
-    conn.close()
+    # request json data username and password
+    username = request.json["username"]
+    password = request.json["password"]
 
-    if user is None or not bcrypt.check_password_hash(user["password"], password):
-        return jsonify({"error": "Unauthorized"}), 401
+    # query in database for user
+    user = User.query.filter_by(username=username).first()
 
-    session["user_id"] = user["id"]
-    return jsonify({"id": user["id"], "username": user["username"]})
+    if user is None: #if requested username and password not found
+        return jsonify(
+        {
+            "error": "Unauthorized"
+        }
+    ), 401
+
+    # check if password is correct
+    if not bcrypt.check_password_hash(user.password, password):
+        return jsonify(
+        {
+            "error": "Unauthorized"
+        }
+    ), 401
+
+    print("[SUCCESS] A USER LOGGED IN!")
+    session["user_id"] = user.id # store user id in session
+    # return to client user id and username
+    return jsonify(
+    {
+        "id": user.id,
+        "username": user.username
+    }
+)
+
+#------------ </app routes> ------------#
 
 #------------ <app run> ------------#
 if __name__ == "__main__":
@@ -148,4 +250,3 @@ if __name__ == "__main__":
      OR CLIENT WILL NOT CONNECT TO BACKEND 
     """
 #------------ </app run> ------------#
-
